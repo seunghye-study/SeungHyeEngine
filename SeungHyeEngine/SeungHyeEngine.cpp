@@ -12,7 +12,7 @@ WCHAR szTitle[MAX_LOADSTRING];                  // 제목 표시줄 텍스트입
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
-ATOM                MyRegisterClass(HINSTANCE hInstance);
+ATOM                MyRegisterClass(HINSTANCE hInstance); // intance = 윈도우 id, 윈도우가 여러개 생길수도 있으니까
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
@@ -97,9 +97,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
-
+   HWND hWnd = CreateWindowW(szWindowClass, L"Hello", WS_OVERLAPPEDWINDOW,
+      0,0,900,600, nullptr, nullptr, hInstance, nullptr); // window create, window 정보를 바탕으로 생성, 핸들 반환
+   // 핸들 윈도우에 접근
    if (!hWnd)
    {
       return FALSE;
@@ -123,8 +123,12 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 //
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+    int a = 1;
     switch (message)
     {
+    case WM_CREATE:
+        a = 3;
+        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -147,8 +151,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+
+            Rectangle(hdc, 100, 100, 200, 200);
+
             EndPaint(hWnd, &ps);
         }
+        break;
+    case WM_KEYDOWN:
+        a = 4;
+        break;
+    case WM_MOVE:
+        a = 5;
+        break;
+    case WM_RBUTTONDOWN:
+        a = 6;
+        break;
+    case WM_SIZE:
+        SetWindowText(hWnd, L"HELLOWINDOW_SIZE");
         break;
     case WM_DESTROY:
         PostQuitMessage(0);
