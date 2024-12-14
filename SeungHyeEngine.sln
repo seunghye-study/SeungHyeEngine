@@ -5,6 +5,10 @@ VisualStudioVersion = 17.11.35312.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeungHyeEngine", "SeungHyeEngine\SeungHyeEngine.vcxproj", "{7398BCFA-0B8B-414C-B3E0-AC6CB3C7053F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeungHyeEngine_SOURCE", "SeungHyeEngine_SOURCE\SeungHyeEngine_SOURCE.vcxitems", "{322BE7B0-3BF5-45C3-85E8-2FFE2B2A0284}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SeungHyeEngine_STATIC", "SeungHyeEngine_STATIC\SeungHyeEngine_STATIC.vcxproj", "{E24F3932-827A-4410-907B-AAB03BD905AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,11 +25,23 @@ Global
 		{7398BCFA-0B8B-414C-B3E0-AC6CB3C7053F}.Release|x64.Build.0 = Release|x64
 		{7398BCFA-0B8B-414C-B3E0-AC6CB3C7053F}.Release|x86.ActiveCfg = Release|Win32
 		{7398BCFA-0B8B-414C-B3E0-AC6CB3C7053F}.Release|x86.Build.0 = Release|Win32
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Debug|x64.ActiveCfg = Debug|x64
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Debug|x64.Build.0 = Debug|x64
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Debug|x86.ActiveCfg = Debug|Win32
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Debug|x86.Build.0 = Debug|Win32
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Release|x64.ActiveCfg = Release|x64
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Release|x64.Build.0 = Release|x64
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Release|x86.ActiveCfg = Release|Win32
+		{E24F3932-827A-4410-907B-AAB03BD905AD}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EFC116AC-AEA4-4642-8B68-6565DEED1A91}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		SeungHyeEngine_SOURCE\SeungHyeEngine_SOURCE.vcxitems*{322be7b0-3bf5-45c3-85e8-2ffe2b2a0284}*SharedItemsImports = 9
+		SeungHyeEngine_SOURCE\SeungHyeEngine_SOURCE.vcxitems*{e24f3932-827a-4410-907b-aab03bd905ad}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
