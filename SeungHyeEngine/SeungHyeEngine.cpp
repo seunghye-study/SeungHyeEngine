@@ -151,8 +151,26 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            Rectangle(hdc, 200, 200, 300, 300);
+
+            // 블루 브러쉬 생성
+            HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
+
+            // 블루 브러쉬 사용
+            HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
 
             Rectangle(hdc, 100, 100, 200, 200);
+
+            HBRUSH redBrush = CreateSolidBrush(RGB(255, 0, 0));
+
+            oldBrush = (HBRUSH)SelectObject(hdc, redBrush);
+
+            Rectangle(hdc, 300, 300, 400, 400);
+
+            SelectObject(hdc, oldBrush);
+
+            DeleteObject(blueBrush);
+            DeleteObject(redBrush);
 
             EndPaint(hWnd, &ps);
         }
