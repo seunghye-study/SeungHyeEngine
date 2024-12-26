@@ -28,8 +28,17 @@ void Game::Application::Initialize(HWND hwnd, UINT width, UINT height)
 	mWidth = rect.right - rect.left;
 	mHeight = rect.bottom - rect.top;
 
-	SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight);
+	SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight, 0);
 	ShowWindow(mHwnd, true);
+
+	// 윈도우 해상도에 맞는 백버퍼 생성
+	mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
+
+	// 백버퍼 dc
+	mBackHdc = CreateCompatibleDC(mHdc);
+
+	HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+	DeleteObject(oldBitmap);
 
 	mPlayer.SetPosition(0.0f, 0.0f);
 	GameInput::Initialize();
@@ -55,5 +64,9 @@ void Game::Application::LateUpdate()
 
 void Game::Application::Render()
 {
+	Rectangle(mBackHdc, 0, 0, 1600, 900);
+	
 	mPlayer.Render(mHdc);
+
+	BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0,0,SRCCOPY);
 }

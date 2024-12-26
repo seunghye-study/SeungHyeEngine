@@ -17,21 +17,21 @@ void Game::GameObject::Update()
 {
 	if ((GameInput::GetKey(EKeyCode::Left)))
 	{
-		mX -= 0.01f;
+		mX -= 0.11f;
 	}
 	if ((GameInput::GetKey(EKeyCode::Right)))
 	{
-		mX += 0.01f;
+		mX += 0.11f;
 	}
 
 	if ((GameInput::GetKey(EKeyCode::Up)))
 	{
-		mY -= 0.01f;
+		mY -= 0.11f;
 	}
 
 	if ((GameInput::GetKey(EKeyCode::Down)))
 	{
-		mY += 0.01f;
+		mY += 0.11f;
 	}
 }
 
