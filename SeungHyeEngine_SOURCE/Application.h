@@ -1,15 +1,16 @@
 #pragma once
 
 #include "CommonInclude.h"
+#include "GameObject.h"
 
-namespace App {
+namespace Game {
 	class Application
 	{
 	public:
 		Application();
 		~Application();
 
-		void Initialize(HWND hwnd);
+		void Initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
 
 		void Update();
@@ -21,9 +22,14 @@ namespace App {
 		HWND mHwnd;
 		HDC mHdc;
 
-		float mSpeed;
-		float mX;
-		float mY;
+		// dc+bitmap ÇÑ¼¼Æ®
+		HDC mBackHdc;
+		HBITMAP mBackBitmap;
+
+		UINT mWidth;
+		UINT mHeight;
+
+		GameObject mPlayer;
 	};
 }
 

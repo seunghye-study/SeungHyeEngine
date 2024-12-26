@@ -5,7 +5,7 @@
 #include "SeungHyeEngine.h"
 #include "../SeungHyeEngine_SOURCE/Application.h"
 
-App::Application application;
+Game::Application application;
 
 #define MAX_LOADSTRING 100
 

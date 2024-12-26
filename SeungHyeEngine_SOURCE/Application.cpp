@@ -1,69 +1,59 @@
 #include "Application.h"
-
+#include "GameInput.h"
 
 // 생성자, 초기화
-App::Application::Application()
+Game::Application::Application()
 	: mHwnd(nullptr),
 	mHdc(nullptr),
-	mSpeed(0.0f),
-	mX(0.0f),
-	mY(0.0f)
+	mWidth(0),
+	mHeight(0),
+	mBackBitmap(nullptr),
+	mBackHdc(nullptr)
+{
+
+}
+
+Game::Application::~Application()
 {
 }
 
-App::Application::~Application()
-{
-}
-
-void App::Application::Initialize(HWND hwnd)
+void Game::Application::Initialize(HWND hwnd, UINT width, UINT height)
 {
 	mHwnd = hwnd;
 	mHdc = GetDC(hwnd);
+
+	RECT rect = { 0,0, width, height };
+	AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+	mWidth = rect.right - rect.left;
+	mHeight = rect.bottom - rect.top;
+
+	SetWindowPos(mHwnd, nullptr, 0, 0, mWidth, mHeight);
+	ShowWindow(mHwnd, true);
+
+	mPlayer.SetPosition(0.0f, 0.0f);
+	GameInput::Initialize();
 }
 
-void App::Application::Run()
+void Game::Application::Run()
 {
 	Update();
 	LateUpdate();
 	Render();
 }
 
-void App::Application::Update()
+void Game::Application::Update()
 {
-	mSpeed += 0.01f;
-
-	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-	{
-		mX -= 0.01f;
-	}
-	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-	{
-		mX += 0.01f;
-	}
-
-	if (GetAsyncKeyState(VK_UP) & 0x8000)
-	{
-		mY -= 0.01f;
-	}
-
-	if (GetAsyncKeyState(VK_DOWN) & 0x8000)
-	{
-		mY += 0.01f;
-	}
+	GameInput::Update();
+	mPlayer.Update();
 }
 
-void App::Application::LateUpdate()
+void Game::Application::LateUpdate()
 {
+	mPlayer.LateUpdate();
 }
 
-void App::Application::Render()
+void Game::Application::Render()
 {
-	// 그리기
-	HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
-	HBRUSH oldBrush = (HBRUSH)SelectObject(mHdc, blueBrush);
-
-	Rectangle(mHdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
-
-	SelectObject(mHdc, oldBrush);
-	DeleteObject(blueBrush);
+	mPlayer.Render(mHdc);
 }
