@@ -26,7 +26,11 @@ namespace Game
 	private:
 		float mX;
 		float mY;
+
+		float cX;
+		float cY;
 	};
+
 
 }
 
