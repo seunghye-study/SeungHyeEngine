@@ -1,6 +1,5 @@
 #pragma once
 #include "CommonInclude.h"
-#include <GameObject.h>
 
 class Projectile
 {
@@ -15,6 +14,6 @@ public:
 private:
 	float mX;
 	float mY;
-
+	float mSpeed;
 };
 

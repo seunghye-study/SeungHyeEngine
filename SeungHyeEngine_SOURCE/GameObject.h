@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CommonInclude.h"
+#include "Projectile.h"
 
 namespace Game
 {
@@ -26,9 +27,6 @@ namespace Game
 	private:
 		float mX;
 		float mY;
-
-		float cX;
-		float cY;
 	};
 
 

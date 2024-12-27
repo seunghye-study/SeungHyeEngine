@@ -5,8 +5,6 @@
 Game::GameObject::GameObject()
 	:mX(0.0f)
 	, mY(0.0f)
-	, cX(0.0f)
-	,cY(0.0f)
 {
 
 }
@@ -38,10 +36,9 @@ void Game::GameObject::Update()
 	}
 	if ((GameInput::GetKey(EKeyCode::SpaceBar)))
 	{
-		cX = mX+120;
-		cY = mY+125;
-		cX += 11.0f;
+		
 	}
+
 }
 
 void Game::GameObject::LateUpdate()
@@ -50,8 +47,6 @@ void Game::GameObject::LateUpdate()
 
 void Game::GameObject::Render(HDC hdc)
 {
-	Ellipse(hdc, 10 + cX, 10 + cY, 20 + cX, 20 + cY);
-
 	HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
 	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
 

@@ -2,6 +2,8 @@
 
 #include "CommonInclude.h"
 #include "GameObject.h"
+#include "Projectile.h"
+#include "Monster.h"
 
 namespace Game {
 	class Application
@@ -30,6 +32,7 @@ namespace Game {
 		UINT mHeight;
 
 		GameObject mPlayer;
+		Monster mMonster;
 	};
 }
 

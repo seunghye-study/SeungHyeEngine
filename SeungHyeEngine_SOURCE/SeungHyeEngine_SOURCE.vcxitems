@@ -18,6 +18,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Monster.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Projectile.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)STime.h" />
   </ItemGroup>
@@ -25,6 +26,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Application.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Monster.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Projectile.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)STime.cpp" />
   </ItemGroup>

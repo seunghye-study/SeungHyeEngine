@@ -41,7 +41,9 @@ void Game::Application::Initialize(HWND hwnd, UINT width, UINT height)
 	DeleteObject(oldBitmap);
 
 	mPlayer.SetPosition(0.0f, 0.0f);
+
 	GameInput::Initialize();
+	
 }
 
 void Game::Application::Run()
@@ -55,11 +57,13 @@ void Game::Application::Update()
 {
 	GameInput::Update();
 	mPlayer.Update();
+	mMonster.Update();
 }
 
 void Game::Application::LateUpdate()
 {
 	mPlayer.LateUpdate();
+	mMonster.LateUpdate();
 }
 
 void Game::Application::Render()
@@ -67,6 +71,7 @@ void Game::Application::Render()
 	Rectangle(mBackHdc, 0, 0, 1600, 900);
 	
 	mPlayer.Render(mHdc);
+	mMonster.Render(mHdc);
 
 	BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0,0,SRCCOPY);
 }
