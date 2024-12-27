@@ -21,12 +21,16 @@ namespace Game
 			mY = y;
 		}
 
+		void fire();
+
 		float GetPositionX() { return mX; }
 		float GetPositionY() { return mY; }
 
 	private:
 		float mX;
 		float mY;
+
+		std::vector<Projectile*> mProjectile;
 	};
 
 

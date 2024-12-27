@@ -4,7 +4,7 @@
 class Projectile
 {
 public:
-	Projectile(UINT sX, UINT sY);
+	Projectile(float x, float y);
 	~Projectile();
 
 	void Update();
@@ -14,6 +14,7 @@ public:
 private:
 	float mX;
 	float mY;
+
 	float mSpeed;
 };
 

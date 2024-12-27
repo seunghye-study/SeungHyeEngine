@@ -22,9 +22,6 @@ private:
 	float mX;
 	float mY;
 	float mSpeed;
-
 	bool flag = true;
-	
-
 };
 
