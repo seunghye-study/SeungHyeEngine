@@ -1,7 +1,7 @@
+#include <iostream>
 #include "GameObject.h"
 #include "GameInput.h"
-#include "Projectile.h"
-#include <iostream>
+
 
 Game::GameObject::GameObject()
 	:mX(0.0f)
@@ -36,15 +36,6 @@ void Game::GameObject::Update()
 	{
 		mY += 0.11f;
 	}
-	if ((GameInput::GetKeyDown(EKeyCode::SpaceBar)))
-	{
-		//ÃÑ¾Ë¹ß»ç
-		fire();
-	}
-	for (auto* projectile : mProjectile)
-	{
-		projectile->Update();
-	}
 }
 
 
@@ -61,15 +52,5 @@ void Game::GameObject::Render(HDC hdc)
 
 	SelectObject(hdc, oldBrush);
 	DeleteObject(blueBrush);
-
-	for (auto* projectile : mProjectile)
-	{
-		projectile->Render(hdc);
-	}
 }
 
-
-void Game::GameObject::fire()
-{
-	mProjectile.push_back(new Projectile(mX+150, mY+150));
-}

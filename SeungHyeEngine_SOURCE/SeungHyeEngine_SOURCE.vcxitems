@@ -16,22 +16,27 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Application.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Entity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Monster.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Projectile.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)GamePlayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Application.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Entity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameObject.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Monster.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Projectile.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)GamePlayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)TitleScene.cpp" />
   </ItemGroup>
 </Project>

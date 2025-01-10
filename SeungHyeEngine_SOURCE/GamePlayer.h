@@ -1,24 +1,23 @@
 #pragma once
-
-#include "CommonInclude.h"
+#include "GameObject.h"
 
 namespace Game
 {
-	class GameObject
+	class GamePlayer : public GameObject
 	{
 	public:
-		GameObject();
-		~GameObject();
+		GamePlayer();
+		~GamePlayer();
 
-		virtual void Update();
-		virtual void LateUpdate();
-		virtual void Render(HDC hdc);
+		void Update() override;
+		void LateUpdate() override;
+		void Render(HDC hdc) override;
 
 		void SetPosition(float x, float y)
 		{
 			mX = x;
 			mY = y;
-		}
+		} 
 
 		float GetPositionX() { return mX; }
 		float GetPositionY() { return mY; }

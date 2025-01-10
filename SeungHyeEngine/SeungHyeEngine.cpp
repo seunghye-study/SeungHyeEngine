@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "SeungHyeEngine.h"
 #include "../SeungHyeEngine_SOURCE/Application.h"
+#include "../SeungHyeEngine_SOURCE/LoadScene.h"
 
 Game::Application application;
 
@@ -113,6 +114,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   Game::LoadScene();
 
    return TRUE;
 }

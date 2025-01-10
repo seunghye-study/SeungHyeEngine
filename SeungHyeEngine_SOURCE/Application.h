@@ -2,8 +2,7 @@
 
 #include "CommonInclude.h"
 #include "GameObject.h"
-#include "Projectile.h"
-#include "Monster.h"
+#include "GamePlayer.h"
 
 namespace Game {
 	class Application
@@ -19,6 +18,11 @@ namespace Game {
 		void LateUpdate();
 		void Render();
 
+	private:
+		/* Scene 관리? */
+		void ClearRenderTarget();
+		void CopyRenderTarget(HDC source, HDC dest);
+
 		/*Adgustment*/
 		void AdjustWindow(HWND hwnd, UINT width, UINT height);
 		void CreateBuffer(UINT width, UINT height);
@@ -28,15 +32,14 @@ namespace Game {
 		HWND mHwnd;
 		HDC mHdc;
 
-		// dc+bitmap 한세트
 		HDC mBackHdc;
 		HBITMAP mBackBitmap;
 
 		UINT mWidth;
 		UINT mHeight;
 
-		GameObject mPlayer;
-		Monster mMonster;
+		std::vector<Scene*> mScenes;
+		GamePlayer mGamePlayer;
 	};
 }
 

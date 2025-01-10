@@ -1,6 +1,7 @@
 #include "Application.h"
 #include "GameInput.h"
 #include "GameTime.h"
+#include "SceneManager.h"
 
 using namespace Game;
 
@@ -24,8 +25,9 @@ void Game::Application::Initialize(HWND hwnd, UINT width, UINT height)
 {
 	AdjustWindow(hwnd, width, height);
 	CreateBuffer(width, height);
-	mPlayer.SetPosition(0.0f, 0.0f);
 	InitComponent();
+
+	SceneManager::Initialize();
 }
 
 void Game::Application::Run()
@@ -39,27 +41,34 @@ void Game::Application::Update()
 {
 	GameInput::Update();
 	Time::Update();
-	mPlayer.Update();
-	mMonster.Update();
+	mGamePlayer.Update();
+	SceneManager::Update();
 }
 
 void Game::Application::LateUpdate()
 {
-	mPlayer.LateUpdate();
-	mMonster.LateUpdate();
+
 }
 
 void Game::Application::Render()
 {
-	Rectangle(mBackHdc, 0, 0, 1600, 900);
-	
+	ClearRenderTarget();
 	Time::Render(mHdc);
-	mPlayer.Render(mHdc);
-	mMonster.Render(mHdc);
-
-	BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0,0,SRCCOPY);
+	SceneManager::Render(mHdc);
+	mGamePlayer.Render(mHdc);
+	CopyRenderTarget(mBackHdc, mHdc);
 }
 
+void Game::Application::ClearRenderTarget()
+{
+	Rectangle(mBackHdc, -1, -1, 1601, 901);
+}
+
+void Game::Application::CopyRenderTarget(HDC source, HDC dest)
+{
+	BitBlt(dest, 0, 0, mWidth, mHeight
+		, source, 0, 0, SRCCOPY);
+}
 
 void Game::Application::AdjustWindow(HWND hwnd, UINT width, UINT height)
 {
