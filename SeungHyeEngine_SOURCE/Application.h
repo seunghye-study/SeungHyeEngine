@@ -19,6 +19,10 @@ namespace Game {
 		void LateUpdate();
 		void Render();
 
+		/*Adgustment*/
+		void AdjustWindow(HWND hwnd, UINT width, UINT height);
+		void CreateBuffer(UINT width, UINT height);
+		void InitComponent();
 
 	private:
 		HWND mHwnd;

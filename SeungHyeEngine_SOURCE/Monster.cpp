@@ -1,5 +1,6 @@
 #include "Monster.h"
 #include <time.h>
+using namespace std;
 
 Monster::Monster()
 {

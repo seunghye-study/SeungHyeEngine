@@ -72,5 +72,4 @@ void Game::GameObject::Render(HDC hdc)
 void Game::GameObject::fire()
 {
 	mProjectile.push_back(new Projectile(mX+150, mY+150));
-	
 }
