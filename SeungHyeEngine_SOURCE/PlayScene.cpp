@@ -15,13 +15,14 @@ namespace Game
 	void PlayScene::Initialize()
 	{
 		{
-			GamePlayer* player = new GamePlayer();
-			Transform* tr = player->AddComponent<Transform>();
-			tr->SetPos(800, 450);
+			GamePlayer* bg = new GamePlayer();
+			Transform* tr= bg->AddComponent<Transform>();
+			tr->SetPos(Vector2(0, 0));
 			tr->SetName(L"TR");
-			SpriteRenderer* sr = player->AddComponent<SpriteRenderer>();
+			SpriteRenderer* sr= bg->AddComponent<SpriteRenderer>();
 			sr->SetName(L"SR");
-			AddGameObject(player);
+			sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Cloudy_Ocean.png");
+			AddGameObject(bg);
 		}
 	}
 	void PlayScene::Update()

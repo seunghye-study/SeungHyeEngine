@@ -30,6 +30,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp">
       <Filter>Component</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Resource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Application.h" />
@@ -67,6 +70,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h">
       <Filter>Component</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Resource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SMath.h">
+      <Filter>pch</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -81,16 +90,5 @@
     <Filter Include="Component">
       <UniqueIdentifier>{e5e1f4c5-35eb-40e6-9f40-8f8cf88422ac}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\Users\hsh99\OneDrive\바탕 화면\api자료\Title\ParnoramaBackground.png">
-      <Filter>Resource</Filter>
-    </Image>
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\Users\hsh99\OneDrive\바탕 화면\api자료\Title\Title.png">
-      <Filter>Resource</Filter>
-    </Image>
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\Users\hsh99\OneDrive\바탕 화면\api자료\Title\TitleScreen.png">
-      <Filter>Resource</Filter>
-    </Image>
   </ItemGroup>
 </Project>

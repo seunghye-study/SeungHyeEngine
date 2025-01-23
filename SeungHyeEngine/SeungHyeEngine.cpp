@@ -8,6 +8,9 @@
 
 Game::Application application;
 
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
+
 #define MAX_LOADSTRING 100
 
 // 전역 변수:
@@ -62,6 +65,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         }
     }
 
+    Gdiplus::GdiplusShutdown(gpToken);
     return (int) msg.wParam;
 }
 
@@ -92,7 +96,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0,0,900,600, nullptr, nullptr, hInstance, nullptr); // window create, window 정보를 바탕으로 생성, 핸들 반환
-   
+   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
    Game::LoadScene();
    
    application.Initialize(hWnd, 1600, 900);
@@ -104,7 +108,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-
+  
    return TRUE;
 }
 

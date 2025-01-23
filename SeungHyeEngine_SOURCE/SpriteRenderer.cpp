@@ -4,7 +4,10 @@
 
 namespace Game
 {
-	SpriteRenderer::SpriteRenderer()
+	SpriteRenderer::SpriteRenderer() :
+		mImage(nullptr)
+		, mWidth(0)
+		, mHeight(0)
 	{
 	}
 	SpriteRenderer::~SpriteRenderer()
@@ -12,6 +15,7 @@ namespace Game
 	}
 	void SpriteRenderer::Initialize()
 	{
+
 	}
 	void SpriteRenderer::Update()
 	{
@@ -21,19 +25,15 @@ namespace Game
 	}
 	void SpriteRenderer::Render(HDC hdc)
 	{
-		HBRUSH blueBrush = CreateSolidBrush(RGB(255, 0, 255));
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
-
-		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(rand() % 255, rand() % 255, rand() % 255));
-		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-		SelectObject(hdc, oldPen);
-
 		Transform* tr = GetOwner()->GetComponent<Transform>();
-		Rectangle(hdc, tr->GetPosX(), tr->GetPosY()
-			, 100 + tr->GetPosX(), 100 + tr->GetPosY());
-
-		SelectObject(hdc, oldBrush);
-		DeleteObject(blueBrush);
-		DeleteObject(redPen);
+		Vector2 pos = tr->GetPosition();
+		Gdiplus::Graphics graphcis(hdc);
+		graphcis.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
+	}
+	void SpriteRenderer::ImageLoad(const std::wstring& path)
+	{
+		mImage = Gdiplus::Image::FromFile(path.c_str());
+		mWidth = mImage->GetWidth();
+		mHeight = mImage->GetHeight();
 	}
 }

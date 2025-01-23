@@ -24,8 +24,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Resource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h" />
@@ -39,15 +41,11 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GamePlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Resource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\Users\hsh99\OneDrive\바탕 화면\api자료\Title\ParnoramaBackground.png" />
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\Users\hsh99\OneDrive\바탕 화면\api자료\Title\Title.png" />
-    <Image Include="$(MSBuildThisFileDirectory)..\..\..\Users\hsh99\OneDrive\바탕 화면\api자료\Title\TitleScreen.png" />
   </ItemGroup>
 </Project>

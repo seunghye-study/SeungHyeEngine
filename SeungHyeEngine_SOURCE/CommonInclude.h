@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 
+#include "SMath.h"
 
 #include <mmsystem.h>
 #include <dinput.h>
