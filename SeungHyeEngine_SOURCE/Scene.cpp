@@ -2,19 +2,21 @@
 
 Game::Scene::Scene()
 {
+
 }
 
 Game::Scene::~Scene()
 {
+
 }
 
 void Game::Scene::Initialize()
 {
+
 }
 
 void Game::Scene::Update()
 {
-	// Game object update
 	for (GameObject* gameObj : mGameObjects)
 	{
 		gameObj->Update();

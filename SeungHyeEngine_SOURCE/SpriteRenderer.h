@@ -1,19 +1,21 @@
 #pragma once
-#include "GameObject.h"
+#include "Entity.h"
+#include "Component.h"
 
 namespace Game
 {
-	class GamePlayer : public GameObject
+	class SpriteRenderer : public Component
 	{
 	public:
-		GamePlayer();
-		~GamePlayer();
+		SpriteRenderer();
+		~SpriteRenderer();
 		void Initialize() override;
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
 	private:
+
 	};
 }
 

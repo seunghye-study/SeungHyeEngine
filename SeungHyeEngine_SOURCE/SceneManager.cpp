@@ -8,6 +8,9 @@ Scene* SceneManager::mActiveScene = nullptr;
 
 void Game::SceneManager::Initialize()
 {
+	if (mActiveScene == nullptr)
+	{
+	}
 	mActiveScene->Initialize();
 }
 

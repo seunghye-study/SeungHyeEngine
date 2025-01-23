@@ -55,13 +55,12 @@ void Game::Application::Render()
 	ClearRenderTarget();
 	Time::Render(mHdc);
 	SceneManager::Render(mHdc);
-	mGamePlayer.Render(mHdc);
 	CopyRenderTarget(mBackHdc, mHdc);
 }
 
 void Game::Application::ClearRenderTarget()
 {
-	Rectangle(mBackHdc, -1, -1, 1601, 901);
+	Rectangle(mBackHdc, 0, 0, 1600, 900);
 }
 
 void Game::Application::CopyRenderTarget(HDC source, HDC dest)

@@ -4,53 +4,48 @@
 
 
 Game::GameObject::GameObject()
-	:mX(0.0f)
-	, mY(0.0f)
 {
 
 }
 
 Game::GameObject::~GameObject()
 {
+	for (Component* comp : mComponents)
+	{
+		delete comp;
+		comp = nullptr;
+	}
+}
 
+void Game::GameObject::Initialize()
+{
+	for (Component* comp : mComponents)
+	{
+		comp->Initialize();
+	}
 }
 
 void Game::GameObject::Update()
 {
-
-	if ((GameInput::GetKey(EKeyCode::Left)))
+	for (Component* comp : mComponents)
 	{
-		mX -= 0.11f;
-	}
-	if ((GameInput::GetKey(EKeyCode::Right)))
-	{
-		mX += 0.11f;
-	}
-
-	if ((GameInput::GetKey(EKeyCode::Up)))
-	{
-		mY -= 0.11f;
-	}
-
-	if ((GameInput::GetKey(EKeyCode::Down)))
-	{
-		mY += 0.11f;
+		comp->Update();
 	}
 }
 
-
 void Game::GameObject::LateUpdate()
 {
+	for (Component* comp : mComponents)
+	{
+		comp->LateUpdate();
+	}
 }
 
 void Game::GameObject::Render(HDC hdc)
 {
-	HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 255));
-	HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
-
-	Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
-
-	SelectObject(hdc, oldBrush);
-	DeleteObject(blueBrush);
+	for (Component* comp : mComponents)
+	{
+		comp->Render(hdc);
+	}
 }
 

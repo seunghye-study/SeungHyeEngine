@@ -2,9 +2,6 @@
 #include "Entity.h"
 #include "GameObject.h"
 
-// scene 에 game object를 배치하고
-// update - render 관리
-
 namespace Game
 {
 	class Scene : public Entity

@@ -3,6 +3,7 @@
 #include "CommonInclude.h"
 #include "GameObject.h"
 #include "GamePlayer.h"
+#include "Scene.h"
 
 namespace Game {
 	class Application

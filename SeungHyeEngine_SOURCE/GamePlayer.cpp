@@ -3,9 +3,7 @@
 
 namespace Game
 {
-	GamePlayer::GamePlayer() :
-		mX(0.0f)
-		, mY(0.0f)
+	GamePlayer::GamePlayer()
 	{
 
 	}
@@ -15,6 +13,11 @@ namespace Game
 
 	}
 
+	void GamePlayer::Initialize()
+	{
+		GameObject::Initialize();
+	}
+	
 	void GamePlayer::Update()
 	{
 		GameObject::Update();
