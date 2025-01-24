@@ -14,7 +14,18 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-
+		//background (ground)
+		{
+			GameObject* ground = new GameObject();
+			Transform* tr = ground->AddComponent<Transform>();
+			tr->SetPos(Vector2(0, 0));
+			tr->SetName(L"TR");
+			SpriteRenderer* sr = ground->AddComponent<SpriteRenderer>();
+			sr->SetName(L"SR");
+			sr->SetScale(1, 1);
+			sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Standard_Farm_1.png");
+			AddGameObject(ground);
+		}
 	}
 	void PlayScene::Update()
 	{

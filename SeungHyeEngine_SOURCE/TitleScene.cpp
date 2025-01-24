@@ -1,6 +1,8 @@
 #include "TitleScene.h"
 #include "Transform.h"
-#include "GamePlayer.h"
+#include "SceneManager.h"
+#include "GameObject.h"
+#include "GameInput.h"
 
 namespace Game
 {
@@ -73,6 +75,10 @@ namespace Game
 	}
 	void TitleScene::Update()
 	{
+		if (GameInput::GetKeyDown(EKeyCode::D))
+		{
+			SceneManager::LoadScene(L"PlayScene");
+		}
 		Scene::Update();
 	}
 	void TitleScene::LateUpdate()

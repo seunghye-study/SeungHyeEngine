@@ -2,6 +2,7 @@
 
 #include "SceneManager.h"
 #include "TitleScene.h"
+#include "PlayScene.h"
 
 namespace Game
 {
@@ -9,5 +10,9 @@ namespace Game
 	{
 		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::LoadScene(L"TitleScene");
+	}
+	void LoadPlayScene()
+	{
+		SceneManager::CreateScene<PlayScene>(L"PlayScene");
 	}
 }
