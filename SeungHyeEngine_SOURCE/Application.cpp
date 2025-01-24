@@ -53,14 +53,19 @@ void Game::Application::LateUpdate()
 void Game::Application::Render()
 {
 	ClearRenderTarget();
-	Time::Render(mHdc);
-	SceneManager::Render(mHdc);
+
+	Time::Render(mBackHdc);
+	SceneManager::Render(mBackHdc);
+
 	CopyRenderTarget(mBackHdc, mHdc);
 }
 
 void Game::Application::ClearRenderTarget()
 {
-	Rectangle(mBackHdc, 0, 0, 1600, 900);
+	HBRUSH backgroundBrush = CreateSolidBrush(RGB(255, 255, 255)); // 배경색 (검정)
+	RECT rect = { 0, 0, mWidth, mHeight };
+	FillRect(mBackHdc, &rect, backgroundBrush);
+	DeleteObject(backgroundBrush);
 }
 
 void Game::Application::CopyRenderTarget(HDC source, HDC dest)
@@ -90,7 +95,6 @@ void Game::Application::CreateBuffer(UINT width, UINT height)
 	mBackHdc = CreateCompatibleDC(mHdc);
 
 	HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
-	DeleteObject(oldBitmap);
 }
 
 void Game::Application::InitComponent()
