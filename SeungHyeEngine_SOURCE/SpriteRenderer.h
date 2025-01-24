@@ -15,11 +15,14 @@ namespace Game
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 		void ImageLoad(const std::wstring& path);
-
+		void SetScale(float scaleX, float scaleY);
 	private:
 		Gdiplus::Image* mImage;
 		UINT mWidth;
 		UINT mHeight;
+		float mScaleX;
+		float mScaleY;
+		
 	};
 }
 

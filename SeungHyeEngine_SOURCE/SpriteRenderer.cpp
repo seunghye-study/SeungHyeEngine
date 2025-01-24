@@ -28,12 +28,17 @@ namespace Game
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
 		Gdiplus::Graphics graphcis(hdc);
-		graphcis.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
+		graphcis.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth*mScaleX, mHeight*mScaleY));
 	}
 	void SpriteRenderer::ImageLoad(const std::wstring& path)
 	{
 		mImage = Gdiplus::Image::FromFile(path.c_str());
 		mWidth = mImage->GetWidth();
 		mHeight = mImage->GetHeight();
+	}
+	void SpriteRenderer::SetScale(float scaleX, float scaleY)
+	{
+		mScaleX = scaleX;
+		mScaleY = scaleY;
 	}
 }

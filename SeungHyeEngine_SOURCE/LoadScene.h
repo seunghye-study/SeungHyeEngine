@@ -1,13 +1,13 @@
 #pragma once
 
 #include "SceneManager.h"
-#include "PlayScene.h"
+#include "TitleScene.h"
 
 namespace Game
 {
-	void LoadScene()
+	void LoadTitleScene()
 	{
-		SceneManager::CreateScene<PlayScene>(L"PlayScene");
-		SceneManager::LoadScene(L"PlayScene");
+		SceneManager::CreateScene<TitleScene>(L"TitleScene");
+		SceneManager::LoadScene(L"TitleScene");
 	}
 }

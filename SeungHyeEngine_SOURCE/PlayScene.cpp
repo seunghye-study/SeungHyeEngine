@@ -14,16 +14,7 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		{
-			GamePlayer* bg = new GamePlayer();
-			Transform* tr= bg->AddComponent<Transform>();
-			tr->SetPos(Vector2(0, 0));
-			tr->SetName(L"TR");
-			SpriteRenderer* sr= bg->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-			sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Cloudy_Ocean.png");
-			AddGameObject(bg);
-		}
+
 	}
 	void PlayScene::Update()
 	{
