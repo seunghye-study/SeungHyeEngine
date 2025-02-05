@@ -7,6 +7,7 @@
 #include <map>
 
 #include "SMath.h"
+#include "SEnums.h"
 
 #include <mmsystem.h>
 #include <dinput.h>

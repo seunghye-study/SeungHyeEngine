@@ -16,6 +16,7 @@ namespace Game
 		void Render(HDC hdc) override;
 		void ImageLoad(const std::wstring& path);
 		void SetScale(float scaleX, float scaleY);
+
 	private:
 		Gdiplus::Image* mImage;
 		UINT mWidth;

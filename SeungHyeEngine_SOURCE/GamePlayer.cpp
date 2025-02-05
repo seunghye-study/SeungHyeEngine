@@ -1,5 +1,7 @@
 #include "GamePlayer.h"
 #include "GameInput.h"
+#include "Transform.h"
+#include "GameTime.h"
 
 namespace Game
 {

@@ -18,8 +18,6 @@ namespace Game
 		void Render(HDC hdc) override;
 
 	private:
-		GameObject* TitleBackground;
-		GameObject* Title;
-		GameObject* TitleButtons[4];
+
 	};
 }

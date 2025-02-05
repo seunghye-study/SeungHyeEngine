@@ -47,7 +47,7 @@ void Game::Application::Update()
 
 void Game::Application::LateUpdate()
 {
-
+	SceneManager::LateUpdate();
 }
 
 void Game::Application::Render()

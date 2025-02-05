@@ -21,12 +21,16 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GamePlayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadingScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Object.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)PlayScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Resource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TitleScene.h" />
@@ -39,6 +43,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)GameInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GamePlayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Layer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)LoadingScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)PlayScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Resource.cpp" />

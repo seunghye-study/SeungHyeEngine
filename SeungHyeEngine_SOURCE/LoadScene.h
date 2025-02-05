@@ -9,10 +9,11 @@ namespace Game
 	void LoadTitleScene()
 	{
 		SceneManager::CreateScene<TitleScene>(L"TitleScene");
+		SceneManager::CreateScene<PlayScene>(L"PlayScene");
 		SceneManager::LoadScene(L"TitleScene");
 	}
 	void LoadPlayScene()
 	{
-		SceneManager::CreateScene<PlayScene>(L"PlayScene");
+		SceneManager::LoadScene(L"PlayScene");
 	}
 }

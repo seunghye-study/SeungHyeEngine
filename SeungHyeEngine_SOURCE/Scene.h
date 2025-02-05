@@ -1,6 +1,7 @@
 #pragma once
 #include "Entity.h"
 #include "GameObject.h"
+#include "Layer.h"
 
 namespace Game
 {
@@ -15,9 +16,16 @@ namespace Game
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
 
-		void AddGameObject(GameObject* gameObject);
+		virtual void OnEnter();
+		virtual void OnExit();
+
+		void AddGameObject(GameObject* gameObj, const eLayerType type);
+		Layer* GetLayer(const eLayerType type) { return mLayers[(UINT)type]; }
+	private:
+		void CreateLayers();
 
 	private:
-		std::vector<GameObject*> mGameObjects;
+		std::vector<Layer*> mLayers;
+
 	};
 }

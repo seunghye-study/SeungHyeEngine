@@ -1,11 +1,11 @@
 #include <iostream>
 #include "GameObject.h"
 #include "GameInput.h"
-
+#include "Transform.h"
 
 Game::GameObject::GameObject()
 {
-
+	InitializeTransform();
 }
 
 Game::GameObject::~GameObject()
@@ -47,5 +47,10 @@ void Game::GameObject::Render(HDC hdc)
 	{
 		comp->Render(hdc);
 	}
+}
+
+void Game::GameObject::InitializeTransform()
+{
+	AddComponent<Transform>();
 }
 
