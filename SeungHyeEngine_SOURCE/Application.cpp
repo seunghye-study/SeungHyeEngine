@@ -41,7 +41,6 @@ void Game::Application::Update()
 {
 	GameInput::Update();
 	Time::Update();
-	mGamePlayer.Update();
 	SceneManager::Update();
 }
 

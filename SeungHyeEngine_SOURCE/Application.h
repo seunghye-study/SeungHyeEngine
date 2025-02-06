@@ -1,8 +1,6 @@
 #pragma once
 
 #include "CommonInclude.h"
-#include "GameObject.h"
-#include "GamePlayer.h"
 #include "Scene.h"
 
 namespace Game {
@@ -20,13 +18,15 @@ namespace Game {
 		void Render();
 
 	private:
-		/* Scene °ü¸®? */
+		/* Dubble buffering */
 		void ClearRenderTarget();
 		void CopyRenderTarget(HDC source, HDC dest);
 
 		/*Adgustment*/
 		void AdjustWindow(HWND hwnd, UINT width, UINT height);
 		void CreateBuffer(UINT width, UINT height);
+
+		/* Component */
 		void InitComponent();
 
 	private:
@@ -40,7 +40,6 @@ namespace Game {
 		UINT mHeight;
 
 		std::vector<Scene*> mScenes;
-		GamePlayer mGamePlayer;
 	};
 }
 

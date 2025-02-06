@@ -21,7 +21,7 @@ namespace Game
 		mPlayer = Game::Instantiate<GameObject>(eLayerType::BackGround, Vector2(0.0f, 0.0f));
 		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 		sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Standard_Farm_1.png");
-		//Scene::Initialize();
+		Scene::Initialize();
 		//background (ground)
 		//{
 		//	GameObject* ground = new GameObject();

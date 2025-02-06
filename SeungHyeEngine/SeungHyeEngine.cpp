@@ -97,8 +97,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0,0,900,600, nullptr, nullptr, hInstance, nullptr); // window create, window 정보를 바탕으로 생성, 핸들 반환
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
+   
    Game::LoadTitleScene();
-   Game::LoadPlayScene();
+   
    application.Initialize(hWnd, 1280, 720);
 
    if (!hWnd)
