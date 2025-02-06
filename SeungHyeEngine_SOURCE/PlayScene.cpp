@@ -7,6 +7,8 @@
 #include "TitleScene.h"
 #include "GameInput.h"
 #include "Object.h"
+#include "Texture.h"
+#include "Resources.h"
 
 namespace Game
 {
@@ -18,22 +20,15 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		mPlayer = Game::Instantiate<GameObject>(eLayerType::BackGround, Vector2(0.0f, 0.0f));
+		//게임오브젝트 만들기전에 리소스들 전부 Load해두면 좋다.
+		mPlayer = Game::Instantiate<GameObject>(eLayerType::BackGround, Vector2(100.0f, 100.0f));
+
 		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-		sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Standard_Farm_1.png");
+
+		Texture* bg = Resources::Find<Texture>(L"BG");
+		sr->SetTexture(bg);
+
 		Scene::Initialize();
-		//background (ground)
-		//{
-		//	GameObject* ground = new GameObject();
-		//	Transform* tr = ground->AddComponent<Transform>();
-		//	tr->SetPosition(Vector2(0, 0));
-		//	tr->SetName(L"TR");
-		//	SpriteRenderer* sr = ground->AddComponent<SpriteRenderer>();
-		//	sr->SetName(L"SR");
-		//	sr->SetScale(1, 1);
-		//	sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Standard_Farm_1.png");
-		//	AddGameObject(ground, eLayerType::BackGround);
-		//}
 	}
 	void PlayScene::Update()
 	{

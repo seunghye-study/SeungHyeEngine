@@ -17,7 +17,14 @@ namespace Game {
 		void LateUpdate();
 		void Render();
 
+		/*HDC*/
+		HDC GetHDC() { return mHdc; }
+
+		/* Component */
+		void InitComponent();
+
 	private:
+
 		/* Dubble buffering */
 		void ClearRenderTarget();
 		void CopyRenderTarget(HDC source, HDC dest);
@@ -26,8 +33,8 @@ namespace Game {
 		void AdjustWindow(HWND hwnd, UINT width, UINT height);
 		void CreateBuffer(UINT width, UINT height);
 
-		/* Component */
-		void InitComponent();
+
+
 
 	private:
 		HWND mHwnd;
