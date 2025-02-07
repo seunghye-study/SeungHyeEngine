@@ -31,7 +31,7 @@ namespace Game
 	}
 	void TitleScene::Update()
 	{
-		if (GameInput::GetKeyDown(EKeyCode::D))
+		if (GameInput::GetKeyDown(eKeyCode::D))
 		{
 			LoadPlayScene();
 		}

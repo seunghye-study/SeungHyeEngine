@@ -6,6 +6,7 @@ namespace Game
 {
 	void LoadResources()
 	{
-		Resources::Load<Texture>(L"BG", L"E:\\AR50\\YamYam_Engine\\Resources\\CloudOcean.png");
+		// 카메라 -> 크기조정 -> 스크립트 -> 이미지 자르기 -> 애니메이션 -> 타일맵 -> 충돌 -> UI -> 사운드
+		Resources::Load<Texture>(L"BG", L"..\\Resources\\CloudOcean.png");
 	}
 }

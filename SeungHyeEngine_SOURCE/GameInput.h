@@ -4,7 +4,7 @@
 
 namespace Game
 {
-	enum class EKeyState
+	enum class eKeyState
 	{
 		Down,
 		Pressed,
@@ -12,7 +12,7 @@ namespace Game
 		None,
 	};
 
-	enum class EKeyCode
+	enum class eKeyCode
 	{
 		Q, W, E, R, T, Y, U, I, O, P,
 		A, S, D, F, G, H, J, K, L,
@@ -27,22 +27,22 @@ namespace Game
 	public:
 		struct Key
 		{
-			EKeyState state;
-			EKeyCode keyCode;
+			eKeyState state;
+			eKeyCode keyCode;
 			bool bPressed;
 		};
 
 		static void Initialize();
 		static void Update();
 
-		static bool GetKeyDown(EKeyCode code) { return mKeys[(UINT)code].state == EKeyState::Down;  }
-		static bool GetKeyUp(EKeyCode code) { return mKeys[(UINT)code].state == EKeyState::Up; }
-		static bool GetKey(EKeyCode code) { return mKeys[(UINT)code].state == EKeyState::Pressed; }
+		static bool GetKeyDown(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Down;  }
+		static bool GetKeyUp(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Up; }
+		static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; }
 
 		static void CreateKey();
 		static void UpdateKeys();
 		static void UpdateKey(GameInput::Key& key);
-		static bool IsKeyDown(EKeyCode keycode);
+		static bool IsKeyDown(eKeyCode keycode);
 		static void UpdateKeyDown(GameInput::Key& key);
 		static void UpdateKeyUp(GameInput::Key& key);
 

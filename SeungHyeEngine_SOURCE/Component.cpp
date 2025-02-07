@@ -1,6 +1,6 @@
 #include "Component.h"
 
-Game::Component::Component()
+Game::Component::Component(eComponentType type): mType(type)
 {
 
 }

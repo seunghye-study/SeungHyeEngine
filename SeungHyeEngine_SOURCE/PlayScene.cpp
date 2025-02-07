@@ -9,6 +9,10 @@
 #include "Object.h"
 #include "Texture.h"
 #include "Resources.h"
+#include "PlayerScript.h"
+#include "Camera.h"
+#include "Renderer.h"
+
 
 namespace Game
 {
@@ -20,13 +24,25 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		//게임오브젝트 만들기전에 리소스들 전부 Load해두면 좋다.
-		mPlayer = Game::Instantiate<GameObject>(eLayerType::BackGround, Vector2(100.0f, 100.0f));
+		// MAIN CAMERA
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(344.0f, 442.0f);
+		Camera* cameraComp = camera->AddComponent<Camera>();
+		mainCamera = cameraComp;
 
+		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
+		sr->SetSize(Vector2(3.0f, 3.0f));
+		mPlayer->AddComponent<PlayerScript>();
 
-		Texture* bg = Resources::Find<Texture>(L"BG");
-		sr->SetTexture(bg);
+		Texture* playerTexture = Game::Resources::Find<Texture>(L"Farmer");
+		sr->SetTexture(playerTexture);
+
+		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetSize(Vector2(3.0f, 3.0f));
+
+		Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
+		bgsr->SetTexture(bgTexture);
 
 		Scene::Initialize();
 	}
@@ -38,7 +54,7 @@ namespace Game
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
-		if (GameInput::GetKeyDown(EKeyCode::A))
+		if (GameInput::GetKeyDown(eKeyCode::A))
 		{
 			SceneManager::LoadScene(L"TitleScene");
 		}

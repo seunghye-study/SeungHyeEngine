@@ -1,6 +1,6 @@
 #include "Transform.h"
 
-Game::Transform::Transform()
+Game::Transform::Transform() : Component(eComponentType::Transform)
 {
 }
 

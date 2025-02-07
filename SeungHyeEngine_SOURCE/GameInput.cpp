@@ -4,7 +4,7 @@ namespace Game
 {
 	std::vector<GameInput::Key> GameInput::mKeys = {};
 
-	int ASCII[(UINT)EKeyCode::End] =
+	int ASCII[(UINT)eKeyCode::End] =
 	{
 		'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
@@ -20,12 +20,12 @@ void Game::GameInput::Initialize()
 
 void Game::GameInput::CreateKey()
 {
-	for (size_t i = 0; i < (UINT)EKeyCode::End; i++)
+	for (size_t i = 0; i < (UINT)eKeyCode::End; i++)
 	{
 		Key key = {};
 		key.bPressed = false;
-		key.state = EKeyState::None;
-		key.keyCode = (EKeyCode)i;
+		key.state = eKeyState::None;
+		key.keyCode = (eKeyCode)i;
 
 		mKeys.push_back(key);
 	}
@@ -57,7 +57,7 @@ void Game::GameInput::UpdateKey(GameInput::Key& key)
 	}
 }
 
-bool Game::GameInput::IsKeyDown(EKeyCode keycode)
+bool Game::GameInput::IsKeyDown(eKeyCode keycode)
 {
 	return GetAsyncKeyState(ASCII[(UINT)keycode]) & 0x8000;
 }
@@ -66,11 +66,11 @@ void Game::GameInput::UpdateKeyDown(GameInput::Key& key)
 {
 	if (key.bPressed)
 	{
-		key.state = EKeyState::Pressed;
+		key.state = eKeyState::Pressed;
 	}
 	else
 	{
-		key.state = EKeyState::Down;
+		key.state = eKeyState::Down;
 	}
 	key.bPressed = true;
 }
@@ -79,11 +79,11 @@ void Game::GameInput::UpdateKeyUp(GameInput::Key& key)
 {
 	if (key.bPressed)
 	{
-		key.state = EKeyState::Up;
+		key.state = eKeyState::Up;
 	}
 	else
 	{
-		key.state = EKeyState::None;
+		key.state = eKeyState::None;
 	}
 	key.bPressed = false;
 }

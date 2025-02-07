@@ -17,8 +17,10 @@ namespace Game {
 		void LateUpdate();
 		void Render();
 
-		/*HDC*/
+		/*Getter*/
 		HDC GetHDC() { return mHdc; }
+		UINT GetWidth() { return mWidth; }
+		UINT GetHeight() { return mHeight; }
 
 		/* Component */
 		void InitComponent();

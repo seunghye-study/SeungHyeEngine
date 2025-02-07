@@ -18,9 +18,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TitleScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Entity.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp">
       <Filter>Component</Filter>
     </ClCompile>
@@ -42,8 +39,21 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Resources.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Camera.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Entity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Script.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Renderer.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Texture.cpp">
       <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)PlayerScript.cpp">
+      <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -67,12 +77,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
-      <Filter>pch</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Entity.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Component.h">
       <Filter>Component</Filter>
     </ClInclude>
@@ -88,12 +92,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SMath.h">
       <Filter>pch</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)LoadingScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)SEnums.h">
-      <Filter>pch</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -106,6 +104,28 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)LoadResources.h">
       <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Camera.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
+      <Filter>pch</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)LoadingScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Entity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Script.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)SEnums.h">
+      <Filter>pch</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)PlayerScript.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

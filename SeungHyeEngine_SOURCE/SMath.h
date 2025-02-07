@@ -20,6 +20,21 @@ namespace GameMath
 		{
 
 		}
+
+		Vector2 operator+(Vector2 target)
+		{
+			return Vector2(x + target.x, y + target.y);
+		}
+
+		Vector2 operator-(Vector2 target)
+		{
+			return Vector2(x - target.x, y - target.y);
+		}
+
+		Vector2 operator/(float target)
+		{
+			return Vector2(x /target, y / target);
+		}
 	};
 }
 
