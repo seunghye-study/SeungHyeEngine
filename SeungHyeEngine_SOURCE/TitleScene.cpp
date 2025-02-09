@@ -16,17 +16,10 @@ namespace Game
 	}
 	void TitleScene::Initialize()
 	{
-		//background
-		{
-
-		}
+		Scene::Initialize();
 	}
 	void TitleScene::Update()
 	{
-		if (GameInput::GetKeyDown(eKeyCode::D))
-		{
-			LoadPlayScene();
-		}
 		Scene::Update();
 	}
 	void TitleScene::LateUpdate()

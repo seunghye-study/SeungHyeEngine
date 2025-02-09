@@ -54,10 +54,6 @@ namespace Game
 	void PlayScene::LateUpdate()
 	{
 		Scene::LateUpdate();
-		if (GameInput::GetKeyDown(eKeyCode::A))
-		{
-			SceneManager::LoadScene(L"TitleScene");
-		}
 	}
 	void PlayScene::Render(HDC hdc)
 	{

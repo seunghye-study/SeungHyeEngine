@@ -3,13 +3,13 @@
 #include "Transform.h"
 #include "Application.h"
 
-extern Game::Application app;
+extern Game::Application application;
 
 Game::Camera::Camera()
 	: Component(eComponentType::Camera)
-	, mDistance(Vector2::Zero)
-	, mResolution(Vector2::Zero)
-	, mLookPosition(Vector2::Zero)
+	, mDistance(GameMath::Vector2::Zero)
+	, mResolution(GameMath::Vector2::Zero)
+	, mLookPosition(GameMath::Vector2::Zero)
 	, mTarget(nullptr)
 {
 }
@@ -20,8 +20,8 @@ Game::Camera::~Camera()
 
 void Game::Camera::Initialize()
 {
-	mResolution.x = app.GetWidth();
-	mResolution.y = app.GetHeight();
+	mResolution.x = application.GetWidth();
+	mResolution.y = application.GetHeight();
 }
 
 void Game::Camera::Update()

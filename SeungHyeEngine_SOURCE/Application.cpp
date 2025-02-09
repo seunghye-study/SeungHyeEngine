@@ -3,7 +3,6 @@
 #include "GameTime.h"
 #include "SceneManager.h"
 
-using namespace Game;
 
 // 생성자, 초기화
 Game::Application::Application()
