@@ -18,15 +18,7 @@ namespace Game
 	{
 		//background
 		{
-			GameObject* bg = new GameObject();
-			Transform* tr = bg->AddComponent<Transform>();
-			tr->SetPosition(Vector2(0, 0));
-			tr->SetName(L"TR");
-			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-			sr->SetScale(1, 1);
-			sr->ImageLoad(L"C:\\win32API\\SeungHyeEngine\\Resources\\Cloudy_Ocean.png");
-			AddGameObject(bg, eLayerType::BackGround);
+
 		}
 	}
 	void TitleScene::Update()

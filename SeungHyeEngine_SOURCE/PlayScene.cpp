@@ -25,7 +25,7 @@ namespace Game
 	void PlayScene::Initialize()
 	{
 		// MAIN CAMERA
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(344.0f, 442.0f);
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(344.0f, 442.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 

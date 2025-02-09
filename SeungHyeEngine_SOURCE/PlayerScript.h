@@ -6,6 +6,7 @@ namespace Game
 {
 	class PlayerScript : public Script
 	{
+	public:
 		PlayerScript();
 		~PlayerScript();
 
