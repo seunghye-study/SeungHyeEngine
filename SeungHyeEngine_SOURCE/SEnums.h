@@ -17,6 +17,7 @@ namespace Game
 		Texture,
 		AudioClip,
 		Prefab,
+		Animation,
 		End,
 	};
 
@@ -26,6 +27,8 @@ namespace Game
 		SpriteRenderer,
 		Script,
 		Camera,
+		Animator,
 		End,
 	};
+
 }
