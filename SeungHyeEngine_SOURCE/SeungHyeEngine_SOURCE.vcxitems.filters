@@ -55,6 +55,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Texture.cpp">
       <Filter>Resource\Texture</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Animation.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Animator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
@@ -120,6 +122,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Texture.h">
       <Filter>Resource\Texture</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Animation.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Animator.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
