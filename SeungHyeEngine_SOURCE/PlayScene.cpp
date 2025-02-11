@@ -25,24 +25,24 @@ namespace Game
 	void PlayScene::Initialize()
 	{
 		// MAIN CAMERA
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(0.0f, 0.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(650.0f, 380.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-		sr->SetSize(Vector2(3.0f, 3.0f));
+		sr->SetSize(Vector2(2.0f, 2.0f));
 		mPlayer->AddComponent<PlayerScript>();
 
 		Texture* playerTexture = Game::Resources::Find<Texture>(L"Farmer");
 		sr->SetTexture(playerTexture);
 
-		//GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
-		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		//bgsr->SetSize(Vector2(3.0f, 3.0f));
+		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
+		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		bgsr->SetSize(Vector2(2.3f, 2.3f));
 
-		//Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
-		//bgsr->SetTexture(bgTexture);
+		Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
+		bgsr->SetTexture(bgTexture);
 
 		Scene::Initialize();
 	}
@@ -55,6 +55,10 @@ namespace Game
 	{
 
 		Scene::LateUpdate();
+		if (GameInput::GetKeyDown(eKeyCode::N))
+		{
+			SceneManager::LoadScene(L"TitleScene");
+		}
 	}
 	void PlayScene::Render(HDC hdc)
 	{
