@@ -97,11 +97,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0,0,900,600, nullptr, nullptr, hInstance, nullptr); // window create, window 정보를 바탕으로 생성, 핸들 반환
+   
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
    
    Game::LoadResources();
-
-   Game::LoadTitleScene();
    
    application.Initialize(hWnd, 1280, 720);
 
@@ -112,7 +111,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-  
+
+   Game::LoadPlayScene();
+
    return TRUE;
 }
 
@@ -121,16 +122,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     
     switch (message)
     {
-    case WM_COMMAND:
-        {
-
-        }
-        break;
-    case WM_PAINT:
-        {
-
-        }
-        break;
     case WM_DESTROY:
         PostQuitMessage(0);
         break;

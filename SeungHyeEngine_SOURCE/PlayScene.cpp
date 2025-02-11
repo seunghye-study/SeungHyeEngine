@@ -25,24 +25,24 @@ namespace Game
 	void PlayScene::Initialize()
 	{
 		// MAIN CAMERA
-		/*GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(344.0f, 442.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(0.0f, 0.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
-		mainCamera = cameraComp;*/
+		mainCamera = cameraComp;
 
-		/*mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
+		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
 		sr->SetSize(Vector2(3.0f, 3.0f));
 		mPlayer->AddComponent<PlayerScript>();
 
 		Texture* playerTexture = Game::Resources::Find<Texture>(L"Farmer");
-		sr->SetTexture(playerTexture);*/
+		sr->SetTexture(playerTexture);
 
-		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
-		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(3.0f, 3.0f));
+		//GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
+		//SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
+		//bgsr->SetSize(Vector2(3.0f, 3.0f));
 
-		Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
-		bgsr->SetTexture(bgTexture);
+		//Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
+		//bgsr->SetTexture(bgTexture);
 
 		Scene::Initialize();
 	}
@@ -53,6 +53,7 @@ namespace Game
 	}
 	void PlayScene::LateUpdate()
 	{
+
 		Scene::LateUpdate();
 	}
 	void PlayScene::Render(HDC hdc)

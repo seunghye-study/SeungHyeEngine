@@ -3,8 +3,8 @@
 #include "SceneManager.h"
 #include "GameObject.h"
 #include "GameInput.h"
-#include <GamePlayer.h>
-#include <LoadScene.h>
+#include "GamePlayer.h"
+#include "LoadScene.h"
 
 namespace Game
 {

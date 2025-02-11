@@ -23,10 +23,7 @@ Scene* Game::SceneManager::LoadScene(const std::wstring& name)
 
 void Game::SceneManager::Initialize()
 {
-	if (mActiveScene == nullptr)
-	{
-	}
-	mActiveScene->Initialize();
+
 }
 
 void Game::SceneManager::Update()
