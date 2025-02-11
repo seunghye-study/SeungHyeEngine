@@ -100,6 +100,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
    
    Game::LoadResources();
+
    Game::LoadTitleScene();
    
    application.Initialize(hWnd, 1280, 720);
