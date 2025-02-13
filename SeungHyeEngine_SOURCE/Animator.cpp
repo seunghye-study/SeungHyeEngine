@@ -65,7 +65,7 @@ Game::Animation* Game::Animator::FindAnimation(const std::wstring& name)
 void Game::Animator::PlayAnimation(const std::wstring& name, bool loop)
 {
 	Animation* animation = FindAnimation(name);
-	if (animation != nullptr) return;
+	if (animation == nullptr) return;
 
 	mActiveAnimation = animation;
 	mActiveAnimation->Reset();

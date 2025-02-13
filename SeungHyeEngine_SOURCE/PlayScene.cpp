@@ -30,24 +30,20 @@ namespace Game
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
-		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
-		//SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-		//sr->SetSize(Vector2(2.0f, 2.0f));
-		mPlayer->AddComponent<PlayerScript>();
-
-		Texture* playerTexture = Game::Resources::Find<Texture>(L"Cat");
-		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"PlayerFrontMove", playerTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.5f);
-		animator->PlayAnimation(L"PlayerFrontMove");
-
-		//sr->SetTexture(playerTexture);
-
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		bgsr->SetSize(Vector2(2.0f, 2.0f));
 
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
 		bgsr->SetTexture(bgTexture);
+
+		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
+		mPlayer->AddComponent<PlayerScript>();
+
+		Texture* playerTexture = Game::Resources::Find<Texture>(L"Farmer");
+		Animator* animator = mPlayer->AddComponent<Animator>();
+		animator->CreateAnimation(L"PlayerFrontMove", playerTexture, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
+		animator->PlayAnimation(L"PlayerFrontMove");
 
 		Scene::Initialize();
 	}
