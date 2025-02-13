@@ -12,6 +12,7 @@
 #include "PlayerScript.h"
 #include "Camera.h"
 #include "Renderer.h"
+#include "Animator.h"
 
 
 namespace Game
@@ -25,21 +26,25 @@ namespace Game
 	void PlayScene::Initialize()
 	{
 		// MAIN CAMERA
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(650.0f, 380.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(640.0f, 320.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
-		SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-		sr->SetSize(Vector2(2.0f, 2.0f));
+		//SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
+		//sr->SetSize(Vector2(2.0f, 2.0f));
 		mPlayer->AddComponent<PlayerScript>();
 
-		Texture* playerTexture = Game::Resources::Find<Texture>(L"Farmer");
-		sr->SetTexture(playerTexture);
+		Texture* playerTexture = Game::Resources::Find<Texture>(L"Cat");
+		Animator* animator = mPlayer->AddComponent<Animator>();
+		animator->CreateAnimation(L"PlayerFrontMove", playerTexture, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.5f);
+		animator->PlayAnimation(L"PlayerFrontMove");
+
+		//sr->SetTexture(playerTexture);
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(2.3f, 2.3f));
+		bgsr->SetSize(Vector2(2.0f, 2.0f));
 
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"Map");
 		bgsr->SetTexture(bgTexture);

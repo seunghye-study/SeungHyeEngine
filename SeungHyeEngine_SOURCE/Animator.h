@@ -17,7 +17,7 @@ namespace Game
 
 		void CreateAnimation(const std::wstring& name,
 			Game::Texture* spriteSheet,
-			Vector2 lestTop,
+			Vector2 leftTop,
 			Vector2 size,
 			Vector2 offset,
 			UINT spriteLength,
