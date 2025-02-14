@@ -49,21 +49,51 @@ void Game::Animation::Render(HDC hdc)
 	GameObject* gameObj = mAnimator->GetOwner();
 	Transform* tr = gameObj->GetComponent<Transform>();
 	Vector2 pos = tr->GetPosition();
+	float rot = tr->GetRotation();
+	Vector2 scale = tr->GetScale();
 
 	if (Game::mainCamera)
 		pos = Game::mainCamera->CalculatePosition(pos);
 
-	BLENDFUNCTION func = {};
-	func.BlendOp = AC_SRC_OVER;
-	func.BlendFlags = 0;
-	func.AlphaFormat = AC_SRC_ALPHA;
-	func.SourceConstantAlpha = 125;
-
 	Sprite sprite = mAnimationSheet[mIndex];
-	HDC imgHdc = mTexture->GetHdc();
+	Texture::eTextureType type = mTexture->GetTextureType();
+	if (type == Texture::eTextureType::bmp)
+	{
+		BLENDFUNCTION func = {};
+		func.BlendOp = AC_SRC_OVER;
+		func.BlendFlags = 0;
+		func.AlphaFormat = AC_SRC_ALPHA;
+		func.SourceConstantAlpha = 255;
 
-	AlphaBlend(hdc, pos.x, pos.y, sprite.size.x * 5, sprite.size.y * 5, imgHdc,
-		sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
+		HDC imgHdc = mTexture->GetHdc();
+
+		AlphaBlend(hdc, pos.x, pos.y, sprite.size.x * 5, sprite.size.y * 5, imgHdc,
+			sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
+	}
+	else if (type == Texture::eTextureType::png)
+	{
+		// 원하는 이미지 투명화
+		Gdiplus::ImageAttributes imgAtt = {};
+
+		imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
+		Gdiplus::Graphics graphics(hdc);
+
+		graphics.TranslateTransform(pos.x, pos.y);
+		graphics.RotateTransform(rot);
+		graphics.TranslateTransform(-pos.x, -pos.y);
+
+		graphics.DrawImage(mTexture->GetImage(), Gdiplus::Rect(
+			pos.x - (sprite.size.x / 2.0f),
+			pos.y - (sprite.size.y / 2.0f),
+			sprite.size.x * scale.x,
+			sprite.size.y * scale.y
+		), sprite.leftTop.x
+			, sprite.leftTop.y
+			, sprite.size.x
+			, sprite.size.y
+			, Gdiplus::UnitPixel
+			, nullptr/*image att*/);
+	}
 }
 
 void Game::Animation::CreateAnimation(const std::wstring& name, Game::Texture* spriteSheet, Vector2 leftTop, Vector2 size, Vector2 offset, UINT spriteLength, float duration)

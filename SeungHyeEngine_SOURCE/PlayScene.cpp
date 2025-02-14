@@ -39,8 +39,8 @@ namespace Game
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
-
 		Texture* playerTexture = Game::Resources::Find<Texture>(L"Farmer");
+		
 		Animator* animator = mPlayer->AddComponent<Animator>();
 		animator->CreateAnimation(L"PlayerFrontMove", playerTexture, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
 		animator->PlayAnimation(L"PlayerFrontMove");

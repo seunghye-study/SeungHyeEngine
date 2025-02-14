@@ -1,6 +1,9 @@
 #include "Transform.h"
 
-Game::Transform::Transform() : Component(eComponentType::Transform)
+Game::Transform::Transform() :
+	Component(eComponentType::Transform),
+	mScale(Vector2::One),
+	mRotation(0.0f)
 {
 }
 
