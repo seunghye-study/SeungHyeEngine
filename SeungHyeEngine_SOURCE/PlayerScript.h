@@ -9,11 +9,9 @@ namespace Game
 	public:
 		enum class eState
 		{
-			GoLeft,
-			GoRight, 
-			GoDown,
-			GoUp,
-			Wait
+			//TODO : STOP ( 멈춘 방향 바라보고 서있기 )
+			Move,
+			Idle
 		};
 
 		PlayerScript();
@@ -23,6 +21,10 @@ namespace Game
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
+
+	private:
+		void Move();
+		void Idle();
 
 	private:
 		eState mState;
