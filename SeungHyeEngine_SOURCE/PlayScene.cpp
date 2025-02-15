@@ -13,6 +13,8 @@
 #include "Camera.h"
 #include "Renderer.h"
 #include "Animator.h"
+#include "..\\SeungHyeEngine_STATIC\Cat.h"
+#include "..\\SeungHyeEngine_STATIC\CatScript.h"
 
 
 namespace Game
@@ -25,19 +27,20 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(600.0f, 500.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(1700.0f, 500.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(1.5f, 1.5f));
+		bgsr->SetSize(Vector2(6.0f, 6.0f));
 
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
 		bgsr->SetTexture(bgTexture);
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
+		
 		Texture* IdleTexture = Game::Resources::Find<Texture>(L"Idle");
 		Texture* t_GoLeft  = Game::Resources::Find<Texture>(L"GoLeft");
 		Texture* t_GoRight = Game::Resources::Find<Texture>(L"GoRight");
@@ -51,7 +54,34 @@ namespace Game
 		animator->CreateAnimation(L"GoUp", t_GoUp, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 8, 0.2f);
 		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
 		animator->PlayAnimation(L"Idle");
-		
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1500.0f, 50.0f));
+		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
+
+		//Cat
+		{
+			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
+			cat->AddComponent<CatScript>();
+			Texture* catTex = Resources::Find<Texture>(L"Cat");
+			Animator* catAnimator = cat->AddComponent<Animator>();
+			catAnimator->CreateAnimation(L"DownWalk", catTex
+				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"RightWalk", catTex
+				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"UpWalk", catTex
+				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"LeftWalk", catTex
+				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"SitDown", catTex
+				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"Grooming", catTex
+				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+			catAnimator->CreateAnimation(L"LayDown", catTex
+				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+			catAnimator->PlayAnimation(L"SitDown", false);
+			cat->GetComponent<Transform>()->SetPosition(Vector2(1300.0f, 200.0f));
+			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
+		}
 		Scene::Initialize();
 	}
 	void PlayScene::Update()

@@ -2,7 +2,7 @@
 
 Game::Transform::Transform() :
 	Component(eComponentType::Transform),
-	mScale(Vector2::One),
+	mScale(Vector2(0.5f, 0.5f)),
 	mRotation(0.0f)
 {
 }

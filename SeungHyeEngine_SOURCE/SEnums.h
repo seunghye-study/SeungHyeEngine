@@ -9,6 +9,7 @@ namespace Game
 		None,
 		BackGround,
 		Player,
+		Animal,
 		Max = 16,
 	};
 

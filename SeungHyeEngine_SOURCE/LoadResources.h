@@ -20,7 +20,7 @@ namespace Game
 		Resources::Load<Texture>(L"Idle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
 		
 		Resources::Load<Texture>(L"Cat", L"..\\Resources\\animals\\CatAlpha.bmp");
-	
+		
 		
 	
 	}

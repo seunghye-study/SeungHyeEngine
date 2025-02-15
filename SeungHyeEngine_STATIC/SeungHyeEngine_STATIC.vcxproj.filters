@@ -10,6 +10,9 @@
     <Filter Include="Script">
       <UniqueIdentifier>{b3bdea78-bcfa-4cfc-9a23-ab47639eaeb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NPC">
+      <UniqueIdentifier>{d395c4aa-1ef0-4cdf-b9ec-d975b03b42ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\GamePlayer.h">
@@ -31,6 +34,12 @@
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\LoadResources.h" />
+    <ClInclude Include="CatScript.h">
+      <Filter>Script</Filter>
+    </ClInclude>
+    <ClInclude Include="Cat.h">
+      <Filter>NPC</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\GamePlayer.cpp">
@@ -50,6 +59,12 @@
     </ClCompile>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\LoadScene.cpp">
       <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CatScript.cpp">
+      <Filter>Script</Filter>
+    </ClCompile>
+    <ClCompile Include="Cat.cpp">
+      <Filter>NPC</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

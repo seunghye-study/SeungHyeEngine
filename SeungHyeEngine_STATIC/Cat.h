@@ -1,9 +1,9 @@
 #pragma once
-#include "GameObject.h"
+#include "..\\SeungHyeEngine_SOURCE\GameObject.h"
 
 namespace Game
 {
-	class GamePlayer : public GameObject
+	class Cat : public GameObject
 	{
 	public:
 		void Initialize() override;
@@ -13,6 +13,6 @@ namespace Game
 
 	private:
 	};
-}
 
+}
 

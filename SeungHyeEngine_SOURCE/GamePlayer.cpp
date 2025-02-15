@@ -5,15 +5,6 @@
 
 namespace Game
 {
-	GamePlayer::GamePlayer()
-	{
-
-	}
-
-	GamePlayer::~GamePlayer()
-	{
-
-	}
 
 	void GamePlayer::Initialize()
 	{
