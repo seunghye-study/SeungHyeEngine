@@ -55,7 +55,7 @@ namespace Game
 		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
 		animator->PlayAnimation(L"Idle");
 		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1500.0f, 50.0f));
-		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
+		//mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
 
 		//Cat
 		{

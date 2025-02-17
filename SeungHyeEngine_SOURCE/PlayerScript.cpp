@@ -39,6 +39,9 @@ void Game::PlayerScript::Update()
 	case PlayerScript::eState::Idle:
 		Idle();
 		break;
+	case PlayerScript::eState::GiveWater:
+		GiveWater();
+		break;
 	default:
 		break;
 	}
@@ -87,6 +90,7 @@ void Game::PlayerScript::Move()
 		mState = PlayerScript::eState::Idle;
 		mAnimator->PlayAnimation(L"Idle", false);
 	}
+
 }
 
 void Game::PlayerScript::Idle()
@@ -111,5 +115,23 @@ void Game::PlayerScript::Idle()
 		mState = PlayerScript::eState::Move;
 		mAnimator->PlayAnimation(L"GoUp");
 	}
-		
+
+	// TODO : LButton물주기 추가
+	if (GameInput::GetKey(eKeyCode::LButton))
+	{
+		mState = PlayerScript::eState::GiveWater;
+		//todo : 방향설정 애니메이션 추가
+		//mAnimator->PlayAnimation(L"FrontGiveWater", false);
+		Vector2 mousePos = Game::GameInput::GetMousePosition();
+	}
+}
+
+void Game::PlayerScript::GiveWater()
+{
+	if (mAnimator->IsComplete())
+	{
+		mState = eState::Idle;
+		// todo : 방향에 맞게 변경
+		mAnimator->PlayAnimation(L"Idle", false);
+	}
 }

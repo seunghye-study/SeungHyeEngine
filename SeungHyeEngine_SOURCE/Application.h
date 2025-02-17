@@ -18,6 +18,7 @@ namespace Game {
 		void Render();
 
 		/*Getter*/
+		HWND GetHWND() { return mHwnd; }
 		HDC GetHDC() { return mHdc; }
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
@@ -26,7 +27,6 @@ namespace Game {
 		void InitComponent();
 
 	private:
-
 		/* Dubble buffering */
 		void ClearRenderTarget();
 		void CopyRenderTarget(HDC source, HDC dest);
@@ -34,9 +34,6 @@ namespace Game {
 		/*Adgustment*/
 		void AdjustWindow(HWND hwnd, UINT width, UINT height);
 		void CreateBuffer(UINT width, UINT height);
-
-
-
 
 	private:
 		HWND mHwnd;

@@ -1,8 +1,12 @@
 #include "GameInput.h"
+#include "Application.h"
+
+extern Game::Application application;
 
 namespace Game
 {
 	std::vector<GameInput::Key> GameInput::mKeys = {};
+	Vector2 mMousePosition = Vector2::One;
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -10,6 +14,7 @@ namespace Game
 		'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
 		'Z', 'X', 'C', 'V', 'B', 'N', 'M',
 		VK_LEFT, VK_RIGHT, VK_DOWN, VK_UP, VK_SPACE,
+		VK_LBUTTON, VK_RBUTTON, VK_MBUTTON
 	};
 }
 
@@ -47,13 +52,18 @@ void Game::GameInput::UpdateKeys()
 
 void Game::GameInput::UpdateKey(GameInput::Key& key)
 {
-	if (IsKeyDown(key.keyCode))
+	if (GetFocus())
 	{
-		UpdateKeyDown(key);
+		if (IsKeyDown(key.keyCode))
+			UpdateKeyDown(key);
+		else
+			UpdateKeyUp(key);
+
+		getMousePositionByWindow();
 	}
 	else
 	{
-		UpdateKeyUp(key);
+		ClearKeys();
 	}
 }
 
@@ -86,6 +96,29 @@ void Game::GameInput::UpdateKeyUp(GameInput::Key& key)
 		key.state = eKeyState::None;
 	}
 	key.bPressed = false;
+}
+
+void Game::GameInput::GetMousePositionByWindow()
+{
+	POINT mousePos = {};
+	GetCursorPos(&mousePos);
+	ScreenToClient(application.GetHWND(), &mousePos);
+
+	mMousePosition.x = mousePos.x;
+	mMousePosition.y = mousePos.y;
+}
+
+void Game::GameInput::ClearKeys()
+{
+	for (Key& key : mKeys)
+	{
+		if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
+			key.state = eKeyState::Up;
+		else if (key.state == eKeyState::Up)
+			key.state = eKeyState::None;
+
+		key.bPressed = false;
+	}
 }
 
 

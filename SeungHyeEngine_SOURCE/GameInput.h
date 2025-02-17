@@ -18,7 +18,7 @@ namespace Game
 		A, S, D, F, G, H, J, K, L,
 		Z, X, C, V, B, N, M,
 		Left, Right, Down, Up,
-		SpaceBar,
+		SpaceBar,LButton, RButton, MButton,
 		End,
 	};
 
@@ -38,16 +38,24 @@ namespace Game
 		static bool GetKeyDown(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Down;  }
 		static bool GetKeyUp(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Up; }
 		static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; }
+		static Vector2 GetMousePosition() { return mMousePosition; }
 
+
+	private:
 		static void CreateKey();
 		static void UpdateKeys();
 		static void UpdateKey(GameInput::Key& key);
 		static bool IsKeyDown(eKeyCode keycode);
 		static void UpdateKeyDown(GameInput::Key& key);
 		static void UpdateKeyUp(GameInput::Key& key);
+		static void GetMousePositionByWindow();
+		static void ClearKeys();
+
+
 
 	private:
 		static std::vector<Key> mKeys;
+		static Vector2 mMousePosition;
 	};
 }
 
