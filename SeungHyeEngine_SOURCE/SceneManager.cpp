@@ -40,3 +40,12 @@ void Game::SceneManager::Render(HDC hdc)
 {
 	mActiveScene->Render(hdc);
 }
+
+void Game::SceneManager::Release()
+{
+	for (auto& iter : mScene)
+	{
+		delete iter.second;
+		iter.second = nullptr;
+	}
+}

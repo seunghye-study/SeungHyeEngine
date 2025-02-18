@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Contents">
-      <UniqueIdentifier>{f8a59538-0bd2-470f-9375-17dcec1f7bd3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{2f040f7a-61b2-4665-888c-78ea4417a7b4}</UniqueIdentifier>
     </Filter>
@@ -13,10 +10,13 @@
     <Filter Include="NPC">
       <UniqueIdentifier>{d395c4aa-1ef0-4cdf-b9ec-d975b03b42ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{f8a59538-0bd2-470f-9375-17dcec1f7bd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\GamePlayer.h">
-      <Filter>Contents</Filter>
+      <Filter>Player</Filter>
     </ClInclude>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayerScript.h">
       <Filter>Script</Filter>
@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\GamePlayer.cpp">
-      <Filter>Contents</Filter>
+      <Filter>Player</Filter>
     </ClCompile>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayerScript.cpp">
       <Filter>Script</Filter>

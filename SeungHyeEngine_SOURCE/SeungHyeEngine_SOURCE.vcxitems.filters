@@ -55,8 +55,12 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Texture.cpp">
       <Filter>Resource\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Animation.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Animator.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Animation.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Animator.cpp">
+      <Filter>Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
@@ -122,8 +126,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Texture.h">
       <Filter>Resource\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Animation.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Animator.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Animator.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Animation.h">
+      <Filter>Animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -170,6 +178,9 @@
     </Filter>
     <Filter Include="Resource\Texture">
       <UniqueIdentifier>{918531da-fbb8-491d-828d-09ef52036a7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Animation">
+      <UniqueIdentifier>{418d7ff2-6618-435a-a107-8c78c1d43b40}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

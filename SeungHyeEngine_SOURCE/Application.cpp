@@ -2,7 +2,7 @@
 #include "GameInput.h"
 #include "GameTime.h"
 #include "SceneManager.h"
-
+#include "Resources.h"
 
 // 생성자, 초기화
 Game::Application::Application()
@@ -34,6 +34,12 @@ void Game::Application::Run()
 	Update();
 	LateUpdate();
 	Render();
+}
+
+void Game::Application::Release()
+{
+	SceneManager::Release();
+	Resources::Release();
 }
 
 void Game::Application::Update()

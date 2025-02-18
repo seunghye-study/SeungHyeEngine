@@ -8,6 +8,14 @@ Game::Layer::Layer() : mGameObjects{}
 
 Game::Layer::~Layer()
 {
+	for (GameObject* gameObj : mGameObjects)
+	{
+		if (gameObj == nullptr)
+			continue;
+
+		delete gameObj;
+		gameObj = nullptr;
+	}
 }
 
 void Game::Layer::Initialize()
