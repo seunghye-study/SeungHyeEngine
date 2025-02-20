@@ -9,6 +9,16 @@ Game::Animator::Animator() :
 
 Game::Animator::~Animator()
 {
+	for (auto& iter : mAnimations)
+	{
+		delete iter.second;
+		iter.second = nullptr;
+	}
+	for (auto& iter : mEvents)
+	{
+		delete iter.second;
+		iter.second = nullptr;
+	}
 }
 
 void Game::Animator::Initialize()
@@ -20,9 +30,14 @@ void Game::Animator::Update()
 	if (mActiveAnimation)
 	{
 		mActiveAnimation->Update();
-		if (mActiveAnimation->IsComplete() == true && mLoop == true)
+		Events* events = FindEvents(mActiveAnimation->GetName());
+
+		if (mActiveAnimation->IsComplete() == true)
 		{
-			mActiveAnimation->Reset();
+			if (events)
+				events->CompleteEvent();
+			if(mLoop)
+				mActiveAnimation->Reset();
 		}
 	}
 }
@@ -48,9 +63,14 @@ void Game::Animator::CreateAnimation(const std::wstring& name, Game::Texture* sp
 	if (animation != nullptr) return;
 
 	animation = new Animation();
+	animation->SetName(name);
 	animation->CreateAnimation(name, spriteSheet, leftTop, size, offset, spriteLength, duration);
 
 	animation->SetAnimator(this);
+
+	Events* events = new Events();
+	mEvents.insert(std::make_pair(name, events));
+
 	mAnimations.insert(std::make_pair(name, animation));
 }
 
@@ -70,4 +90,32 @@ void Game::Animator::PlayAnimation(const std::wstring& name, bool loop)
 	mActiveAnimation = animation;
 	mActiveAnimation->Reset();
 	mLoop = loop;
+}
+
+Game::Animator::Events* Game::Animator::FindEvents(const std::wstring& name)
+{
+	auto iter = mEvents.find(name);
+	if (iter == mEvents.end()) return nullptr;
+	return iter->second;
+}
+
+std::function<void()>& Game::Animator::GetStartEvent(const std::wstring& name)
+{
+	// TODO: 여기에 return 문을 삽입합니다.
+	Events* events = FindEvents(name);
+	return events->StartEvent.mEvent;
+}
+
+std::function<void()>& Game::Animator::GetCompleteEvent(const std::wstring& name)
+{
+	// TODO: 여기에 return 문을 삽입합니다.
+	Events* events = FindEvents(name);
+	return events->CompleteEvent.mEvent;
+}
+
+std::function<void()>& Game::Animator::GetEndEvent(const std::wstring& name)
+{
+	// TODO: 여기에 return 문을 삽입합니다.
+	Events* events = FindEvents(name);
+	return events->EndEvent.mEvent;
 }
