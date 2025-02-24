@@ -18,7 +18,9 @@ namespace Game
 		Resources::Load<Texture>(L"GoUp", L"..\\Resources\\farmer\\Player.bmp");
 		Resources::Load<Texture>(L"GoDown", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
 		Resources::Load<Texture>(L"Idle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
-		
+		// 9번째줄 1~12 까지
+		Resources::Load<Texture>(L"GiveWaterFront", L"..\\Resources\\farmer\\Player.bmp");
+
 		Resources::Load<Texture>(L"Cat", L"..\\Resources\\animals\\CatAlpha.bmp");
 		
 		

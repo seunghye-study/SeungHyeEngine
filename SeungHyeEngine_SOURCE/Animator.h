@@ -2,6 +2,9 @@
 #include "Component.h"
 #include "Animation.h"
 
+// animation management
+
+
 namespace Game
 {
 	class Animator : public Component
@@ -55,9 +58,12 @@ namespace Game
 		bool IsComplete() { return mActiveAnimation->IsComplete(); }
 
 	private:
+		// Animation Component 
 		std::map<std::wstring, Animation*> mAnimations;
 		Animation* mActiveAnimation;
 		bool mLoop;
+
+		// Animation Events
 		std::map<std::wstring, Events*> mEvents;
 	};
 }

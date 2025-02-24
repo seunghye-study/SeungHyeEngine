@@ -38,7 +38,7 @@ namespace Game
 		static bool GetKeyDown(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Down;  }
 		static bool GetKeyUp(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Up; }
 		static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; }
-		static Vector2 GetMousePosition() { return mMousePosition; }
+		static GameMath::Vector2 GetMousePosition() { return mMousePosition; }
 
 
 	private:
@@ -55,7 +55,7 @@ namespace Game
 
 	private:
 		static std::vector<Key> mKeys;
-		static Vector2 mMousePosition;
+		static GameMath::Vector2 mMousePosition;
 	};
 }
 

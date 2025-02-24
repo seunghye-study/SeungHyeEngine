@@ -101,21 +101,18 @@ Game::Animator::Events* Game::Animator::FindEvents(const std::wstring& name)
 
 std::function<void()>& Game::Animator::GetStartEvent(const std::wstring& name)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
 	Events* events = FindEvents(name);
 	return events->StartEvent.mEvent;
 }
 
 std::function<void()>& Game::Animator::GetCompleteEvent(const std::wstring& name)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
 	Events* events = FindEvents(name);
 	return events->CompleteEvent.mEvent;
 }
 
 std::function<void()>& Game::Animator::GetEndEvent(const std::wstring& name)
 {
-	// TODO: 여기에 return 문을 삽입합니다.
 	Events* events = FindEvents(name);
 	return events->EndEvent.mEvent;
 }

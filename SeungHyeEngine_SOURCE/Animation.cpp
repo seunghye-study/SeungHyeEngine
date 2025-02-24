@@ -43,7 +43,6 @@ void Game::Animation::Update()
 
 void Game::Animation::Render(HDC hdc)
 {
-	// 알파블렌드 조건 : 알파채널 존재(r g b a)
 	if (mTexture == nullptr) return;
 
 	GameObject* gameObj = mAnimator->GetOwner();
@@ -67,12 +66,11 @@ void Game::Animation::Render(HDC hdc)
 
 		HDC imgHdc = mTexture->GetHdc();
 
-		AlphaBlend(hdc, pos.x, pos.y, sprite.size.x * 5, sprite.size.y * 5, imgHdc,
+		AlphaBlend(hdc, pos.x, pos.y, sprite.size.x * scale.x, sprite.size.y * scale.y, imgHdc,
 			sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
 	}
 	else if (type == Texture::eTextureType::png)
 	{
-		// 원하는 이미지 투명화
 		Gdiplus::ImageAttributes imgAtt = {};
 
 		imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
@@ -92,7 +90,7 @@ void Game::Animation::Render(HDC hdc)
 			, sprite.size.x
 			, sprite.size.y
 			, Gdiplus::UnitPixel
-			, nullptr/*image att*/);
+			, nullptr);
 	}
 }
 

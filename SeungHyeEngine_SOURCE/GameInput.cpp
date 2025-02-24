@@ -6,7 +6,7 @@ extern Game::Application application;
 namespace Game
 {
 	std::vector<GameInput::Key> GameInput::mKeys = {};
-	Vector2 mMousePosition = Vector2::One;
+	GameMath::Vector2 GameInput::mMousePosition = Vector2::One;
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -20,6 +20,7 @@ namespace Game
 
 void Game::GameInput::Initialize()
 {
+	
 	CreateKey();
 }
 
@@ -59,7 +60,7 @@ void Game::GameInput::UpdateKey(GameInput::Key& key)
 		else
 			UpdateKeyUp(key);
 
-		getMousePositionByWindow();
+		GetMousePositionByWindow();
 	}
 	else
 	{

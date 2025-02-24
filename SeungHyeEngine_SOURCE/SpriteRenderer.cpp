@@ -39,7 +39,7 @@ namespace Game
 		if (mTexture->GetTextureType() == Texture::eTextureType::bmp)
 		{
 			TransparentBlt(hdc, pos.x, pos.y
-				, mTexture->GetWidth() * mSize.x * scale.x, mTexture->GetHeight() * mSize.y * scale.y
+				, mTexture->GetWidth() * scale.x, mTexture->GetHeight() * scale.y
 				, mTexture->GetHdc(), 0, 0, mTexture->GetWidth(), mTexture->GetHeight()
 				, RGB(255, 0, 255));
 		}
@@ -58,8 +58,8 @@ namespace Game
 				, Gdiplus::Rect
 				(
 					pos.x, pos.y
-					, mTexture->GetWidth() * mSize.x * scale.x
-					, mTexture->GetHeight() * mSize.y * scale.y
+					, mTexture->GetWidth() * scale.x
+					, mTexture->GetHeight() * scale.y
 				)
 				, 0, 0
 				, mTexture->GetWidth(), mTexture->GetHeight()

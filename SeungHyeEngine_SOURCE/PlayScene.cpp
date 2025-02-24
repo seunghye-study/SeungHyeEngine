@@ -27,13 +27,13 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(1700.0f, 500.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(0.0f, 0.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(6.0f, 6.0f));
+		bgsr->SetSize(Vector2(1.0f, 1.0f));
 
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
 		bgsr->SetTexture(bgTexture);
@@ -46,18 +46,19 @@ namespace Game
 		Texture* t_GoRight = Game::Resources::Find<Texture>(L"GoRight");
 		Texture* t_GoUp = Game::Resources::Find<Texture>(L"GoUp");
 		Texture* t_GoDown = Game::Resources::Find<Texture>(L"GoDown");
+		Texture* GiveWaterFront = Game::Resources::Find<Texture>(L"GiveWaterFront");
 
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.2f);
-		animator->CreateAnimation(L"GoLeft", t_GoLeft, Vector2(1500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
-		animator->CreateAnimation(L"GoRight", t_GoRight, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
-		animator->CreateAnimation(L"GoUp", t_GoUp, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 8, 0.2f);
-		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.2f);
-		animator->PlayAnimation(L"Idle");
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1500.0f, 50.0f));
-		//mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
+		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
+		animator->CreateAnimation(L"GoLeft", t_GoLeft, Vector2(1500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"GoRight", t_GoRight, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"GoUp", t_GoUp, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 8, 0.1f);
+		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
+		animator->CreateAnimation(L"GiveWaterFront", GiveWaterFront, Vector2(0.0f, 2000.0f), Vector2(250, 250), Vector2::Zero, 12, 0.1f);
+		animator->PlayAnimation(L"Idle", false);
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
+		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
 
-		//Cat
 		{
 			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
 			cat->AddComponent<CatScript>();
@@ -79,7 +80,7 @@ namespace Game
 				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
 			catAnimator->PlayAnimation(L"SitDown", false);
-			cat->GetComponent<Transform>()->SetPosition(Vector2(1300.0f, 200.0f));
+			cat->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 200.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		}
 		Scene::Initialize();
