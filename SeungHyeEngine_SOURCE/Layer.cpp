@@ -36,7 +36,7 @@ void Game::Layer::Update()
 		if (gameObj == nullptr)
 			continue;
 
-		GameObject::eState state = gameObj->GetActive();
+		GameObject::eState state = gameObj->GetState();
 		if (state == GameObject::eState::Paused || state == GameObject::eState::Dead)
 			continue;
 
@@ -50,7 +50,7 @@ void Game::Layer::LateUpdate()
 	{
 		if (gameObj == nullptr)
 			continue;
-		GameObject::eState state = gameObj->GetActive();
+		GameObject::eState state = gameObj->GetState();
 		if (state == GameObject::eState::Paused || state == GameObject::eState::Dead)
 			continue;
 		gameObj->LateUpdate();
@@ -63,7 +63,7 @@ void Game::Layer::Render(HDC hdc)
 	{
 		if (gameObj == nullptr)
 			continue;
-		GameObject::eState state = gameObj->GetActive();
+		GameObject::eState state = gameObj->GetState();
 		if (state == GameObject::eState::Paused || state == GameObject::eState::Dead)
 			continue;
 		gameObj->Render(hdc);
@@ -74,7 +74,7 @@ void Game::Layer::Destroy()
 {
 	for (GameobjectIter iter = mGameObjects.begin(); iter != mGameObjects.end(); )
 	{
-		GameObject::eState active = (*iter)->GetActive(); 
+		GameObject::eState active = (*iter)->GetState(); 
 		if (active == GameObject::eState::Dead)
 		{
 			GameObject* deadObj = (*iter);
@@ -95,4 +95,31 @@ void Game::Layer::AddGameObject(GameObject* gameObject)
 		return;
 
 	mGameObjects.push_back(gameObject);
+}
+
+void Game::Layer::FindDeadGameObjects(OUT std::vector<GameObject*>& gameObjs)
+{
+	for (GameObject* gameObj : mGameObjects)
+	{
+		GameObject::eState active = gameObj->GetState();
+		if (active == GameObject::eState::Dead)
+			gameObjs.push_back(gameObj);
+	}
+}
+
+void Game::Layer::DeleteGameObjects(std::vector<GameObject*>& deleteObjs)
+{
+	for (GameObject* obj : deleteObjs)
+	{
+		delete obj;
+		obj = nullptr;
+	}
+}
+
+void Game::Layer::EraseGameObject()
+{
+	std::erase_if(mGameObjects, [](GameObject* gameObj)
+		{
+			return (gameObj)->IsDead();
+		});
 }

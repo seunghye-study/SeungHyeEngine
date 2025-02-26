@@ -10,7 +10,6 @@
 
 namespace Game
 {
-	// 레이어 타입만
 	template <typename T>
 	static T* Instantiate(Game::eLayerType type)
 	{
@@ -37,8 +36,4 @@ namespace Game
 		return gameObject;
 	}
 
-	static void Destory(GameObject* obj)
-	{
-		obj->Death();
-	}
 }

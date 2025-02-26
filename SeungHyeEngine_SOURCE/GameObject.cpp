@@ -3,6 +3,13 @@
 #include "GameInput.h"
 #include "Transform.h"
 
+
+void Game::Destroy(GameObject* gameObject)
+{
+	if (gameObject != nullptr)
+		gameObject->IsDead();
+}
+
 Game::GameObject::GameObject() : mState(eState::Active)
 {
 	mComponents.resize((UINT)eComponentType::End);

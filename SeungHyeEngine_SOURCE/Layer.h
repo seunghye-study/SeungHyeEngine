@@ -21,6 +21,11 @@ namespace Game
 		void AddGameObject(GameObject* gameObject);
 
 	private:
+		void FindDeadGameObjects(OUT std::vector<GameObject*>& gameObjs);
+		void DeleteGameObjects(std::vector<GameObject*>& deleteObjs);
+		void EraseGameObject();
+
+	private:
 		std::vector<GameObject*> mGameObjects;
 	};
 

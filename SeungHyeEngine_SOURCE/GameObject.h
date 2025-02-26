@@ -4,12 +4,16 @@
 #include "Component.h"
 #include "Object.h"
 
+
+
 namespace Game
 {
+	void Destroy(GameObject* gameObject);
+
 	class GameObject
 	{
 	public:
-		//friend void Destroy(GameObject* obj);
+		friend void Destroy(GameObject* obj);
 
 		enum class eState
 		{
@@ -51,7 +55,7 @@ namespace Game
 			return component;
 		}
 
-		eState GetActive() { return mState; }
+		eState GetState() { return mState; }
 		void SetActive(bool power)
 		{
 			if (power)
@@ -60,9 +64,11 @@ namespace Game
 				mState = eState::Paused;
 		}
 		void Death() { mState = eState::Dead; }
+		bool IsActive() { return mState == eState::Active; }
 
 	private:
 		void InitializeTransform();
+		bool IsDead() { return mState == eState::Dead; }
 		std::vector<Component*> mComponents;
 		eState mState;
 	};

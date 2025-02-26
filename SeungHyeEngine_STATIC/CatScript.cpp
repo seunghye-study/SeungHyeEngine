@@ -27,7 +27,7 @@ void Game::CatScript::Update()
 	mDeathTime += Time::DeltaTime();
 	if (mDeathTime > 6.0f)
 	{
-		//Game::Destory(GetOwner());
+		Game::Destory(GetOwner());
 	}
 
 	if (mAnimator == nullptr)
