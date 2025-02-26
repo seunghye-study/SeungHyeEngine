@@ -3,7 +3,7 @@
 #include "GameInput.h"
 #include "Transform.h"
 
-Game::GameObject::GameObject()
+Game::GameObject::GameObject() : mState(eState::Active)
 {
 	mComponents.resize((UINT)eComponentType::End);
 	InitializeTransform();
@@ -13,10 +13,12 @@ Game::GameObject::~GameObject()
 {
 	for (Component* comp : mComponents)
 	{
-		if (comp == nullptr) continue;
+		if (comp == nullptr) 
+			continue;
 		delete comp;
 		comp = nullptr;
 	}
+	//SceneManager::GetInst().Update();
 }
 
 void Game::GameObject::Initialize()

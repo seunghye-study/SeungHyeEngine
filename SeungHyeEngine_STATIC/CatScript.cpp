@@ -4,11 +4,13 @@
 #include "..\\SeungHyeEngine_SOURCE\GameTime.h"
 #include "GameObject.h"
 #include "Animator.h"
+#include "Object.h"
 
 Game::CatScript::CatScript() 
 	: mState(CatScript::eState::SitDown)
 	,mAnimator(nullptr)
 	, mTime(0.0f)
+	, mDeathTime(0.0f)
 {
 }
 
@@ -22,6 +24,12 @@ void Game::CatScript::Initialize()
 
 void Game::CatScript::Update()
 {
+	mDeathTime += Time::DeltaTime();
+	if (mDeathTime > 6.0f)
+	{
+		//Game::Destory(GetOwner());
+	}
+
 	if (mAnimator == nullptr)
 	{
 		mAnimator = GetOwner()->GetComponent<Animator>();

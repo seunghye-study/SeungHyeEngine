@@ -7,7 +7,11 @@ Game::Scene::Scene() :mLayers{}
 
 Game::Scene::~Scene()
 {
-
+	for (Layer* layer : mLayers)
+	{
+		delete layer;
+		layer = nullptr;
+	}
 }
 
 void Game::Scene::Initialize()
@@ -51,6 +55,15 @@ void Game::Scene::Render(HDC hdc)
 			continue;
 
 		layer->Render(hdc);
+	}
+}
+
+void Game::Scene::Destory()
+{
+	for (Layer* layer : mLayers)
+	{
+		if (layer == nullptr) continue;
+		layer->Destroy();
 	}
 }
 

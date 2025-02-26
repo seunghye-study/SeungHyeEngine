@@ -2,12 +2,23 @@
 
 #include "CommonInclude.h"
 #include "Component.h"
+#include "Object.h"
 
 namespace Game
 {
 	class GameObject
 	{
 	public:
+		//friend void Destroy(GameObject* obj);
+
+		enum class eState
+		{
+			Active,
+			Paused,
+			Dead,
+			End
+		};
+
 		GameObject();
 		~GameObject();
 
@@ -40,8 +51,20 @@ namespace Game
 			return component;
 		}
 
+		eState GetActive() { return mState; }
+		void SetActive(bool power)
+		{
+			if (power)
+				mState = eState::Active;
+			else
+				mState = eState::Paused;
+		}
+		void Death() { mState = eState::Dead; }
+
+	private:
 		void InitializeTransform();
 		std::vector<Component*> mComponents;
+		eState mState;
 	};
 }
 

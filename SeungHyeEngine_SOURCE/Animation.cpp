@@ -58,21 +58,26 @@ void Game::Animation::Render(HDC hdc)
 	Texture::eTextureType type = mTexture->GetTextureType();
 	if (type == Texture::eTextureType::bmp)
 	{
-		BLENDFUNCTION func = {};
-		func.BlendOp = AC_SRC_OVER;
-		func.BlendFlags = 0;
-		func.AlphaFormat = AC_SRC_ALPHA;
-		func.SourceConstantAlpha = 255;
-
 		HDC imgHdc = mTexture->GetHdc();
 
-		AlphaBlend(hdc, pos.x, pos.y, sprite.size.x * scale.x, sprite.size.y * scale.y, imgHdc,
-			sprite.leftTop.x, sprite.leftTop.y, sprite.size.x, sprite.size.y, func);
+		TransparentBlt(hdc
+			, pos.x-(sprite.size.x/2.0f)
+			, pos.y - (sprite.size.y / 2.0f)
+			, sprite.size.x * scale.x
+			, sprite.size.y * scale.y
+			, imgHdc
+			, sprite.leftTop.x
+			, sprite.leftTop.y
+			, sprite.size.x
+			, sprite.size.y
+			, RGB(255,0,255));
 	}
 	else if (type == Texture::eTextureType::png)
 	{
+		// 원하는픽셀 투명화
 		Gdiplus::ImageAttributes imgAtt = {};
 
+		// 투명화시킬 픽셀의 색 범위
 		imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
 		Gdiplus::Graphics graphics(hdc);
 

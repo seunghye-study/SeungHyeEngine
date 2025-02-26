@@ -36,6 +36,10 @@ void Game::Layer::Update()
 		if (gameObj == nullptr)
 			continue;
 
+		GameObject::eState state = gameObj->GetActive();
+		if (state == GameObject::eState::Paused || state == GameObject::eState::Dead)
+			continue;
+
 		gameObj->Update();
 	}
 }
@@ -46,7 +50,9 @@ void Game::Layer::LateUpdate()
 	{
 		if (gameObj == nullptr)
 			continue;
-
+		GameObject::eState state = gameObj->GetActive();
+		if (state == GameObject::eState::Paused || state == GameObject::eState::Dead)
+			continue;
 		gameObj->LateUpdate();
 	}
 }
@@ -57,8 +63,29 @@ void Game::Layer::Render(HDC hdc)
 	{
 		if (gameObj == nullptr)
 			continue;
-
+		GameObject::eState state = gameObj->GetActive();
+		if (state == GameObject::eState::Paused || state == GameObject::eState::Dead)
+			continue;
 		gameObj->Render(hdc);
+	}
+}
+
+void Game::Layer::Destroy()
+{
+	for (GameobjectIter iter = mGameObjects.begin(); iter != mGameObjects.end(); )
+	{
+		GameObject::eState active = (*iter)->GetActive(); 
+		if (active == GameObject::eState::Dead)
+		{
+			GameObject* deadObj = (*iter);
+			iter = mGameObjects.erase(iter);
+
+			delete deadObj;
+			deadObj = nullptr;
+
+			continue;
+		}
+		iter++;
 	}
 }
 

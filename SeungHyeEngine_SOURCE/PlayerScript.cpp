@@ -4,7 +4,10 @@
 #include "GameTime.h"
 #include "GameObject.h"
 #include "Animator.h"
-
+#include "../SeungHyeEngine_STATIC/Cat.h"
+#include "../SeungHyeEngine_STATIC/CatScript.h"
+#include <Object.h>
+#include <Resources.h>
 
 Game::PlayerScript::PlayerScript()
 	:mState(PlayerScript::eState::Idle)
@@ -55,6 +58,33 @@ void Game::PlayerScript::LateUpdate()
 void Game::PlayerScript::Render(HDC hdc)
 {
 
+}
+
+void Game::PlayerScript::AttackEffect()
+{
+	Game::Cat* cat = Game::Instantiate<Game::Cat>(Game::eLayerType::Animal);
+	cat->AddComponent<Game::CatScript>();
+
+	Game::Texture* catTex = Game::Resources::Find<Texture>(L"Cat");
+	Game::Animator* catAnimator = cat->AddComponent<Animator>();
+	catAnimator->CreateAnimation(L"DownWalk", catTex
+		, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	catAnimator->CreateAnimation(L"RightWalk", catTex
+		, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	catAnimator->CreateAnimation(L"UpWalk", catTex
+		, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	catAnimator->CreateAnimation(L"LeftWalk", catTex
+		, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	catAnimator->CreateAnimation(L"SitDown", catTex
+		, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	catAnimator->CreateAnimation(L"Grooming", catTex
+		, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+	catAnimator->CreateAnimation(L"LayDown", catTex
+		, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
+
+	catAnimator->PlayAnimation(L"SitDown", false);
+	cat->GetComponent<Transform>()->SetPosition(Vector2(200.0f, 200.0f));
+	cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
 }
 
 void Game::PlayerScript::Move()

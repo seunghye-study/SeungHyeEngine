@@ -4,7 +4,6 @@
 
 // animation management
 
-
 namespace Game
 {
 	class Animator : public Component
@@ -51,11 +50,14 @@ namespace Game
 		Animation* FindAnimation(const std::wstring& name);
 		void PlayAnimation(const std::wstring& name, bool loop = true);
 
+		void CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration);
+
 		Events* FindEvents(const std::wstring& name);
 		std::function<void()>& GetStartEvent(const std::wstring& name);
 		std::function<void()>& GetCompleteEvent(const std::wstring& name);
 		std::function<void()>& GetEndEvent(const std::wstring& name);
 		bool IsComplete() { return mActiveAnimation->IsComplete(); }
+
 
 	private:
 		// Animation Component 

@@ -34,6 +34,7 @@ void Game::Application::Run()
 	Update();
 	LateUpdate();
 	Render();
+	Destroy();
 }
 
 void Game::Application::Release()
@@ -62,6 +63,11 @@ void Game::Application::Render()
 	SceneManager::Render(mBackHdc);
 
 	CopyRenderTarget(mBackHdc, mHdc);
+}
+
+void Game::Application::Destroy()
+{
+	SceneManager::Destroy();
 }
 
 void Game::Application::ClearRenderTarget()

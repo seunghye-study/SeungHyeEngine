@@ -49,3 +49,8 @@ void Game::SceneManager::Release()
 		iter.second = nullptr;
 	}
 }
+
+void Game::SceneManager::Destroy()
+{
+	mActiveScene->Destory();
+}

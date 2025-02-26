@@ -13,6 +13,8 @@ namespace Game
 			None,
 		};
 
+		static Texture* Create(const std::wstring& name, UINT width, UINT height);
+
 		Texture();
 		~Texture();
 
@@ -23,8 +25,12 @@ namespace Game
 		HDC GetHdc() { return mHdc; }
 		eTextureType GetTextureType() { return mType; }
 		Gdiplus::Image* GetImage() { return mImage; }
+		void SetWidth(UINT width) { mWidth = width; }
+		void SetHeight(UINT height) { mHeight = height; }
 
 	private:
+		bool mAlpha;
+
 		eTextureType mType;
 		Gdiplus::Image* mImage;
 		HBITMAP mBitmap;

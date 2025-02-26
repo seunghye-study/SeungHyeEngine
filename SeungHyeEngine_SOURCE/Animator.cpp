@@ -1,5 +1,8 @@
 #include "Animator.h"
-
+#include "Resources.h"
+#include "Texture.h"
+#include "CommonInclude.h"
+#include <filesystem>
 
 Game::Animator::Animator() :
 	Component(Game::eComponentType::Animator)
@@ -85,17 +88,67 @@ Game::Animation* Game::Animator::FindAnimation(const std::wstring& name)
 void Game::Animator::PlayAnimation(const std::wstring& name, bool loop)
 {
 	Animation* animation = FindAnimation(name);
-	if (animation == nullptr) return;
+	if (animation == nullptr) 
+		return;
+
+	if (mActiveAnimation)
+	{
+		Events* currentEvents = FindEvents(mActiveAnimation->GetName());
+		if (currentEvents) 
+			currentEvents->EndEvent();
+	}
+
+	Events* nextEvents = FindEvents(animation->GetName());
+
+	if (nextEvents)
+		nextEvents->StartEvent();
 
 	mActiveAnimation = animation;
 	mActiveAnimation->Reset();
 	mLoop = loop;
 }
 
+void Game::Animator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
+{
+	Animation* animation = nullptr;
+	animation = FindAnimation(name);
+	if (animation != nullptr)
+		return;
+
+	int fileCount = 0;
+	std::filesystem::path fs(path);
+	std::vector<Texture*> images = {};
+
+	for (auto& p : std::filesystem::recursive_directory_iterator(fs))
+	{
+		std::wstring fileName = p.path().filename();
+		std::wstring fullName = p.path();
+
+		Texture* texture = Resource::Load<Texture>(fileName, fullName);
+		images.push_back(texture);
+		fileCount++;
+	}
+
+	UINT sheetWidth = images[0]->GetWidth() * fileCount;
+	UINT sheetHeight = images[0]->GetHeight();
+	Texture* spriteSheet = Texture::Create(name, sheetWidth, sheetHeight);
+
+	UINT imageWidth = images[0]->GetWidth();
+	UINT imageHeight = images[0]->GetHeight();
+
+	for (size_t i = 0; i < images.size(); i++)
+	{
+		BitBlt(spriteSheet->GetHdc(), i * imageWidth, 0, imageWidth, imageHeight, images[i]->GetHdc(), 0, 0, SRCCOPY);
+	}
+
+	CreateAnimation(name, spriteSheet, Vector2(0.0f, 0.0f), Vector2(imageWidth, imageHeight), offset, fileCount, duration);
+}
+
 Game::Animator::Events* Game::Animator::FindEvents(const std::wstring& name)
 {
 	auto iter = mEvents.find(name);
-	if (iter == mEvents.end()) return nullptr;
+	if (iter == mEvents.end()) 
+		return nullptr;
 	return iter->second;
 }
 
