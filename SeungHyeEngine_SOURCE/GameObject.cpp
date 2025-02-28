@@ -25,7 +25,6 @@ Game::GameObject::~GameObject()
 		delete comp;
 		comp = nullptr;
 	}
-	//SceneManager::GetInst().Update();
 }
 
 void Game::GameObject::Initialize()

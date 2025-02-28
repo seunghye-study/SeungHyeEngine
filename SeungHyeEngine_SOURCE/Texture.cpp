@@ -43,7 +43,6 @@ HRESULT Game::Texture::Load(const std::wstring& path)
 {
 	std::wstring ext = path.substr(path.find_last_of(L".") + 1);
 
-	// bmp
 	if (ext == L"bmp")
 	{
 		mType = eTextureType::bmp;
@@ -56,6 +55,9 @@ HRESULT Game::Texture::Load(const std::wstring& path)
 
 		mWidth = info.bmWidth;
 		mHeight = info.bmHeight;
+
+		if (info.bmBitsPixel == 32) mAlpha = true;
+		else if (info.bmBitsPixel == 24) mAlpha = false;
 
 		HDC mainDC = application.GetHDC();
 		mHdc = CreateCompatibleDC(mainDC);

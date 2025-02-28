@@ -27,6 +27,7 @@ namespace Game
 		Gdiplus::Image* GetImage() { return mImage; }
 		void SetWidth(UINT width) { mWidth = width; }
 		void SetHeight(UINT height) { mHeight = height; }
+		bool IsAlpha() { return mAlpha; }
 
 	private:
 		bool mAlpha;

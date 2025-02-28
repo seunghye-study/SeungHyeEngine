@@ -46,12 +46,14 @@ namespace Game
 
 		bool IsComplete() { return mComplete; }
 		void SetAnimator(class Animator* animator) { mAnimator = animator; }
+		
 
 	private:
 		class Animator* mAnimator;
 		Game::Texture* mTexture;
 
 		std::vector<Sprite> mAnimationSheet;
+
 		int mIndex;
 		float mTime;
 		bool mComplete;
