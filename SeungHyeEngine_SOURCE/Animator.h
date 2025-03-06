@@ -60,12 +60,9 @@ namespace Game
 
 
 	private:
-		// Animation Component 
 		std::map<std::wstring, Animation*> mAnimations;
 		Animation* mActiveAnimation;
 		bool mLoop;
-
-		// Animation Events
 		std::map<std::wstring, Events*> mEvents;
 	};
 }

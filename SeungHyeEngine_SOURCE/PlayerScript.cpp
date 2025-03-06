@@ -112,6 +112,7 @@ void Game::PlayerScript::Move()
 		tr->SetPosition(pos);
 	}
 
+	// key up
 	// TODO : 멈춘 방향 보고 서있도록 분리하기.
 	if (GameInput::GetKeyUp(eKeyCode::D) || GameInput::GetKeyUp(eKeyCode::A)
 		|| GameInput::GetKeyUp(eKeyCode::W) || GameInput::GetKeyUp(eKeyCode::S))
@@ -145,10 +146,12 @@ void Game::PlayerScript::Idle()
 		mAnimator->PlayAnimation(L"GoUp");
 	}
 
+	// TODO : LButton물주기 추가
 	if (GameInput::GetKey(eKeyCode::LButton))
 	{
 		mState = PlayerScript::eState::GiveWater;
-		mAnimator->PlayAnimation(L"GiveWaterFront", false);
+		//todo : 방향설정 애니메이션 추가
+		//mAnimator->PlayAnimation(L"FrontGiveWater", false);
 		Vector2 mousePos = Game::GameInput::GetMousePosition();
 	}
 }
@@ -158,6 +161,7 @@ void Game::PlayerScript::GiveWater()
 	if (mAnimator->IsComplete())
 	{
 		mState = eState::Idle;
+		// todo : 방향에 맞게 변경
 		mAnimator->PlayAnimation(L"Idle", false);
 	}
 }

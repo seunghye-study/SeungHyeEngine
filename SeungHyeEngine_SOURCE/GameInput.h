@@ -55,7 +55,7 @@ namespace Game
 
 	private:
 		static std::vector<Key> mKeys;
-		static GameMath::Vector2 mMousePosition;
+		static Vector2 mMousePosition;
 	};
 }
 

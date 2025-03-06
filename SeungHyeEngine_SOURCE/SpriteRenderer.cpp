@@ -78,8 +78,8 @@ namespace Game
 				, Gdiplus::Rect
 				(
 					pos.x, pos.y
-					, mTexture->GetWidth() * scale.x
-					, mTexture->GetHeight() * scale.y
+					, mTexture->GetWidth() * mSize.x * scale.x
+					, mTexture->GetHeight() * mSize.y * scale.y
 				)
 				, 0, 0
 				, mTexture->GetWidth(), mTexture->GetHeight()

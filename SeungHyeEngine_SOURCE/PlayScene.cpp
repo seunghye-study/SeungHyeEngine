@@ -49,7 +49,6 @@ namespace Game
 		Texture* t_GoRight = Game::Resources::Find<Texture>(L"GoRight");
 		Texture* t_GoUp = Game::Resources::Find<Texture>(L"GoUp");
 		Texture* t_GoDown = Game::Resources::Find<Texture>(L"GoDown");
-		Texture* GiveWaterFront = Game::Resources::Find<Texture>(L"GiveWaterFront");
 
 		Animator* playerAnimator = mPlayer->AddComponent<Animator>();
 		playerAnimator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
@@ -86,7 +85,7 @@ namespace Game
 				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
 			catAnimator->PlayAnimation(L"SitDown", false);
-			cat->GetComponent<Transform>()->SetPosition(Vector2(100.0f, 200.0f));
+			cat->GetComponent<Transform>()->SetPosition(Vector2(1300.0f, 200.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		}
 		Scene::Initialize();

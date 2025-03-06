@@ -43,6 +43,7 @@ void Game::Animation::Update()
 
 void Game::Animation::Render(HDC hdc)
 {
+	// 알파블렌드 조건 : 알파채널 존재(r g b a)
 	if (mTexture == nullptr) return;
 
 	GameObject* gameObj = mAnimator->GetOwner();
@@ -100,6 +101,7 @@ void Game::Animation::Render(HDC hdc)
 	}
 	else if (type == Texture::eTextureType::png)
 	{
+		// 원하는 이미지 투명화
 		Gdiplus::ImageAttributes imgAtt = {};
 
 		imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
@@ -119,7 +121,7 @@ void Game::Animation::Render(HDC hdc)
 			, sprite.size.x
 			, sprite.size.y
 			, Gdiplus::UnitPixel
-			, nullptr);
+			, nullptr/*image att*/);
 	}
 }
 
