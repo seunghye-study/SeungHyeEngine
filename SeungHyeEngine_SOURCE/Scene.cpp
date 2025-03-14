@@ -54,6 +54,17 @@ void Game::Scene::Render(HDC hdc)
 	}
 }
 
+void Game::Scene::Destroy()
+{
+	for (Layer* layer : mLayers)
+	{
+		if (layer == nullptr)
+			continue;
+
+		layer->Destroy();
+	}
+}
+
 void Game::Scene::OnEnter()
 {
 

@@ -7,6 +7,7 @@
 #include <map>
 #include <assert.h>
 #include <functional>
+#include <filesystem>
 
 #include "SMath.h"
 #include "SEnums.h"

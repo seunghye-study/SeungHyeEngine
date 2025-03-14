@@ -41,6 +41,11 @@ void Game::SceneManager::Render(HDC hdc)
 	mActiveScene->Render(hdc);
 }
 
+void Game::SceneManager::Destroy()
+{
+	mActiveScene->Destroy();
+}
+
 void Game::SceneManager::Release()
 {
 	for (auto& iter : mScene)

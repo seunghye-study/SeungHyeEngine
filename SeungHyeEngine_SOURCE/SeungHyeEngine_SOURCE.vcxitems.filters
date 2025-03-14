@@ -61,6 +61,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Animator.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Destroy.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
@@ -84,7 +87,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)SMath.h">
       <Filter>Common</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Object.h">
+    <ClInclude Include="$(MSBuildThisFileDirectory)SObject.h">
       <Filter>Common</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Entity.h">
@@ -131,6 +134,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Animation.h">
       <Filter>Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Destroy.h">
+      <Filter>GameObject</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

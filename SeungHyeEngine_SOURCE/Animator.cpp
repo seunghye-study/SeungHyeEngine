@@ -1,5 +1,6 @@
 #include "Animator.h"
-
+#include "Resources.h"
+#include "Texture.h"
 
 Game::Animator::Animator() :
 	Component(Game::eComponentType::Animator)
@@ -72,6 +73,45 @@ void Game::Animator::CreateAnimation(const std::wstring& name, Game::Texture* sp
 	mEvents.insert(std::make_pair(name, events));
 
 	mAnimations.insert(std::make_pair(name, animation));
+}
+
+
+// create animation by folder
+void Game::Animator::CreateAnimationByFolder(const std::wstring& name, const std::wstring& path, Vector2 offset, float duration)
+{
+	Animation* animation = nullptr;
+	animation = FindAnimation(name);
+	if (animation != nullptr) return;
+
+	int fileCount = 0;
+	std::filesystem::path fs(path);
+	std::vector<Texture*> images = {};
+
+	for (auto& p : std::filesystem::recursive_directory_iterator(fs))
+	{
+		std::wstring fileName = p.path().filename();
+		std::wstring fullName = p.path();
+		Texture* texture = Resources::Load<Texture>(fileName, fullName);
+		images.push_back(texture);
+		fileCount++;
+	}
+
+	UINT sheetWidth = images[0]->GetWidth() * fileCount;
+	UINT sheetHeight = images[0]->GetHeight();
+
+	//TODO : 주석해제
+
+	//Texture* spriteSheet = Texture::Create(name, sheetWidth, sheetHeight);
+
+	UINT imageWidth = images[0]->GetWidth();
+	UINT imageHeight = images[0]->GetHeight();
+
+	for (size_t i = 0; i < images.size(); i++)
+	{
+		//BitBlt(spriteSheet->Getdc(), i*imageWidth, 0, imageWidth, imageHeight, images[i]->GetHdc(), 0,0,SRCCOPY);
+	}
+
+	//CreateAnimation(name, spriteSheet, Vector2(0.0f, 0.0f), Vector2(imageWidth, imageHeight), offset, fileCount, duration);
 }
 
 Game::Animation* Game::Animator::FindAnimation(const std::wstring& name)

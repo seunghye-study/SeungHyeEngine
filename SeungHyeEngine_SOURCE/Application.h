@@ -12,12 +12,13 @@ namespace Game {
 
 		void Initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
-		void Release();
+		
 		
 		void Update();
 		void LateUpdate();
 		void Render();
-		
+		void Destroy();
+		void Release();
 
 		/*Getter*/
 		HWND GetHWND() { return mHwnd; }

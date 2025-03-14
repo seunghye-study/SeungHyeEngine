@@ -1,6 +1,7 @@
 #pragma once
 #include "Script.h"
 #include "Transform.h"
+#include "SObject.h"
 
 namespace Game
 {
@@ -45,6 +46,7 @@ namespace Game
 		class Animator* mAnimator;
 		eDirection mDirection;
 		float mTime;
+		float mDeathTime;
 
 	};
 }

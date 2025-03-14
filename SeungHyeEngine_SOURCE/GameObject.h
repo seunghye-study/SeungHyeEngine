@@ -8,6 +8,16 @@ namespace Game
 	class GameObject
 	{
 	public:
+		enum class eState
+		{
+			Active,
+			Paused,
+			Dead,
+			End
+		};
+
+		friend void Destroy(GameObject* gameObject);
+
 		GameObject();
 		~GameObject();
 
@@ -15,6 +25,7 @@ namespace Game
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
+		void Destroy(GameObject* gameObject);
 
 		template <typename T>
 		T* AddComponent()
@@ -40,7 +51,20 @@ namespace Game
 			return component;
 		}
 
+
+		eState GetState() { return mState; }
+		void SetActive(bool power) {
+			if (power == true) mState = eState::Active;
+			if (power == false) mState = eState::Paused;
+		}
+		void death() { mState = eState::Dead; }
+		bool IsActive() { return mState == eState::Active; }
+		bool IsDead() { return mState == eState::Dead; }
+
 		void InitializeTransform();
+
+	private:
+		eState mState;
 		std::vector<Component*> mComponents;
 	};
 }

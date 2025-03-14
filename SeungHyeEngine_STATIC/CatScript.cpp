@@ -9,6 +9,7 @@ Game::CatScript::CatScript()
 	: mState(CatScript::eState::SitDown)
 	,mAnimator(nullptr)
 	, mTime(0.0f)
+	, mDeathTime(0.0f)
 {
 }
 
@@ -22,6 +23,11 @@ void Game::CatScript::Initialize()
 
 void Game::CatScript::Update()
 {
+	mDeathTime += Time::DeltaTime();
+	if (mDeathTime > 6.0f) 
+	{
+
+	}
 	if (mAnimator == nullptr)
 	{
 		mAnimator = GetOwner()->GetComponent<Animator>();
@@ -58,7 +64,7 @@ void Game::CatScript::Render(HDC hdc)
 void Game::CatScript::SitDown()
 {
 	mTime += Time::DeltaTime();
-	if (mTime > 3.0f)
+	if (mTime > 2.0f)
 	{
 		mState = CatScript::eState::Walk;
 		int direction = (rand() % 4);
@@ -92,7 +98,7 @@ void Game::CatScript::Move()
 void Game::CatScript::LayDown()
 {
 	mTime += Time::DeltaTime();
-	if (mTime > 4.0f)
+	if (mTime > 2.0f)
 	{
 		mState = CatScript::eState::SitDown;
 		mAnimator->PlayAnimation(L"CatSitDown", false);
@@ -129,16 +135,16 @@ void Game::CatScript::translate(Transform* tr)
 	switch (mDirection)
 	{
 	case CatScript::eDirection::Left:
-		pos.x -= 100.0f * Time::DeltaTime();
+		pos.x -= 50.0f * Time::DeltaTime();
 		break;
 	case CatScript::eDirection::Right:
-		pos.x += 100.0f * Time::DeltaTime();
+		pos.x += 50.0f * Time::DeltaTime();
 		break;
 	case CatScript::eDirection::Down:
-		pos.y += 100.0f * Time::DeltaTime();
+		pos.y += 50.0f * Time::DeltaTime();
 		break;
 	case CatScript::eDirection::Up:
-		pos.y -= 100.0f * Time::DeltaTime();
+		pos.y -= 50.0f * Time::DeltaTime();
 		break;
 	default:
 		assert(false);

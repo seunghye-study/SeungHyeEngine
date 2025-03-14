@@ -3,7 +3,13 @@
 #include "GameInput.h"
 #include "Transform.h"
 
-Game::GameObject::GameObject()
+void Game::GameObject::Destroy(GameObject* gameObject)
+{
+	if (gameObject != nullptr)
+		gameObject->death();
+}
+
+Game::GameObject::GameObject() : mState(eState::Active)
 {
 	mComponents.resize((UINT)eComponentType::End);
 	InitializeTransform();

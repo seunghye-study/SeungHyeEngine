@@ -34,6 +34,7 @@ void Game::Application::Run()
 	Update();
 	LateUpdate();
 	Render();
+	Destroy();
 }
 
 void Game::Application::Release()
@@ -62,6 +63,12 @@ void Game::Application::Render()
 	SceneManager::Render(mBackHdc);
 
 	CopyRenderTarget(mBackHdc, mHdc);
+}
+
+void Game::Application::Destroy()
+{
+	// TODO : 씬매니저 디스트로이 생성 후 주석 해제
+	//SceneManager::Destroy();
 }
 
 void Game::Application::ClearRenderTarget()
