@@ -60,6 +60,9 @@ HRESULT Game::Texture::Load(const std::wstring& path)
 		mWidth = info.bmWidth;
 		mHeight = info.bmHeight;
 
+		if (info.bmBitsPixel == 32) mAlpha = true;
+		else if (info.bmBitsPixel == 24) mAlpha = false;
+
 		HDC mainDC = application.GetHDC();
 		mHdc = CreateCompatibleDC(mainDC);
 

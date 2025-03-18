@@ -51,7 +51,6 @@ namespace Game
 			return component;
 		}
 
-
 		eState GetState() { return mState; }
 		void SetActive(bool power) {
 			if (power == true) mState = eState::Active;

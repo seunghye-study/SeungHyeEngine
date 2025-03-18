@@ -27,6 +27,7 @@ namespace Game
 		HDC GetHdc() { return mHdc; }
 		eTextureType GetTextureType() { return mType; }
 		Gdiplus::Image* GetImage() { return mImage; }
+		bool IsAlpha() { return mAlpha; }
 
 	private:
 		bool mAlpha;
