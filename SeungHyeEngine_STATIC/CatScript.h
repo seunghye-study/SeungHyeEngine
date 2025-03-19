@@ -32,6 +32,8 @@ namespace Game
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
+		void SetPlayer(GameObject* player) { mPlayer = player; }
+		Vector2 mDest;
 
 	private:
 		void SitDown();
@@ -47,6 +49,8 @@ namespace Game
 		eDirection mDirection;
 		float mTime;
 		float mDeathTime;
+		GameObject* mPlayer;
+		float mRadian;
 
 	};
 }

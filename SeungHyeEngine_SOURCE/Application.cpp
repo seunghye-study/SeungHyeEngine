@@ -67,8 +67,7 @@ void Game::Application::Render()
 
 void Game::Application::Destroy()
 {
-	// TODO : 씬매니저 디스트로이 생성 후 주석 해제
-	//SceneManager::Destroy();
+
 }
 
 void Game::Application::ClearRenderTarget()

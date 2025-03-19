@@ -5,11 +5,13 @@
 #include "GameObject.h"
 #include "Animator.h"
 
-Game::CatScript::CatScript() 
+Game::CatScript::CatScript()
 	: mState(CatScript::eState::SitDown)
 	,mAnimator(nullptr)
 	, mTime(0.0f)
 	, mDeathTime(0.0f)
+	, mDest(Vector2::Zero)
+	, mRadian(0.0f)
 {
 }
 

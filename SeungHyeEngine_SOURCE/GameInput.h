@@ -35,10 +35,10 @@ namespace Game
 		static void Initialize();
 		static void Update();
 
-		static bool GetKeyDown(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Down;  }
-		static bool GetKeyUp(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Up; }
-		static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; }
-		static GameMath::Vector2 GetMousePosition() { return mMousePosition; }
+		__forceinline static bool GetKeyDown(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Down;  }
+		__forceinline static bool GetKeyUp(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Up; }
+		__forceinline static bool GetKey(eKeyCode code) { return mKeys[(UINT)code].state == eKeyState::Pressed; }
+		__forceinline static GameMath::Vector2 GetMousePosition() { return mMousePosition; }
 
 
 	private:
