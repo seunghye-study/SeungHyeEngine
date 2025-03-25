@@ -15,7 +15,6 @@ Game::Texture::~Texture()
 
 }
 
-// 어떤 텍스쳐에 대해 Create?
 Game::Texture* Game::Texture::Create(const std::wstring& name, UINT width, UINT height)
 {
 	Texture* image = Resources::Find<Texture>(name);

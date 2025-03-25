@@ -84,6 +84,7 @@ void Game::Animation::Render(HDC hdc)
 				, sprite.size.y
 				, RGB(255, 0, 255));
 		}
+
 	}
 	else if (type == Texture::eTextureType::png)
 	{

@@ -27,13 +27,13 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(1030.0f * 3, 230.0f * 3));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(1030.0f*3, 230.0f*3));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(3.0f, 3.0f));
+		bgsr->SetSize(Vector2(7.0f, 7.0f));
 
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
 		bgsr->SetTexture(bgTexture);
@@ -56,8 +56,8 @@ namespace Game
 		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GiveWaterFront", GiveWaterFront, Vector2(0.0f, 2000.0f), Vector2(250, 250), Vector2::Zero, 12, 0.1f);
 		animator->PlayAnimation(L"Idle", false);
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1030.0f, 230.0f));
-		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.5f, 0.5f));
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1030.0f*3, 230.0f*3));
+		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 
 		{
 			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
@@ -80,8 +80,8 @@ namespace Game
 				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
 			catAnimator->PlayAnimation(L"SitDown", false);
-			cat->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 200.0f));
-			cat->GetComponent<Transform>()->SetScale(Vector2(2.0f, 2.0f));
+			cat->GetComponent<Transform>()->SetPosition(Vector2(1030.0f * 3, 230.0f * 3));
+			cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
 		}
 		Scene::Initialize();
 	}

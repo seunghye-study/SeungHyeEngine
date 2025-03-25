@@ -52,9 +52,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Renderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)Texture.cpp">
-      <Filter>Resource\Texture</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Animation.cpp">
       <Filter>Animation</Filter>
     </ClCompile>
@@ -63,6 +60,21 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)Destroy.cpp">
       <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Collider.cpp">
+      <Filter>Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)BoxCollider2D.cpp">
+      <Filter>Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CircleCollider.cpp">
+      <Filter>Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)Texture.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)CollisionManager.cpp">
+      <Filter>Collider</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,9 +138,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)Texture.h">
-      <Filter>Resource\Texture</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Animator.h">
       <Filter>Animation</Filter>
     </ClInclude>
@@ -137,6 +146,21 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)Destroy.h">
       <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Collider.h">
+      <Filter>Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)BoxCollider2D.h">
+      <Filter>Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CircleCollider.h">
+      <Filter>Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)Texture.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CollisionManager.h">
+      <Filter>Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -182,11 +206,11 @@
     <Filter Include="Renderer">
       <UniqueIdentifier>{c80618c9-8351-4a45-90cb-f4fc061ad548}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource\Texture">
-      <UniqueIdentifier>{918531da-fbb8-491d-828d-09ef52036a7e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Animation">
       <UniqueIdentifier>{418d7ff2-6618-435a-a107-8c78c1d43b40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collider">
+      <UniqueIdentifier>{39d543e6-8c48-43e0-aa7f-6896ad81107d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

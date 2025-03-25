@@ -29,6 +29,7 @@ namespace Game
 		Script,
 		Camera,
 		Animator,
+		Collider,
 		End,
 	};
 
