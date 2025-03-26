@@ -15,6 +15,7 @@
 #include "Animator.h"
 #include "..\\SeungHyeEngine_STATIC\Cat.h"
 #include "..\\SeungHyeEngine_STATIC\CatScript.h"
+#include "CollisionManager.h"
 
 
 namespace Game
@@ -27,6 +28,8 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+
 		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(1030.0f*3, 230.0f*3));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;

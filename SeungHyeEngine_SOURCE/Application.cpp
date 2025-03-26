@@ -3,6 +3,7 @@
 #include "GameTime.h"
 #include "SceneManager.h"
 #include "Resources.h"
+#include "CollisionManager.h"
 
 // 생성자, 초기화
 Game::Application::Application()
@@ -25,7 +26,7 @@ void Game::Application::Initialize(HWND hwnd, UINT width, UINT height)
 	AdjustWindow(hwnd, width, height);
 	CreateBuffer(width, height);
 	InitComponent();
-
+	CollisionManager::Initialize();
 	SceneManager::Initialize();
 }
 
@@ -47,11 +48,13 @@ void Game::Application::Update()
 {
 	GameInput::Update();
 	Time::Update();
+	CollisionManager::Update();
 	SceneManager::Update();
 }
 
 void Game::Application::LateUpdate()
 {
+	CollisionManager::LateUpdate();
 	SceneManager::LateUpdate();
 }
 
@@ -60,6 +63,7 @@ void Game::Application::Render()
 	ClearRenderTarget();
 
 	Time::Render(mBackHdc);
+	CollisionManager::Render(mBackHdc);
 	SceneManager::Render(mBackHdc);
 
 	CopyRenderTarget(mBackHdc, mHdc);

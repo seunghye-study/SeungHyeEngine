@@ -8,7 +8,7 @@
 #include <assert.h>
 #include <functional>
 #include <filesystem>
-
+#include <bitset>
 
 #include "SMath.h"
 #include "SEnums.h"

@@ -13,9 +13,6 @@ namespace Game
 		virtual void Update();
 		virtual void LateUpdate();
 		virtual void Render(HDC hdc);
-
-	private:
-		Vector2 mSize;
 	};
 }
 
