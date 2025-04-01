@@ -13,10 +13,10 @@ namespace Game
 		};
 		enum class eState
 		{
-			//TODO : STOP ( 멈춘 방향 바라보고 서있기 )
 			Move,
 			Idle,
-			GiveWater
+			GiveWater,
+			Stop,
 		};
 
 		PlayerScript();
@@ -26,6 +26,11 @@ namespace Game
 		void Update() override;
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
+
+		//collision
+		void OnCollisionEnter(Collider* other) override;
+		void OnCollisionStay(Collider* other) override;
+		void OnCollisionExit(Collider* other) override;
 
 	private:
 		void Move();

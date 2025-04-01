@@ -16,6 +16,7 @@
 #include "..\\SeungHyeEngine_STATIC\Cat.h"
 #include "..\\SeungHyeEngine_STATIC\CatScript.h"
 #include "CollisionManager.h"
+#include "BoxCollider2D.h"
 
 
 namespace Game

@@ -57,6 +57,19 @@ void Game::PlayerScript::Render(HDC hdc)
 
 }
 
+void Game::PlayerScript::OnCollisionEnter(Collider* other)
+{
+	other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 500.0f));
+}
+
+void Game::PlayerScript::OnCollisionStay(Collider* other)
+{
+}
+
+void Game::PlayerScript::OnCollisionExit(Collider* other)
+{
+}
+
 void Game::PlayerScript::Move()
 {
 	Transform* tr = GetOwner()->GetComponent<Transform>();
