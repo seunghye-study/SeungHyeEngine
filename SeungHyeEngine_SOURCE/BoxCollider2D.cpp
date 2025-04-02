@@ -1,10 +1,12 @@
 #include "BoxCollider2D.h"
 #include "Transform.h"
 #include "GameObject.h"
+#include "Camera.h"
+#include "Renderer.h"
 
 namespace Game
 {
-	BoxCollider2D::BoxCollider2D() : Collider()
+	BoxCollider2D::BoxCollider2D() : Collider(eColliderType::Rect2D)
 	{
 	}
 	BoxCollider2D::~BoxCollider2D()
@@ -23,6 +25,8 @@ namespace Game
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector2 pos = tr->GetPosition();
+
+		if (mainCamera) pos = mainCamera->CalculatePosition(pos);
 
 		Vector2 offset = GetOffset();
 

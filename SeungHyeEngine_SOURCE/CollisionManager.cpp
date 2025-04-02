@@ -138,10 +138,37 @@ namespace Game
 		Vector2 leftSize = left->GetSize() * 100.0f;
 		Vector2 rightSize = right->GetSize() * 100.0f;
 
+		
+		eColliderType leftType = left->GetColliderType();
+		eColliderType rightType = right->GetColliderType();
+
 		// AABB Ãæµ¹
-		if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f) && fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
+		if (leftType == eColliderType::Rect2D && rightType == eColliderType::Rect2D)
 		{
-			return true;
+			if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f) && fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
+			{
+				return true;
+			}
+		}
+
+		if (leftType == eColliderType::Circle2D && rightType == eColliderType::Circle2D)
+		{
+			//circle - circle
+			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+			Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
+
+			float distance = (leftCirclePos - rightCirclePos).length();
+			if (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f));
+			{
+				return true;
+			}
+		}
+		
+		if (leftType == eColliderType::Circle2D && rightType == eColliderType::Rect2D)
+		{
+			// circle - rect
+			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+
 		}
 
 		return false;

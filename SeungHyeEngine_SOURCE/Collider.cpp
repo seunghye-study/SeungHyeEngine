@@ -6,7 +6,8 @@ namespace Game
 {
 	UINT Collider::CollisionID = 1;
 
-	Collider::Collider() : Component(eComponentType::Collider)
+	Collider::Collider(eColliderType type) : Component(eComponentType::Collider)
+		, mType(type)
 		, mID(CollisionID++)
 		, mSize(Vector2::One)
 	{

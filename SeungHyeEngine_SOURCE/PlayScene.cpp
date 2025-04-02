@@ -44,6 +44,8 @@ namespace Game
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
+		CircleCollider* playerCollider = mPlayer->AddComponent<CircleCollider>();
+		
 		
 		Texture* IdleTexture = Game::Resources::Find<Texture>(L"Idle");
 		Texture* t_GoLeft  = Game::Resources::Find<Texture>(L"GoLeft");
@@ -66,6 +68,7 @@ namespace Game
 		{
 			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
 			cat->AddComponent<CatScript>();
+			CircleCollider* catCollider = cat->AddComponent<CircleCollider>();
 			Texture* catTex = Resources::Find<Texture>(L"Cat");
 			Animator* catAnimator = cat->AddComponent<Animator>();
 			catAnimator->CreateAnimation(L"DownWalk", catTex
@@ -108,11 +111,11 @@ namespace Game
 
 	void PlayScene::OnEnter()
 	{
-
+		Scene::OnEnter();
 	}
 
 	void PlayScene::OnExit()
 	{
-
+		Scene::OnExit();
 	}
 }
