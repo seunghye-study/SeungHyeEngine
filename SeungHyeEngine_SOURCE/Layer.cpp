@@ -88,6 +88,13 @@ void Game::Layer::AddGameObject(GameObject* gameObject)
 	mGameObjects.push_back(gameObject);
 }
 
+void Game::Layer::EraseGameObject(GameObject* gameObject)
+{
+	std::erase_if(mGameObjects, [=](GameObject* gameObj) {
+		return gameObj == gameObject;
+		});
+}
+
 void Game::Layer::findDeadGameObjects(OUT std::vector<GameObject*>& gameObjs)
 {
 	for (GameObject* gameObj : mGameObjects)

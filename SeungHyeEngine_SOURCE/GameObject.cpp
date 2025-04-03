@@ -9,7 +9,7 @@ void Game::GameObject::Destroy(GameObject* gameObject)
 		gameObject->death();
 }
 
-Game::GameObject::GameObject() : mState(eState::Active)
+Game::GameObject::GameObject() : mState(eState::Active), mLayerType(eLayerType::None)
 {
 	mComponents.resize((UINT)eComponentType::End);
 	InitializeTransform();

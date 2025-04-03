@@ -22,6 +22,8 @@ namespace Game
 
 		void AddGameObject(GameObject* gameObj, const eLayerType type);
 		Layer* GetLayer(const eLayerType type) { return mLayers[(UINT)type]; }
+		void EraseGameObject(GameObject* gameObj);
+
 	private:
 		void CreateLayers();
 
