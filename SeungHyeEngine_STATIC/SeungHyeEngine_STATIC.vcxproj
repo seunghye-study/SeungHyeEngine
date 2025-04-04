@@ -28,6 +28,7 @@
     <ClInclude Include="..\SeungHyeEngine_SOURCE\TitleScene.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatScript.h" />
+    <ClInclude Include="ToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\GamePlayer.cpp" />
@@ -38,6 +39,7 @@
     <ClCompile Include="..\SeungHyeEngine_SOURCE\TitleScene.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatScript.cpp" />
+    <ClCompile Include="ToolScene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
