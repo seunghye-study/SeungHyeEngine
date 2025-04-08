@@ -6,6 +6,10 @@
 #include "../SeungHyeEngine_SOURCE/Application.h"
 #include "../SeungHyeEngine_SOURCE/LoadScene.h"
 #include "../SeungHyeEngine_SOURCE/LoadResources.h"
+#include "../SeungHyeEngine_SOURCE/Resources.h"
+#include "../SeungHyeEngine_SOURCE/Texture.h"
+#include "../SeungHyeEngine_STATIC/ToolScene.h"
+
 
 Game::Application application;
 
@@ -22,7 +26,7 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc); // intance = 윈도우 id, 윈도우가 여러개 생길수도 있으니까
 BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-LRESULT CALLBACK    TileProc(HWND, UINT, WPARAM, LPARAM);
+//LRESULT CALLBACK    TileProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -37,9 +41,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_SEUNGHYEENGINE, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance, szWindowClass, WndProc);
-    MyRegisterClass(hInstance, L"TileMap", TileProc);
+    MyRegisterClass(hInstance, L"TileMap", Game::ToolScene::TileProc);
 
-    // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
     {
         return FALSE;
@@ -100,9 +103,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      0,0,900,600, nullptr, nullptr, hInstance, nullptr); // window create, window 정보를 바탕으로 생성, 핸들 반환
-   HWND ToolhWnd = CreateWindowW(L"TileMap", L"TileMap", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT
-      , 0, 900, 600, nullptr, nullptr, hInstance, nullptr);
+      0, 0, 900, 600, nullptr, nullptr, hInstance, nullptr); // window create, window 정보를 바탕으로 생성, 핸들 반환
+   HWND ToolhWnd = CreateWindowW(L"TileMap", L"TileMap", WS_OVERLAPPEDWINDOW,
+       0, 0, 900, 600, nullptr, nullptr, hInstance, nullptr);
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
    
@@ -118,7 +121,21 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   Game::LoadPlayScene();
+   //Game::LoadPlayScene();
+
+   // Tool window 
+   Game::Texture* texture = Game::Resources::Find<Game::Texture>(L"FarmSheet");
+   RECT rect = {0,0, texture->GetWidth(),texture->GetHeight()};
+   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+   UINT toolWidth = rect.right - rect.left;
+   UINT toolHeight = rect.bottom - rect.top;
+
+   SetWindowPos(ToolhWnd, nullptr, 900, 0, toolWidth, toolHeight, 0);
+   ShowWindow(ToolhWnd, true);
+   UpdateWindow(ToolhWnd);
+
+   Game::LoadToolScene();
 
    return TRUE;
 }

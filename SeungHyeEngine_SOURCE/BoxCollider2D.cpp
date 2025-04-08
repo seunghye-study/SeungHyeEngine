@@ -27,7 +27,7 @@ namespace Game
 		Vector2 pos = tr->GetPosition();
 
 		if (mainCamera) pos = mainCamera->CalculatePosition(pos);
-
+		
 		Vector2 offset = GetOffset();
 
 		HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);

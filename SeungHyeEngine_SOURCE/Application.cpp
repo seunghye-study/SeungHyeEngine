@@ -76,7 +76,7 @@ void Game::Application::Destroy()
 
 void Game::Application::ClearRenderTarget()
 {
-	HBRUSH backgroundBrush = CreateSolidBrush(RGB(255, 255, 255)); // 배경색 (검정)
+	HBRUSH backgroundBrush = CreateSolidBrush(RGB(0, 0, 0)); // 배경색 (검정)
 	RECT rect = { 0, 0, mWidth, mHeight };
 	FillRect(mBackHdc, &rect, backgroundBrush);
 	DeleteObject(backgroundBrush);

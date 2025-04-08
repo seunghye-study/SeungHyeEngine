@@ -13,6 +13,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{f8a59538-0bd2-470f-9375-17dcec1f7bd3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tile">
+      <UniqueIdentifier>{5869ee88-836d-4854-8d90-7e67a026fd10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\GamePlayer.h">
@@ -22,9 +25,6 @@
       <Filter>Script</Filter>
     </ClInclude>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="..\SeungHyeEngine_SOURCE\LoadingScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\LoadScene.h">
@@ -43,6 +43,12 @@
     <ClInclude Include="ToolScene.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="BusStopScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\GamePlayer.cpp">
@@ -50,9 +56,6 @@
     </ClCompile>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayerScript.cpp">
       <Filter>Script</Filter>
-    </ClCompile>
-    <ClCompile Include="..\SeungHyeEngine_SOURCE\LoadingScene.cpp">
-      <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayScene.cpp">
       <Filter>Scene</Filter>
@@ -70,6 +73,12 @@
       <Filter>NPC</Filter>
     </ClCompile>
     <ClCompile Include="ToolScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="BusStopScene.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
   </ItemGroup>

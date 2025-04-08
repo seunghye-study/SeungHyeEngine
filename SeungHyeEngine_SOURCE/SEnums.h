@@ -8,6 +8,7 @@ namespace Game
 	{
 		None,
 		BackGround,
+		Tile,
 		Player,
 		Animal,
 		Max = 16,

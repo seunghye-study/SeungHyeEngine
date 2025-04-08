@@ -82,6 +82,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)SObject.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)TilemapRenderer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
@@ -170,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)DontDestroyOnLoad.h">
       <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)TilemapRenderer.h">
+      <Filter>Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -31,21 +31,22 @@ namespace Game
 	{
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
 
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::None, Vector2(1030.0f*3, 230.0f*3));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f,0.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(7.0f, 7.0f));
+		bgsr->SetSize(Vector2(1.7f, 1.7f));
 
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
 		bgsr->SetTexture(bgTexture);
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
-		CircleCollider* playerCollider = mPlayer->AddComponent<CircleCollider>();
-		
+		BoxCollider2D* playerCollider = mPlayer->AddComponent<BoxCollider2D>();
+		playerCollider->SetOffset({ 90.0f, 65.0f });
+		playerCollider->SetSize({ 0.7f, 1.2f });
 		
 		Texture* IdleTexture = Game::Resources::Find<Texture>(L"Idle");
 		Texture* t_GoLeft  = Game::Resources::Find<Texture>(L"GoLeft");
@@ -55,17 +56,18 @@ namespace Game
 		Texture* GiveWaterFront = Game::Resources::Find<Texture>(L"GiveWaterFront");
 
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
+		Vector2 offset = { 100.0f, 100.0f };
+		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
 		animator->CreateAnimation(L"GoLeft", t_GoLeft, Vector2(1500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GoRight", t_GoRight, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GoUp", t_GoUp, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 8, 0.1f);
 		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GiveWaterFront", GiveWaterFront, Vector2(0.0f, 2000.0f), Vector2(250, 250), Vector2::Zero, 12, 0.1f);
 		animator->PlayAnimation(L"Idle", false);
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1030.0f*3, 230.0f*3));
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(260.0f,310.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 
-		{
+		/*{
 			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
 			cat->AddComponent<CatScript>();
 			CircleCollider* catCollider = cat->AddComponent<CircleCollider>();
@@ -87,9 +89,10 @@ namespace Game
 				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
 
 			catAnimator->PlayAnimation(L"SitDown", false);
-			cat->GetComponent<Transform>()->SetPosition(Vector2(1030.0f * 3, 230.0f * 3));
+			cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 300.0f));
 			cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
-		}
+		}*/
+
 		Scene::Initialize();
 	}
 	void PlayScene::Update()
@@ -102,6 +105,12 @@ namespace Game
 		if (GameInput::GetKeyDown(eKeyCode::N))
 		{
 			SceneManager::LoadScene(L"TitleScene");
+		}
+
+		if (mainCamera && mPlayer)
+		{
+			Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
+			mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(playerPos -	Vector2(20.0f, 20.0f));
 		}
 	}
 	void PlayScene::Render(HDC hdc)

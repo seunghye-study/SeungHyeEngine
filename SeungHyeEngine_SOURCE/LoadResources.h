@@ -10,20 +10,30 @@ namespace Game
 		//Resources::Load<Texture>(L"Map", L"..\\Resources\\title\\Cloudy_Ocean.png");
 		// start map
 		{
-			Resources::Load<Texture>(L"FarmHouse", L"..\\Resources\\farmer_house\\Standard_Farm_Bmp.bmp");
+			Resources::Load<Texture>(L"FarmHouse", L"..\\Resources\\farmer_house\\Farmhouse.png");
 		}
 		
-		Resources::Load<Texture>(L"GoLeft", L"..\\Resources\\farmer\\Player.bmp");
-		Resources::Load<Texture>(L"GoRight", L"..\\Resources\\farmer\\Player.bmp");
-		Resources::Load<Texture>(L"GoUp", L"..\\Resources\\farmer\\Player.bmp");
-		Resources::Load<Texture>(L"GoDown", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
-		Resources::Load<Texture>(L"Idle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
-		// 9번째줄 1~12 까지
-		Resources::Load<Texture>(L"GiveWaterFront", L"..\\Resources\\farmer\\Player.bmp");
+		//player
+		{
+			Resources::Load<Texture>(L"GoLeft", L"..\\Resources\\farmer\\Player.bmp");
+			Resources::Load<Texture>(L"GoRight", L"..\\Resources\\farmer\\Player.bmp");
+			Resources::Load<Texture>(L"GoUp", L"..\\Resources\\farmer\\Player.bmp");
+			Resources::Load<Texture>(L"GoDown", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
+			Resources::Load<Texture>(L"Idle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
+			// 9번째줄 1~12 까지
+			Resources::Load<Texture>(L"GiveWaterFront", L"..\\Resources\\farmer\\Player.bmp");
+		}
+		// npc
+		{
+			Resources::Load<Texture>(L"Cat", L"..\\Resources\\animals\\CatAlpha.bmp");
 
-		Resources::Load<Texture>(L"Cat", L"..\\Resources\\animals\\CatAlpha.bmp");
+		}
+
 		
-		
+		// Tool Scene Resource
+		{
+			Resources::Load<Texture>(L"FarmSheet", L"..\\Resources\\maptool\\FarmSheet.bmp");
+		}
 	
 	}
 }

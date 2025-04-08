@@ -20,25 +20,27 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\SeungHyeEngine_SOURCE\GamePlayer.h" />
-    <ClInclude Include="..\SeungHyeEngine_SOURCE\LoadingScene.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\LoadResources.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\LoadScene.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayerScript.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayScene.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\TitleScene.h" />
+    <ClInclude Include="BusStopScene.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatScript.h" />
+    <ClInclude Include="Tile.h" />
     <ClInclude Include="ToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\GamePlayer.cpp" />
-    <ClCompile Include="..\SeungHyeEngine_SOURCE\LoadingScene.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\LoadScene.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayerScript.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayScene.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\TitleScene.cpp" />
+    <ClCompile Include="BusStopScene.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatScript.cpp" />
+    <ClCompile Include="Tile.cpp" />
     <ClCompile Include="ToolScene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
