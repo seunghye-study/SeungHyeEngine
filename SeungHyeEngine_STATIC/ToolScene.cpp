@@ -81,33 +81,6 @@ void Game::ToolScene::Render(HDC hdc)
 		MoveToEx(hdc, 0, TilemapRenderer::TileSize.y * i, NULL);
 		LineTo(hdc, 1000, TilemapRenderer::TileSize.y * i);
 	}
-
-	// 선택 하이라이트
-	if (TilemapRenderer::SelectedIndex.x >= 0 && TilemapRenderer::SelectedIndex.y >= 0)
-	{
-		HPEN redPen = CreatePen(PS_SOLID, 3, RGB(255, 0, 0));
-		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-		HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, GetStockObject(NULL_BRUSH));
-
-		RECT selectRect = {
-			(int)(TilemapRenderer::SelectedIndex.x * TilemapRenderer::OriginTileSize.x),
-			(int)(TilemapRenderer::SelectedIndex.y * TilemapRenderer::OriginTileSize.y),
-			(int)((TilemapRenderer::SelectedIndex.x + 1) * TilemapRenderer::OriginTileSize.x),
-			(int)((TilemapRenderer::SelectedIndex.y + 1) * TilemapRenderer::OriginTileSize.y)
-		};
-
-		Rectangle(hdc, selectRect.left, selectRect.top, selectRect.right, selectRect.bottom);
-
-		SelectObject(hdc, oldPen);
-		SelectObject(hdc, oldBrush);
-		DeleteObject(redPen);
-	}
-	
-	//디버깅용 출력
-	/*Vector2 selected = TilemapRenderer::SelectedIndex;
-	wchar_t debugText[100] = {};
-	swprintf_s(debugText, 100, L"선택된 인덱스: (%d, %d)", (int)selected.x, (int)selected.y);
-	TextOut(hdc, 10, 10, debugText, wcslen(debugText));*/
 }
 
 void Game::ToolScene::OnEnter()
@@ -134,7 +107,6 @@ LRESULT Game::ToolScene::TileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM
 		int idxY = mousePos.y / TilemapRenderer::OriginTileSize.y;
 
 		TilemapRenderer::SelectedIndex = Vector2(idxX, idxY);
-		OutputDebugString(L"[TileProc] Selected Tile Index Set.\n");
 	}
 		break;
 	case WM_PAINT:

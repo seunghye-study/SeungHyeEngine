@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include "CollisionManager.h"
 
 Game::Scene::Scene() :mLayers{}
 {
@@ -72,7 +73,7 @@ void Game::Scene::OnEnter()
 
 void Game::Scene::OnExit()
 {
-
+	CollisionManager::Clear();
 }
 
 void Game::Scene::AddGameObject(GameObject* gameObj, const eLayerType type)

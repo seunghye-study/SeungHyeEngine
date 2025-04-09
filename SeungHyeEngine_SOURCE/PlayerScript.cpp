@@ -76,28 +76,41 @@ void Game::PlayerScript::Move()
 	Vector2 pos = tr->GetPosition();
 	if (GameInput::GetKey(eKeyCode::A))
 	{
-		pos.x -= 100.0f * Time::DeltaTime();
+		pos.x -= 150.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
 	}
 	if (GameInput::GetKey(eKeyCode::D))
 	{
-		pos.x += 100.0f * Time::DeltaTime();
+		pos.x += 150.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
 	}
 	if (GameInput::GetKey(eKeyCode::S))
 	{
-		pos.y += 100.0f * Time::DeltaTime();
+		pos.y += 150.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
 	}
 	if (GameInput::GetKey(eKeyCode::W))
 	{
-		pos.y -= 100.0f * Time::DeltaTime();
+		pos.y -= 150.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
 	}
 
-	// TODO : 멈춘 방향 보고 서있도록 분리하기.
-	if (GameInput::GetKeyUp(eKeyCode::D) || GameInput::GetKeyUp(eKeyCode::A)
-		|| GameInput::GetKeyUp(eKeyCode::W) || GameInput::GetKeyUp(eKeyCode::S))
+	if (GameInput::GetKeyUp(eKeyCode::D))
+	{
+		mState = PlayerScript::eState::Idle;
+		mAnimator->PlayAnimation(L"RightIdle", false);
+	}
+	if (GameInput::GetKeyUp(eKeyCode::A))
+	{
+		mState = PlayerScript::eState::Idle;
+		mAnimator->PlayAnimation(L"LeftIdle", false);
+	}
+	if (GameInput::GetKeyUp(eKeyCode::W))
+	{
+		mState = PlayerScript::eState::Idle;
+		mAnimator->PlayAnimation(L"UpIdle", false);
+	}
+	if (GameInput::GetKeyUp(eKeyCode::S)) // 앞
 	{
 		mState = PlayerScript::eState::Idle;
 		mAnimator->PlayAnimation(L"Idle", false);

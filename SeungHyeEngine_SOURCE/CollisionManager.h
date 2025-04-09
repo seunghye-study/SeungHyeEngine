@@ -22,12 +22,15 @@ namespace Game
 		static void Update();
 		static void LateUpdate();
 		static void Render(HDC hdc);
+		static void Clear();
 
 		static void CollisionLayerCheck(eLayerType left, eLayerType right, bool enable);
 		static void LayerCollision(class Scene* scene, eLayerType left, eLayerType right);
 		static void ColliderCollision(Collider* left, Collider* right);
 
 		static bool Intersect(Collider* left, Collider* right);
+
+		
 
 	private:
 		// todo

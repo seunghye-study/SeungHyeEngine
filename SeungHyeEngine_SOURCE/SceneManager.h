@@ -30,6 +30,8 @@ namespace Game
 		static void Release();
 
 		static Scene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
+		static std::vector<GameObject*> GetGameObjects(eLayerType layer);
+
 	private:
 		static std::map<std::wstring, Scene*> mScene;
 		static Scene* mActiveScene;

@@ -9,6 +9,7 @@
 #include "../SeungHyeEngine_SOURCE/Resources.h"
 #include "../SeungHyeEngine_SOURCE/Texture.h"
 #include "../SeungHyeEngine_STATIC/ToolScene.h"
+#include "../SeungHyeEngine_SOURCE/SceneManager.h"
 
 
 Game::Application application;
@@ -121,7 +122,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   //Game::LoadPlayScene();
+   Game::LoadPlayScene();
 
    // Tool window 
    Game::Texture* texture = Game::Resources::Find<Game::Texture>(L"FarmSheet");
@@ -131,11 +132,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    UINT toolWidth = rect.right - rect.left;
    UINT toolHeight = rect.bottom - rect.top;
 
-   SetWindowPos(ToolhWnd, nullptr, 900, 0, toolWidth, toolHeight, 0);
-   ShowWindow(ToolhWnd, true);
-   UpdateWindow(ToolhWnd);
+   //SetWindowPos(ToolhWnd, nullptr, 900, 0, toolWidth, toolHeight, 0);
+   //ShowWindow(ToolhWnd, true);
+   //UpdateWindow(ToolhWnd);
 
-   Game::LoadToolScene();
+   //Game::LoadTitleScene();
 
    return TRUE;
 }

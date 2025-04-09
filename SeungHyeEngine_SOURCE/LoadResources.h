@@ -20,8 +20,24 @@ namespace Game
 			Resources::Load<Texture>(L"GoUp", L"..\\Resources\\farmer\\Player.bmp");
 			Resources::Load<Texture>(L"GoDown", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
 			Resources::Load<Texture>(L"Idle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
+			Resources::Load<Texture>(L"LeftIdle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
+			Resources::Load<Texture>(L"RightIdle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
+			Resources::Load<Texture>(L"UpIdle", L"..\\Resources\\farmer\\Player_Move_Down.bmp");
+
+			// water
 			// 9번째줄 1~12 까지
 			Resources::Load<Texture>(L"GiveWaterFront", L"..\\Resources\\farmer\\Player.bmp");
+			Resources::Load<Texture>(L"GiveWaterLeft", L"..\\Resources\\farmer\\Player.bmp");
+			Resources::Load<Texture>(L"GiveWaterRight", L"..\\Resources\\farmer\\Player.bmp");
+			Resources::Load<Texture>(L"GiveWaterUp", L"..\\Resources\\farmer\\Player.bmp");
+			
+			// Axe
+
+			// Sword
+
+			// sickle
+
+			// pick
 		}
 		// npc
 		{
