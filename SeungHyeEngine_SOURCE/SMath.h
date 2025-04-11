@@ -48,9 +48,14 @@ namespace GameMath
 			return Vector2(x - target.x, y - target.y);
 		}
 
+		Vector2 operator-()
+		{
+			return Vector2(-x, -y);
+		}
+
 		Vector2 operator/(float target)
 		{
-			return Vector2(x /target, y / target);
+			return Vector2(x / target, y / target);
 		}
 		Vector2 operator*(float value)
 		{
@@ -60,6 +65,11 @@ namespace GameMath
 		Vector2 operator*(Vector2 v)
 		{
 			return Vector2(x * v.x, y * v.y);
+		}
+
+		bool operator==(Vector2 v)
+		{
+			return (x == v.x) && (y == v.y);
 		}
 
 		void clear()
@@ -85,7 +95,6 @@ namespace GameMath
 		float Dot(Vector2& v1, Vector2& v2);
 
 		float Cross(Vector2 v1, Vector2 v2);
-
 		
 	};
 }

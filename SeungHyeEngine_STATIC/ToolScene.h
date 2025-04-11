@@ -18,6 +18,9 @@ namespace Game
 		void OnEnter() override;
 		void OnExit()  override;
 
+		void RenderGreed(HDC hdc);
+		void CreateTileObject();
+
 		static LRESULT CALLBACK TileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	};
 }

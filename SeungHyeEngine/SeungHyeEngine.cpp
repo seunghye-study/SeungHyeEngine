@@ -26,8 +26,8 @@ WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름�
 
 ATOM                MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc); // intance = 윈도우 id, 윈도우가 여러개 생길수도 있으니까
 BOOL                InitInstance(HINSTANCE, int);
+BOOL                InitToolScene(HINSTANCE);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
-//LRESULT CALLBACK    TileProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -111,7 +111,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
    
    Game::LoadResources();
-   
+   //Game::LoadScenes();
+
    application.Initialize(hWnd, 1280, 720);
 
    if (!hWnd)
@@ -121,23 +122,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-
-   Game::LoadPlayScene();
-
-   // Tool window 
-   Game::Texture* texture = Game::Resources::Find<Game::Texture>(L"FarmSheet");
-   RECT rect = {0,0, texture->GetWidth(),texture->GetHeight()};
-   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-   UINT toolWidth = rect.right - rect.left;
-   UINT toolHeight = rect.bottom - rect.top;
-
-   //SetWindowPos(ToolhWnd, nullptr, 900, 0, toolWidth, toolHeight, 0);
-   //ShowWindow(ToolhWnd, true);
-   //UpdateWindow(ToolhWnd);
-
-   //Game::LoadTitleScene();
-
+   //Game::LoadPlayScene();
+   Game::LoadTitleScene();
+   
    return TRUE;
 }
 
@@ -172,4 +159,31 @@ INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
         break;
     }
     return (INT_PTR)FALSE;
+}
+
+
+BOOL InitToolScene(HINSTANCE hInstance)
+{
+    Game::Scene* activeScene = Game::SceneManager::GetActiveScene();
+    std::wstring name = activeScene->GetName();
+
+    if (name == L"ToolScene")
+    {
+        HWND ToolHWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+            0, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+
+        Game::Texture* texture = Game::Resources::Find<Game::Texture>(L"FarmSheet");
+
+        RECT rect = { 0, 0, texture->GetWidth(), texture->GetHeight() };
+        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+        UINT toolWidth = rect.right - rect.left;
+        UINT toolHeight = rect.bottom - rect.top;
+
+        SetWindowPos(ToolHWnd, nullptr, 672, 0, toolWidth, toolHeight, 0);
+        ShowWindow(ToolHWnd, true);
+        UpdateWindow(ToolHWnd);
+    }
+
+    return TRUE;
 }

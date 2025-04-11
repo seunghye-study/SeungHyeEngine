@@ -31,6 +31,7 @@ namespace Game
 		Camera,
 		Animator,
 		Collider,
+		Rigidbody,
 		End,
 	};
 

@@ -4,6 +4,7 @@
 #include "GameTime.h"
 #include "GameObject.h"
 #include "Animator.h"
+#include "RigidBody.h"
 
 
 Game::PlayerScript::PlayerScript()
@@ -33,13 +34,31 @@ void Game::PlayerScript::Update()
 
 	switch (mState)
 	{
-	case PlayerScript::eState::Move:
+	case Game::PlayerScript::eState::Move:
 		Move();
 		break;
-	case PlayerScript::eState::Idle:
+	case Game::PlayerScript::eState::Idle:
 		Idle();
 		break;
-	case PlayerScript::eState::GiveWater:
+	case Game::PlayerScript::eState::IdleLeft:
+		Idle();
+		break;
+	case Game::PlayerScript::eState::IdleRight:
+		Idle();
+		break;
+	case Game::PlayerScript::eState::IdleUp:
+		Idle();
+		break;
+	case Game::PlayerScript::eState::GiveWaterFront:
+		GiveWater();
+		break;
+	case Game::PlayerScript::eState::GiveWaterLeft:
+		GiveWater();
+		break;
+	case Game::PlayerScript::eState::GiveWaterRight:
+		GiveWater();
+		break;
+	case Game::PlayerScript::eState::GiveWaterUp:
 		GiveWater();
 		break;
 	default:
@@ -74,40 +93,46 @@ void Game::PlayerScript::Move()
 {
 	Transform* tr = GetOwner()->GetComponent<Transform>();
 	Vector2 pos = tr->GetPosition();
+	RigidBody* rb = GetOwner()->GetComponent<RigidBody>();
+
 	if (GameInput::GetKey(eKeyCode::A))
 	{
-		pos.x -= 150.0f * Time::DeltaTime();
+		pos.x -= 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
+		//rb->AddForce(Vector2(-200.0f, 0.0f));
 	}
 	if (GameInput::GetKey(eKeyCode::D))
 	{
-		pos.x += 150.0f * Time::DeltaTime();
+		pos.x += 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
+		//rb->AddForce(Vector2(200.0f, 0.0f));
 	}
 	if (GameInput::GetKey(eKeyCode::S))
 	{
-		pos.y += 150.0f * Time::DeltaTime();
+		pos.y += 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
+		//rb->AddForce(Vector2(0.0f, -200.0f));
 	}
 	if (GameInput::GetKey(eKeyCode::W))
 	{
-		pos.y -= 150.0f * Time::DeltaTime();
+		pos.y -= 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);
+		//rb->AddForce(Vector2(0.0f, 200.0f));
 	}
 
 	if (GameInput::GetKeyUp(eKeyCode::D))
 	{
-		mState = PlayerScript::eState::Idle;
+		mState = PlayerScript::eState::IdleRight;
 		mAnimator->PlayAnimation(L"RightIdle", false);
 	}
 	if (GameInput::GetKeyUp(eKeyCode::A))
 	{
-		mState = PlayerScript::eState::Idle;
+		mState = PlayerScript::eState::IdleLeft;
 		mAnimator->PlayAnimation(L"LeftIdle", false);
 	}
 	if (GameInput::GetKeyUp(eKeyCode::W))
 	{
-		mState = PlayerScript::eState::Idle;
+		mState = PlayerScript::eState::IdleUp;
 		mAnimator->PlayAnimation(L"UpIdle", false);
 	}
 	if (GameInput::GetKeyUp(eKeyCode::S)) // ¾Õ
@@ -143,9 +168,27 @@ void Game::PlayerScript::Idle()
 
 	if (GameInput::GetKey(eKeyCode::LButton))
 	{
-		mState = PlayerScript::eState::GiveWater;
-		mAnimator->PlayAnimation(L"GiveWaterFront", false);
-		Vector2 mousePos = Game::GameInput::GetMousePosition();
+		switch (mState)
+		{
+		case Game::PlayerScript::eState::Idle:
+			mState = PlayerScript::eState::GiveWaterFront;
+			mAnimator->PlayAnimation(L"GiveWaterFront", false);
+			break;
+		case Game::PlayerScript::eState::IdleLeft:
+			mState = PlayerScript::eState::GiveWaterLeft;
+			mAnimator->PlayAnimation(L"GiveWaterLeft", false);
+			break;
+		case Game::PlayerScript::eState::IdleRight:
+			mState = PlayerScript::eState::GiveWaterRight;
+			mAnimator->PlayAnimation(L"GiveWaterRight", false);
+			break;
+		case Game::PlayerScript::eState::IdleUp:
+			mState = PlayerScript::eState::GiveWaterUp;
+			mAnimator->PlayAnimation(L"GiveWaterUp", false);
+			break;
+		default:
+			break;
+		}
 	}
 }
 
@@ -153,7 +196,27 @@ void Game::PlayerScript::GiveWater()
 {
 	if (mAnimator->IsComplete())
 	{
-		mState = eState::Idle;
-		mAnimator->PlayAnimation(L"Idle", false);
+		switch (mState)
+		{
+		case Game::PlayerScript::eState::GiveWaterFront:
+			mState = eState::Idle;
+			mAnimator->PlayAnimation(L"Idle", false);
+			break;
+		case Game::PlayerScript::eState::GiveWaterLeft:
+			mState = eState::IdleLeft;
+			mAnimator->PlayAnimation(L"LeftIdle", false);
+			break;
+		case Game::PlayerScript::eState::GiveWaterRight:
+			mState = eState::IdleRight;
+			mAnimator->PlayAnimation(L"RightIdle", false);
+			break;
+		case Game::PlayerScript::eState::GiveWaterUp:
+			mState = eState::IdleUp;
+			mAnimator->PlayAnimation(L"UpIdle", false);
+			break;
+		default:
+			break;
+		}
+		
 	}
 }

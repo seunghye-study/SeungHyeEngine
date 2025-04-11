@@ -32,6 +32,8 @@ void Game::TilemapRenderer::Update()
 
 void Game::TilemapRenderer::LateUpdate()
 {
+
+
 }
 
 void Game::TilemapRenderer::Render(HDC hdc)

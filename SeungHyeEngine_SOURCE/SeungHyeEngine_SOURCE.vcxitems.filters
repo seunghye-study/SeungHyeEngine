@@ -85,6 +85,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)TilemapRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp">
+      <Filter>Component\RigidBody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)Scene.h">
@@ -177,6 +180,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)TilemapRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h">
+      <Filter>Component\RigidBody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Scene">
@@ -226,6 +232,9 @@
     </Filter>
     <Filter Include="Collider">
       <UniqueIdentifier>{39d543e6-8c48-43e0-aa7f-6896ad81107d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\RigidBody">
+      <UniqueIdentifier>{c9a661b0-b84d-4e32-8de7-b11f3b99d791}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

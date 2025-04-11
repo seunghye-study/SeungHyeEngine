@@ -15,7 +15,13 @@ namespace Game
 		{
 			Move,
 			Idle,
-			GiveWater,
+			IdleLeft,
+			IdleRight,
+			IdleUp,
+			GiveWaterFront,
+			GiveWaterLeft,
+			GiveWaterRight,
+			GiveWaterUp,
 			Stop,
 		};
 

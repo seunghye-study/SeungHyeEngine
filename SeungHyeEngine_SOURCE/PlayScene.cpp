@@ -17,6 +17,7 @@
 #include "..\\SeungHyeEngine_STATIC\CatScript.h"
 #include "CollisionManager.h"
 #include "BoxCollider2D.h"
+#include "RigidBody.h"
 
 
 namespace Game
@@ -29,43 +30,57 @@ namespace Game
 	}
 	void PlayScene::Initialize()
 	{
-		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::BackGround, true);
 
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f,0.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f, 0.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		bgsr->SetSize(Vector2(1.7f, 1.7f));
-
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
 		bgsr->SetTexture(bgTexture);
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
 		BoxCollider2D* playerCollider = mPlayer->AddComponent<BoxCollider2D>();
-		playerCollider->SetOffset({ 90.0f, 65.0f });
-		playerCollider->SetSize({ 0.7f, 1.2f });
+		playerCollider->SetOffset({ 55.0f, 40.0f });
+		playerCollider->SetSize({ 0.4f, 0.7f });
 		
 		Texture* IdleTexture = Game::Resources::Find<Texture>(L"Idle");
+		Texture* IdleTexture_left = Game::Resources::Find<Texture>(L"LeftIdle");
+		Texture* IdleTexture_right = Game::Resources::Find<Texture>(L"RightIdle");
+		Texture* IdleTexture_up = Game::Resources::Find<Texture>(L"UpIdle");
 		Texture* t_GoLeft  = Game::Resources::Find<Texture>(L"GoLeft");
 		Texture* t_GoRight = Game::Resources::Find<Texture>(L"GoRight");
 		Texture* t_GoUp = Game::Resources::Find<Texture>(L"GoUp");
 		Texture* t_GoDown = Game::Resources::Find<Texture>(L"GoDown");
 		Texture* GiveWaterFront = Game::Resources::Find<Texture>(L"GiveWaterFront");
+		Texture* GiveWaterLeft = Game::Resources::Find<Texture>(L"GiveWaterFront");
+		Texture* GiveWaterRight = Game::Resources::Find<Texture>(L"GiveWaterFront");
+		Texture* GiveWaterUp = Game::Resources::Find<Texture>(L"GiveWaterFront");
+
+
 
 		Animator* animator = mPlayer->AddComponent<Animator>();
 		Vector2 offset = { 100.0f, 100.0f };
 		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
+		animator->CreateAnimation(L"LeftIdle", IdleTexture_left, Vector2(1500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
+		animator->CreateAnimation(L"RightIdle", IdleTexture_right, Vector2(750.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
+		animator->CreateAnimation(L"UpIdle", IdleTexture_up, Vector2(0.0f, 250.0f), Vector2(250, 250), offset, 1, 0.1f);
 		animator->CreateAnimation(L"GoLeft", t_GoLeft, Vector2(1500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GoRight", t_GoRight, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GoUp", t_GoUp, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 8, 0.1f);
 		animator->CreateAnimation(L"GoDown", t_GoDown, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GiveWaterFront", GiveWaterFront, Vector2(0.0f, 2000.0f), Vector2(250, 250), Vector2::Zero, 12, 0.1f);
+		animator->CreateAnimation(L"GiveWaterLeft", GiveWaterLeft, Vector2(0.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 5, 0.2f);
+		animator->CreateAnimation(L"GiveWaterRight", GiveWaterRight, Vector2(1500.0f, 1750.0f), Vector2(250, 250), Vector2::Zero, 5, 0.2f);
+		animator->CreateAnimation(L"GiveWaterUp", GiveWaterUp, Vector2(1250.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 3, 0.4f);
+		
 		animator->PlayAnimation(L"Idle", false);
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(260.0f,310.0f));
-		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(0.0f,0.0f));
+		mPlayer->GetComponent<Transform>()->SetScale(Vector2(0.6f, 0.6f));
+		mPlayer->AddComponent<RigidBody>();
 
 		/*{
 			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
@@ -115,7 +130,14 @@ namespace Game
 	}
 	void PlayScene::Render(HDC hdc)
 	{
+
+		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();// 마우스 위치
+		wchar_t str[100] = {};
+		swprintf_s(str, 100, L"Player Position: (%.0f, %.0f)", playerPos.x, playerPos.y);
+
+		TextOut(hdc, 10, 30, str, wcslen(str)); // 좌측 상단에 출력
 		Scene::Render(hdc);
+
 	}
 
 	void PlayScene::OnEnter()

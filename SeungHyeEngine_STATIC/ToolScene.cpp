@@ -22,10 +22,6 @@ void Game::ToolScene::Initialize()
 	Camera* cameraComp = camera->AddComponent<Camera>();
 	mainCamera = cameraComp;
 
-	Tile* tile = Instantiate<Tile>(eLayerType::Tile);
-	TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-	tmr->SetTexture(Resources::Find<Texture>(L"FarmSheet"));
-
 	Scene::Initialize();
 }
 
@@ -40,22 +36,7 @@ void Game::ToolScene::LateUpdate()
 
 	if (GameInput::GetKeyDown(eKeyCode::LButton))
 	{
-		if (TilemapRenderer::SelectedIndex.x < 0 || TilemapRenderer::SelectedIndex.y < 0)
-			return;
-
-		Vector2 pos = GameInput::GetMousePosition();
-		int idxX = pos.x/TilemapRenderer::TileSize.x;
-		int idxY = pos.y/TilemapRenderer::TileSize.y;
-
-		Tile* tile = Instantiate<Tile>(eLayerType::Tile);
-		TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-		tmr->SetTexture(Resources::Find<Texture>(L"FarmSheet"));
-
-		// 클릭한 타일
-		tmr->SetIndex(TilemapRenderer::SelectedIndex);
-
-		// 월드 내 타일 위치 설정
-		tile->SetPosition(idxX, idxY);
+		//CreateTileObject();
 	}
 	if (GameInput::GetKeyDown(eKeyCode::S))
 	{
@@ -70,17 +51,7 @@ void Game::ToolScene::LateUpdate()
 void Game::ToolScene::Render(HDC hdc)
 {
 	Scene::Render(hdc);
-	for (size_t i = 0; i < 50; i++)
-	{
-		MoveToEx(hdc, TilemapRenderer::TileSize.x * i, 0, NULL);
-		LineTo(hdc, TilemapRenderer::TileSize.x * i, 1000);
-	}
-
-	for (size_t i = 0; i < 50; i++)
-	{
-		MoveToEx(hdc, 0, TilemapRenderer::TileSize.y * i, NULL);
-		LineTo(hdc, 1000, TilemapRenderer::TileSize.y * i);
-	}
+	RenderGreed(hdc);
 }
 
 void Game::ToolScene::OnEnter()
@@ -91,6 +62,16 @@ void Game::ToolScene::OnEnter()
 void Game::ToolScene::OnExit()
 {
 	Scene::OnExit();
+}
+
+void Game::ToolScene::RenderGreed(HDC hdc)
+{
+
+}
+
+void Game::ToolScene::CreateTileObject()
+{
+
 }
 
 LRESULT Game::ToolScene::TileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

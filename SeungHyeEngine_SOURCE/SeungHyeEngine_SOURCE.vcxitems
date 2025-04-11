@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)GameInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Layer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)RigidBody.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)SObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Renderer.h" />
@@ -65,6 +66,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Renderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Resource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Resources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)RigidBody.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Scene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)SceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Script.cpp" />

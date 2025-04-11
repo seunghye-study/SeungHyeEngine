@@ -1,4 +1,5 @@
 #include "GameTime.h"
+#include "GameInput.h"
 
 
 namespace Game
@@ -25,16 +26,27 @@ namespace Game
 
 	void Time::Render(HDC hdc)
 	{
-		static float time = 0.0f;
-		time += DeltaTimeValue;
+		{
+			//print time
+			static float time = 0.0f;
+			time += DeltaTimeValue;
 
-		float fps = 1.0f / DeltaTimeValue;
+			float fps = 1.0f / DeltaTimeValue;
 
-		wchar_t str[50] = L"";
-		swprintf_s(str, 50, L"Time : %d", (int)fps);
-		int len = wcsnlen_s(str, 50);
+			//wchar_t str[50] = L"";
+			//swprintf_s(str, 50, L"Time : %d", (int)fps);
+			//int len = wcsnlen_s(str, 50);
 
-		TextOut(hdc, 0, 0, str, len);
+			//TextOut(hdc, 0, 0, str, len);
+		}
+		
+		{
+			//print pos
+			GameMath::Vector2 mousePos = GameInput::GetMousePosition(); // 마우스 위치
+			wchar_t str[100] = {};
+			swprintf_s(str, 100, L"Mouse Position: (%.0f, %.0f)", mousePos.x, mousePos.y);
+
+			TextOut(hdc, 10, 10, str, wcslen(str)); // 좌측 상단에 출력
+		}
 	}
-
 }
