@@ -1,6 +1,7 @@
 #include "LoadScene.h"
 
 
+
 void Game::LoadTitleScene()
 {
 	SceneManager::CreateScene<TitleScene>(L"TitleScene");
@@ -17,4 +18,16 @@ void Game::LoadToolScene()
 {
 	SceneManager::CreateScene<ToolScene>(L"ToolScene");
 	SceneManager::LoadScene(L"ToolScene");
+}
+
+void Game::LoadFarmScene()
+{
+	SceneManager::CreateScene<FarmScene>(L"FarmScene");
+	SceneManager::LoadScene(L"FarmScene");
+}
+
+void Game::LoadMineScene()
+{
+	SceneManager::CreateScene<MineScene>(L"MineScene");
+	SceneManager::LoadScene(L"MineScene");
 }

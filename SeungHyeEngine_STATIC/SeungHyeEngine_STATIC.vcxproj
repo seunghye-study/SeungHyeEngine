@@ -25,11 +25,13 @@
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayerScript.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayScene.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\TitleScene.h" />
-    <ClInclude Include="BusStopScene.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatScript.h" />
+    <ClInclude Include="MineScene.h" />
+    <ClInclude Include="FarmScene.h" />
     <ClInclude Include="Tile.h" />
     <ClInclude Include="ToolScene.h" />
+    <ClInclude Include="VillageScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\SeungHyeEngine_SOURCE\GamePlayer.cpp" />
@@ -37,11 +39,13 @@
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayerScript.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayScene.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\TitleScene.cpp" />
-    <ClCompile Include="BusStopScene.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatScript.cpp" />
+    <ClCompile Include="MineScene.cpp" />
+    <ClCompile Include="FarmScene.cpp" />
     <ClCompile Include="Tile.cpp" />
     <ClCompile Include="ToolScene.cpp" />
+    <ClCompile Include="VillageScene.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>

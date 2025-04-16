@@ -1,4 +1,4 @@
-#include "PlayScene.h"
+#include "FarmScene.h"
 #include "GameObject.h"
 #include "GamePlayer.h"
 #include "Transform.h"
@@ -20,40 +20,39 @@
 #include "RigidBody.h"
 #include <LoadScene.h>
 
-
 namespace Game
 {
-	PlayScene::PlayScene() : mPlayer()
+	FarmScene::FarmScene() : mPlayer()
 	{
 	}
-	PlayScene::~PlayScene()
+	FarmScene::~FarmScene()
 	{
 	}
-	void PlayScene::Initialize()
+	void FarmScene::Initialize()
 	{
 		CollisionManager::CollisionLayerCheck(eLayerType::Player, eLayerType::BackGround, true);
 
-		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f, 0.0f));
+		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::BackGround, Vector2(0.0f, 0.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
 
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
-		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
+		Texture* bgTexture = Game::Resources::Find<Texture>(L"Farm");
 		bgsr->SetTexture(bgTexture);
-		bgsr->SetSize(Vector2(1.5f, 1.5f));
+		bgsr->SetSize(Vector2(8.0f, 8.0f));
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
 		BoxCollider2D* playerCollider = mPlayer->AddComponent<BoxCollider2D>();
 		playerCollider->SetOffset({ 90.0f, 65.0f });
 		playerCollider->SetSize({ 0.7f, 1.2f });
-		
+
 		Texture* IdleTexture = Game::Resources::Find<Texture>(L"Idle");
 		Texture* IdleTexture_left = Game::Resources::Find<Texture>(L"LeftIdle");
 		Texture* IdleTexture_right = Game::Resources::Find<Texture>(L"RightIdle");
 		Texture* IdleTexture_up = Game::Resources::Find<Texture>(L"UpIdle");
-		Texture* t_GoLeft  = Game::Resources::Find<Texture>(L"GoLeft");
+		Texture* t_GoLeft = Game::Resources::Find<Texture>(L"GoLeft");
 		Texture* t_GoRight = Game::Resources::Find<Texture>(L"GoRight");
 		Texture* t_GoUp = Game::Resources::Find<Texture>(L"GoUp");
 		Texture* t_GoDown = Game::Resources::Find<Texture>(L"GoDown");
@@ -63,11 +62,10 @@ namespace Game
 		Texture* GiveWaterUp = Game::Resources::Find<Texture>(L"GiveWaterFront");
 
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		Vector2 offset = { 100.0f, 100.0f };
-		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
-		animator->CreateAnimation(L"LeftIdle", IdleTexture_left, Vector2(1500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
-		animator->CreateAnimation(L"RightIdle", IdleTexture_right, Vector2(750.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
-		animator->CreateAnimation(L"UpIdle", IdleTexture_up, Vector2(0.0f, 250.0f), Vector2(250, 250), offset, 1, 0.1f);
+		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
+		animator->CreateAnimation(L"LeftIdle", IdleTexture_left, Vector2(1500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
+		animator->CreateAnimation(L"RightIdle", IdleTexture_right, Vector2(750.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
+		animator->CreateAnimation(L"UpIdle", IdleTexture_up, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 1, 0.1f);
 		animator->CreateAnimation(L"GoLeft", t_GoLeft, Vector2(1500.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GoRight", t_GoRight, Vector2(0.0f, 0.0f), Vector2(250, 250), Vector2::Zero, 6, 0.1f);
 		animator->CreateAnimation(L"GoUp", t_GoUp, Vector2(0.0f, 250.0f), Vector2(250, 250), Vector2::Zero, 8, 0.1f);
@@ -76,82 +74,49 @@ namespace Game
 		animator->CreateAnimation(L"GiveWaterLeft", GiveWaterLeft, Vector2(0.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 5, 0.2f);
 		animator->CreateAnimation(L"GiveWaterRight", GiveWaterRight, Vector2(1500.0f, 1750.0f), Vector2(250, 250), Vector2::Zero, 5, 0.2f);
 		animator->CreateAnimation(L"GiveWaterUp", GiveWaterUp, Vector2(1250.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 3, 0.4f);
-		
+
 		animator->PlayAnimation(L"Idle", false);
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(210.0f,260.0f));
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(4006.0f, 780.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		mPlayer->AddComponent<RigidBody>();
 
-		Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
-		mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(playerPos);
-
-		/*{
-			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
-			cat->AddComponent<CatScript>();
-			CircleCollider* catCollider = cat->AddComponent<CircleCollider>();
-			Texture* catTex = Resources::Find<Texture>(L"Cat");
-			Animator* catAnimator = cat->AddComponent<Animator>();
-			catAnimator->CreateAnimation(L"DownWalk", catTex
-				, Vector2(0.0f, 0.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"RightWalk", catTex
-				, Vector2(0.0f, 32.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"UpWalk", catTex
-				, Vector2(0.0f, 64.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LeftWalk", catTex
-				, Vector2(0.0f, 96.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"SitDown", catTex
-				, Vector2(0.0f, 128.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"Grooming", catTex
-				, Vector2(0.0f, 160.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-			catAnimator->CreateAnimation(L"LayDown", catTex
-				, Vector2(0.0f, 192.0f), Vector2(32.0f, 32.0f), Vector2::Zero, 4, 0.1f);
-
-			catAnimator->PlayAnimation(L"SitDown", false);
-			cat->GetComponent<Transform>()->SetPosition(Vector2(300.0f, 300.0f));
-			cat->GetComponent<Transform>()->SetScale(Vector2(3.0f, 3.0f));
-		}*/
-
 		Scene::Initialize();
 	}
-	void PlayScene::Update()
+	void FarmScene::Update()
 	{
 		Scene::Update();
 	}
-	void PlayScene::LateUpdate()
+	void FarmScene::LateUpdate()
 	{
-		Scene::LateUpdate();
-		if (GameInput::GetKeyDown(eKeyCode::SpaceBar))
-		{
-			LoadTitleScene();
-		}
-		if (GameInput::GetKeyDown(eKeyCode::N))
-		{
-			LoadFarmScene();
-		}
 		if (mainCamera && mPlayer)
 		{
-			//
-			//
+			Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
+			mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(playerPos);
 		}
+		if (GameInput::GetKeyDown(eKeyCode::M))
+		{
+			LoadMineScene();
+		}
+		if (GameInput::GetKeyDown(eKeyCode::B))
+		{
+			//LoadVillageScene();
+		}
+		Scene::LateUpdate();
 	}
-	void PlayScene::Render(HDC hdc)
+	void FarmScene::Render(HDC hdc)
 	{
-
 		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();// 마우스 위치
 		wchar_t str[100] = {};
 		swprintf_s(str, 100, L"Player Position: (%.0f, %.0f)", playerPos.x, playerPos.y);
 
 		TextOut(hdc, 10, 30, str, wcslen(str)); // 좌측 상단에 출력
 		Scene::Render(hdc);
-
 	}
-
-	void PlayScene::OnEnter()
+	void FarmScene::OnEnter()
 	{
 		Scene::OnEnter();
 	}
-
-	void PlayScene::OnExit()
+	void FarmScene::OnExit()
 	{
 		Scene::OnExit();
 	}
