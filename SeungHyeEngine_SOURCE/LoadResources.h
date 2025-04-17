@@ -32,8 +32,10 @@ namespace Game
 		{
 			Resources::Load<Texture>(L"Mine", L"..\\Resources\\mine\\mine.bmp");
 		}
-
-
+		//vill
+		{
+			Resources::Load<Texture>(L"Village", L"..\\Resources\\mine\\mine.bmp");
+		}
 		//player
 		{
 			Resources::Load<Texture>(L"GoLeft", L"..\\Resources\\farmer\\Player.bmp");

@@ -50,7 +50,6 @@ void Game::RigidBody::Update()
 	pos = pos + mVelocity * Time::DeltaTime();
 	tr->SetPosition(pos);
 	mForce.clear();
-
 }
 
 void Game::RigidBody::LateUpdate()

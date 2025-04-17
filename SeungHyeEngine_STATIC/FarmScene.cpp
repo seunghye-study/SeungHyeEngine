@@ -88,10 +88,15 @@ namespace Game
 	}
 	void FarmScene::LateUpdate()
 	{
+		//TODO : 플레이어 카메라 이동수정
 		if (mainCamera && mPlayer)
 		{
 			Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
 			mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(playerPos);
+		}
+		if (GameInput::GetKeyDown(eKeyCode::SpaceBar))
+		{
+			LoadTitleScene();
 		}
 		if (GameInput::GetKeyDown(eKeyCode::M))
 		{
@@ -99,7 +104,11 @@ namespace Game
 		}
 		if (GameInput::GetKeyDown(eKeyCode::B))
 		{
-			//LoadVillageScene();
+			LoadVillageScene();
+		}
+		if (GameInput::GetKeyDown(eKeyCode::N))
+		{
+			LoadPlayScene();
 		}
 		Scene::LateUpdate();
 	}

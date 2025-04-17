@@ -83,6 +83,10 @@ void Game::PlayerScript::OnCollisionEnter(Collider* other)
 
 void Game::PlayerScript::OnCollisionStay(Collider* other)
 {
+	if (other->GetOwner()->GetLayerType() == eLayerType::BackGround)
+	{
+		GetOwner()->GetComponent<RigidBody>()->SetVelocity(Vector2::Zero);// 충돌 시 정지
+	}
 }
 
 void Game::PlayerScript::OnCollisionExit(Collider* other)
@@ -94,31 +98,38 @@ void Game::PlayerScript::Move()
 	Transform* tr = GetOwner()->GetComponent<Transform>();
 	Vector2 pos = tr->GetPosition();
 	RigidBody* rb = GetOwner()->GetComponent<RigidBody>();
+	Vector2 velocity = Vector2::Zero;
 
 	if (GameInput::GetKey(eKeyCode::A))
 	{
-		pos.x -= 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);
+		//pos.x -= 200.0f * Time::DeltaTime();
+		//tr->SetPosition(pos);
 		//rb->AddForce(Vector2(-200.0f, 0.0f));
+		velocity.x = -200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::D))
 	{
-		pos.x += 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);
+		/*pos.x += 200.0f * Time::DeltaTime();
+		tr->SetPosition(pos);*/
 		//rb->AddForce(Vector2(200.0f, 0.0f));
+		velocity.x = 200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::S))
 	{
-		pos.y += 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);
+		/*pos.y += 200.0f * Time::DeltaTime();
+		tr->SetPosition(pos);*/
 		//rb->AddForce(Vector2(0.0f, -200.0f));
+		velocity.y = 200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::W))
 	{
-		pos.y -= 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);
+		/*pos.y -= 200.0f * Time::DeltaTime();
+		tr->SetPosition(pos);*/
 		//rb->AddForce(Vector2(0.0f, 200.0f));
+		velocity.y = -200.0f;
 	}
+
+	rb->SetVelocity(velocity);
 
 	if (GameInput::GetKeyUp(eKeyCode::D))
 	{

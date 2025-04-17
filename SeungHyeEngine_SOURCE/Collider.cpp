@@ -26,20 +26,26 @@ namespace Game
 	}
 	void Collider::Render(HDC hdc)
 	{
+		//Rectangle(hdc, pos.x, pos.y, pos.x + mSize.x, pos.y + mSize.y);
 	}
 	void Collider::OnCollisionEnter(Collider* other)
 	{
 		Script* script = GetOwner()->GetComponent<Script>();
-		script->OnCollisionEnter(other);
+		if (script)
+		{
+			script->OnCollisionEnter(other);
+		}
 	}
 	void Collider::OnCollisionExit(Collider* other)
 	{
 		Script* script = GetOwner()->GetComponent<Script>();
-		script->OnCollisionExit(other);
+		if(script)
+			script->OnCollisionExit(other);
 	}
 	void Collider::OnCollisionStay(Collider* other)
 	{
 		Script* script = GetOwner()->GetComponent<Script>();
-		script->OnCollisionStay(other);
+		if(script)
+			script->OnCollisionStay(other);
 	}
 }

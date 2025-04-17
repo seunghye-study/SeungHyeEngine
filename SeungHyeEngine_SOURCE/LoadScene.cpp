@@ -31,3 +31,9 @@ void Game::LoadMineScene()
 	SceneManager::CreateScene<MineScene>(L"MineScene");
 	SceneManager::LoadScene(L"MineScene");
 }
+
+void Game::LoadVillageScene()
+{
+	SceneManager::CreateScene<VillageScene>(L"VillageScene");
+	SceneManager::LoadScene(L"VillageScene");
+}

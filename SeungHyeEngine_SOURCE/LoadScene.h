@@ -6,6 +6,7 @@
 #include "../SeungHyeEngine_STATIC/ToolScene.h" 
 #include "../SeungHyeEngine_STATIC/FarmScene.h"
 #include "../SeungHyeEngine_STATIC/MineScene.h"
+#include "../SeungHyeEngine_STATIC/VillageScene.h"
 
 namespace Game
 {
@@ -14,4 +15,5 @@ namespace Game
 	void LoadToolScene();
 	void LoadFarmScene();
 	void LoadMineScene();
+	void LoadVillageScene();
 }

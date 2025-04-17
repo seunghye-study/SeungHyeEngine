@@ -36,12 +36,13 @@ namespace Game
 		GameObject* camera = Game::Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f, 0.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		mainCamera = cameraComp;
-
+		
 		GameObject* bg = Instantiate<GameObject>(eLayerType::BackGround);
 		SpriteRenderer* bgsr = bg->AddComponent<SpriteRenderer>();
 		Texture* bgTexture = Game::Resources::Find<Texture>(L"FarmHouse");
 		bgsr->SetTexture(bgTexture);
 		bgsr->SetSize(Vector2(1.5f, 1.5f));
+		bg->GetComponent<Transform>()->SetPosition(Vector2(-260.0f, -320.0f));
 
 		mPlayer = Game::Instantiate<GamePlayer>(eLayerType::Player);
 		mPlayer->AddComponent<PlayerScript>();
@@ -63,7 +64,7 @@ namespace Game
 		Texture* GiveWaterUp = Game::Resources::Find<Texture>(L"GiveWaterFront");
 
 		Animator* animator = mPlayer->AddComponent<Animator>();
-		Vector2 offset = { 100.0f, 100.0f };
+		Vector2 offset = { 0.0f, 0.0f };
 		animator->CreateAnimation(L"Idle", IdleTexture, Vector2(500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
 		animator->CreateAnimation(L"LeftIdle", IdleTexture_left, Vector2(1500.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
 		animator->CreateAnimation(L"RightIdle", IdleTexture_right, Vector2(750.0f, 0.0f), Vector2(250, 250), offset, 1, 0.1f);
@@ -78,12 +79,21 @@ namespace Game
 		animator->CreateAnimation(L"GiveWaterUp", GiveWaterUp, Vector2(1250.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 3, 0.4f);
 		
 		animator->PlayAnimation(L"Idle", false);
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(210.0f,260.0f));
+		//mPlayer->GetComponent<Transform>()->SetPosition(Vector2(210.0f,260.0f));
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(-125.0f, -125.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		mPlayer->AddComponent<RigidBody>();
 
-		Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
-		mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(playerPos);
+		//mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(mPlayer->GetComponent<Transform>()->GetPosition());
+
+		//Background Collider
+		{
+			GameObject* UpWall = Game::Instantiate<GameObject>(eLayerType::BackGround);
+			BoxCollider2D* collider = UpWall->AddComponent<BoxCollider2D>();
+			collider->SetSize(Vector2(5.0f, 1.0f));
+			collider->SetOffset(Vector2::Zero);
+			UpWall->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
+		}
 
 		/*{
 			Cat* cat = Game::Instantiate<Cat>(eLayerType::Animal);
@@ -119,7 +129,6 @@ namespace Game
 	}
 	void PlayScene::LateUpdate()
 	{
-		Scene::LateUpdate();
 		if (GameInput::GetKeyDown(eKeyCode::SpaceBar))
 		{
 			LoadTitleScene();
@@ -128,22 +137,47 @@ namespace Game
 		{
 			LoadFarmScene();
 		}
-		if (mainCamera && mPlayer)
-		{
-			//
-			//
-		}
+		Scene::LateUpdate();
 	}
 	void PlayScene::Render(HDC hdc)
 	{
 
-		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();// 마우스 위치
+		Scene::Render(hdc);
+		int tileWidth = 50;
+		int tileHeight = 50;
+
+		int gridCols = 50;
+		int gridRows = 50;
+
+		for (int i = 0; i < gridCols; ++i)
+		{
+			Vector2 worldStart = Vector2(i * tileWidth, 0);
+			Vector2 worldEnd = Vector2(i * tileWidth, tileHeight * gridRows);
+
+			Vector2 start = mainCamera->CalculatePosition(worldStart);
+			Vector2 end = mainCamera->CalculatePosition(worldEnd);
+
+			MoveToEx(hdc, start.x, start.y, NULL);
+			LineTo(hdc, end.x, end.y);
+		}
+
+		for (int j = 0; j < gridRows; ++j)
+		{
+			Vector2 worldStart = Vector2(0, j * tileHeight);
+			Vector2 worldEnd = Vector2(tileWidth * gridCols, j * tileHeight);
+
+			Vector2 start = mainCamera->CalculatePosition(worldStart);
+			Vector2 end = mainCamera->CalculatePosition(worldEnd);
+
+			MoveToEx(hdc, start.x, start.y, NULL);
+			LineTo(hdc, end.x, end.y);
+		}
+
+		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
 		wchar_t str[100] = {};
 		swprintf_s(str, 100, L"Player Position: (%.0f, %.0f)", playerPos.x, playerPos.y);
 
-		TextOut(hdc, 10, 30, str, wcslen(str)); // 좌측 상단에 출력
-		Scene::Render(hdc);
-
+		TextOut(hdc, 10, 30, str, wcslen(str));
 	}
 
 	void PlayScene::OnEnter()

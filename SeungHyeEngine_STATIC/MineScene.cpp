@@ -77,7 +77,7 @@ namespace Game
 		animator->CreateAnimation(L"GiveWaterUp", GiveWaterUp, Vector2(1250.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 3, 0.4f);
 
 		animator->PlayAnimation(L"Idle", false);
-		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1680.0f, 1150.0f));
+		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(1680.0f, 1180.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		mPlayer->AddComponent<RigidBody>();
 
@@ -97,17 +97,25 @@ namespace Game
 			Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
 			mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(playerPos);
 		}
+		if (GameInput::GetKeyDown(eKeyCode::M))
+		{
+			LoadFarmScene();
+		}
+		if (GameInput::GetKeyDown(eKeyCode::SpaceBar))
+		{
+			LoadTitleScene();
+		}
 		Scene::LateUpdate();
 	}
 	void MineScene::Render(HDC hdc)
 	{
+		Scene::Render(hdc);
 		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();// 마우스 위치
 		wchar_t str[100] = {};
 		swprintf_s(str, 100, L"Player Position: (%.0f, %.0f)", playerPos.x, playerPos.y);
 
 		TextOut(hdc, 10, 30, str, wcslen(str)); // 좌측 상단에 출력
-		Scene::Render(hdc);
-		Scene::Render(hdc);
+
 	}
 	void MineScene::OnEnter()
 	{
