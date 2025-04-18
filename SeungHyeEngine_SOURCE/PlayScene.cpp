@@ -79,12 +79,9 @@ namespace Game
 		animator->CreateAnimation(L"GiveWaterUp", GiveWaterUp, Vector2(1250.0f, 2250.0f), Vector2(250, 250), Vector2::Zero, 3, 0.4f);
 		
 		animator->PlayAnimation(L"Idle", false);
-		//mPlayer->GetComponent<Transform>()->SetPosition(Vector2(210.0f,260.0f));
 		mPlayer->GetComponent<Transform>()->SetPosition(Vector2(-125.0f, -125.0f));
 		mPlayer->GetComponent<Transform>()->SetScale(Vector2(1.0f, 1.0f));
 		mPlayer->AddComponent<RigidBody>();
-
-		//mainCamera->GetOwner()->GetComponent<Transform>()->SetPosition(mPlayer->GetComponent<Transform>()->GetPosition());
 
 		//Background Collider
 		{
@@ -92,7 +89,7 @@ namespace Game
 			BoxCollider2D* collider = UpWall->AddComponent<BoxCollider2D>();
 			collider->SetSize(Vector2(5.0f, 1.0f));
 			collider->SetOffset(Vector2::Zero);
-			UpWall->GetComponent<Transform>()->SetPosition(Vector2(0.0f, 0.0f));
+			UpWall->GetComponent<Transform>()->SetPosition(Vector2(125.0f,125.0f));
 		}
 
 		/*{
@@ -141,8 +138,8 @@ namespace Game
 	}
 	void PlayScene::Render(HDC hdc)
 	{
-
 		Scene::Render(hdc);
+
 		int tileWidth = 50;
 		int tileHeight = 50;
 
@@ -157,8 +154,8 @@ namespace Game
 			Vector2 start = mainCamera->CalculatePosition(worldStart);
 			Vector2 end = mainCamera->CalculatePosition(worldEnd);
 
-			MoveToEx(hdc, start.x, start.y, NULL);
-			LineTo(hdc, end.x, end.y);
+			MoveToEx(hdc, start.x - 640, start.y - 360, NULL);
+			LineTo(hdc, end.x-640, end.y-360);
 		}
 
 		for (int j = 0; j < gridRows; ++j)
@@ -169,8 +166,8 @@ namespace Game
 			Vector2 start = mainCamera->CalculatePosition(worldStart);
 			Vector2 end = mainCamera->CalculatePosition(worldEnd);
 
-			MoveToEx(hdc, start.x, start.y, NULL);
-			LineTo(hdc, end.x, end.y);
+			MoveToEx(hdc, start.x-640, start.y-360, NULL);
+			LineTo(hdc, end.x-640, end.y-360);
 		}
 
 		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();

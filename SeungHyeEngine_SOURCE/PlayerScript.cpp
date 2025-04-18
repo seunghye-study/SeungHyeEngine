@@ -78,7 +78,10 @@ void Game::PlayerScript::Render(HDC hdc)
 
 void Game::PlayerScript::OnCollisionEnter(Collider* other)
 {
-	other->GetOwner()->GetComponent<Transform>()->SetPosition(Vector2(400.0f, 500.0f));
+	if (other->GetOwner()->GetLayerType() == eLayerType::BackGround)
+	{
+		GetOwner()->GetComponent<RigidBody>()->SetVelocity(Vector2::Zero);// 충돌 시 정지
+	}
 }
 
 void Game::PlayerScript::OnCollisionStay(Collider* other)
