@@ -89,7 +89,7 @@ namespace Game
 			BoxCollider2D* collider = UpWall->AddComponent<BoxCollider2D>();
 			collider->SetSize(Vector2(5.0f, 1.0f));
 			collider->SetOffset(Vector2::Zero);
-			UpWall->GetComponent<Transform>()->SetPosition(Vector2(125.0f,125.0f));
+			UpWall->GetComponent<Transform>()->SetPosition(Vector2(-248.0f,-295.0f));
 		}
 
 		/*{

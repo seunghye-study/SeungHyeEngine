@@ -10,6 +10,7 @@
 Game::PlayerScript::PlayerScript()
 	:mState(PlayerScript::eState::Idle)
 	,mAnimator(nullptr)
+	,canMove(true)
 {
 
 }
@@ -73,7 +74,20 @@ void Game::PlayerScript::LateUpdate()
 
 void Game::PlayerScript::Render(HDC hdc)
 {
+	if (!canMove)
+	{
+		wchar_t str[100] = {};
+		swprintf_s(str, 100, L"Collision : True");
 
+		TextOut(hdc, 10, 50, str, wcslen(str));
+	}
+	else
+	{
+		wchar_t str[100] = {};
+		swprintf_s(str, 100, L"Collision : False");
+
+		TextOut(hdc, 10, 50, str, wcslen(str));
+	}
 }
 
 void Game::PlayerScript::OnCollisionEnter(Collider* other)
@@ -81,6 +95,8 @@ void Game::PlayerScript::OnCollisionEnter(Collider* other)
 	if (other->GetOwner()->GetLayerType() == eLayerType::BackGround)
 	{
 		GetOwner()->GetComponent<RigidBody>()->SetVelocity(Vector2::Zero);// 충돌 시 정지
+		//canMove = true;
+		canMove = false;
 	}
 }
 
@@ -89,11 +105,13 @@ void Game::PlayerScript::OnCollisionStay(Collider* other)
 	if (other->GetOwner()->GetLayerType() == eLayerType::BackGround)
 	{
 		GetOwner()->GetComponent<RigidBody>()->SetVelocity(Vector2::Zero);// 충돌 시 정지
+		canMove = false;
 	}
 }
 
 void Game::PlayerScript::OnCollisionExit(Collider* other)
 {
+	canMove = true;
 }
 
 void Game::PlayerScript::Move()
@@ -108,28 +126,28 @@ void Game::PlayerScript::Move()
 		//pos.x -= 200.0f * Time::DeltaTime();
 		//tr->SetPosition(pos);
 		//rb->AddForce(Vector2(-200.0f, 0.0f));
-		velocity.x = -200.0f;
+		if(canMove) velocity.x = -200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::D))
 	{
 		/*pos.x += 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);*/
 		//rb->AddForce(Vector2(200.0f, 0.0f));
-		velocity.x = 200.0f;
+		if (canMove) velocity.x = 200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::S))
 	{
 		/*pos.y += 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);*/
 		//rb->AddForce(Vector2(0.0f, -200.0f));
-		velocity.y = 200.0f;
+		if (canMove) velocity.y = 200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::W))
 	{
 		/*pos.y -= 200.0f * Time::DeltaTime();
 		tr->SetPosition(pos);*/
 		//rb->AddForce(Vector2(0.0f, 200.0f));
-		velocity.y = -200.0f;
+		if (canMove) velocity.y = -200.0f;
 	}
 
 	rb->SetVelocity(velocity);

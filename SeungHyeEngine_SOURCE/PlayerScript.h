@@ -46,7 +46,7 @@ namespace Game
 	private:
 		eState mState;
 		class Animator* mAnimator;
-
+		bool canMove;
 
 		/*startevent, endevent, complete event*/
 	};
