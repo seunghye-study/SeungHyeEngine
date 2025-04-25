@@ -88,8 +88,8 @@ namespace Game
 			GameObject* UpWall = Game::Instantiate<GameObject>(eLayerType::BackGround);
 			BoxCollider2D* collider = UpWall->AddComponent<BoxCollider2D>();
 			collider->SetSize(Vector2(5.0f, 1.0f));
-			collider->SetOffset(Vector2::Zero);
-			UpWall->GetComponent<Transform>()->SetPosition(Vector2(-248.0f,-295.0f));
+			collider->SetOffset(Vector2(0.0f, 0.0f));
+			UpWall->GetComponent<Transform>()->SetPosition(Vector2(-248.0f,-320.0f));
 		}
 
 		/*{
@@ -139,36 +139,6 @@ namespace Game
 	void PlayScene::Render(HDC hdc)
 	{
 		Scene::Render(hdc);
-
-		int tileWidth = 50;
-		int tileHeight = 50;
-
-		int gridCols = 50;
-		int gridRows = 50;
-
-		for (int i = 0; i < gridCols; ++i)
-		{
-			Vector2 worldStart = Vector2(i * tileWidth, 0);
-			Vector2 worldEnd = Vector2(i * tileWidth, tileHeight * gridRows);
-
-			Vector2 start = mainCamera->CalculatePosition(worldStart);
-			Vector2 end = mainCamera->CalculatePosition(worldEnd);
-
-			MoveToEx(hdc, start.x - 640, start.y - 360, NULL);
-			LineTo(hdc, end.x-640, end.y-360);
-		}
-
-		for (int j = 0; j < gridRows; ++j)
-		{
-			Vector2 worldStart = Vector2(0, j * tileHeight);
-			Vector2 worldEnd = Vector2(tileWidth * gridCols, j * tileHeight);
-
-			Vector2 start = mainCamera->CalculatePosition(worldStart);
-			Vector2 end = mainCamera->CalculatePosition(worldEnd);
-
-			MoveToEx(hdc, start.x-640, start.y-360, NULL);
-			LineTo(hdc, end.x-640, end.y-360);
-		}
 
 		GameMath::Vector2 playerPos = mPlayer->GetComponent<Transform>()->GetPosition();
 		wchar_t str[100] = {};

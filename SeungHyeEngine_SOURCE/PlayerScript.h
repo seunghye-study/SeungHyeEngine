@@ -14,6 +14,9 @@ namespace Game
 		enum class eState
 		{
 			Move,
+			MoveUp,
+			MoveLeft,
+			MoveRight,
 			Idle,
 			IdleLeft,
 			IdleRight,
@@ -38,6 +41,12 @@ namespace Game
 		void OnCollisionStay(Collider* other) override;
 		void OnCollisionExit(Collider* other) override;
 
+		bool canMoveUp = true;
+		bool canMoveDown = true;
+		bool canMoveLeft = true;
+		bool canMoveRight = true;
+
+
 	private:
 		void Move();
 		void Idle();
@@ -46,7 +55,7 @@ namespace Game
 	private:
 		eState mState;
 		class Animator* mAnimator;
-		bool canMove;
+		bool collisionEnter;
 
 		/*startevent, endevent, complete event*/
 	};

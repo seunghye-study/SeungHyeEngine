@@ -89,9 +89,6 @@ namespace Game
 	}
 	void CollisionManager::ColliderCollision(Collider* left, Collider* right)
 	{
-		// 충돌 체크 로직
-		// 두 충돌체 번호로 가져온 id확인하여 Collision id setting
-
 		CollisionID id = {};
 		id.left = left->GetID();
 		id.right = right->GetID();
@@ -136,13 +133,11 @@ namespace Game
 	}
 	bool CollisionManager::Intersect(Collider* left, Collider* right)
 	{
-		// 충돌판별
 		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
-		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
-		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
+		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset() + (left->GetSize() * 50.0f);  // 100px 기준이면 /2 = 50
+		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset() + (right->GetSize() * 50.0f);
 
-		// size 1, 1일 때, 기본크기는 100픽셀
 		Vector2 leftSize = left->GetSize() * 100.0f;
 		Vector2 rightSize = right->GetSize() * 100.0f;
 
@@ -158,27 +153,6 @@ namespace Game
 				return true;
 			}
 		}
-
-		if (leftType == eColliderType::Circle2D && rightType == eColliderType::Circle2D)
-		{
-			//circle - circle
-			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
-			Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
-
-			float distance = (leftCirclePos - rightCirclePos).length();
-			if (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f));
-			{
-				return true;
-			}
-		}
-		
-		if (leftType == eColliderType::Circle2D && rightType == eColliderType::Rect2D)
-		{
-			// circle - rect
-			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
-
-		}
-
 		return false;
 	}
 }
