@@ -7,6 +7,7 @@
 #include "SObject.h"
 #include "Renderer.h"
 #include "GameInput.h"
+#include "CameraScript.h"
 
 Game::ToolScene::ToolScene()
 {
@@ -18,8 +19,9 @@ Game::ToolScene::~ToolScene()
 
 void Game::ToolScene::Initialize()
 {
-	GameObject* camera = Instantiate<GameObject>(eLayerType::Player, Vector2(344.0f, 422.0f));
+	GameObject* camera = Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f, 0.0f));
 	Camera* cameraComp = camera->AddComponent<Camera>();
+	camera->AddComponent<CameraScript>();
 	mainCamera = cameraComp;
 
 	Scene::Initialize();
@@ -36,7 +38,18 @@ void Game::ToolScene::LateUpdate()
 
 	if (GameInput::GetKeyDown(eKeyCode::LButton))
 	{
-		//CreateTileObject();
+		Vector2 pos = GameInput::GetMousePosition();
+		pos = mainCamera->CalculateTilePosition(pos);
+		int idxX = pos.x / TilemapRenderer::TileSize.x;
+		int idxY = pos.y / TilemapRenderer::TileSize.y;
+
+		Tile* tile = Instantiate<Tile>(eLayerType::Tile);
+		TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
+		tmr->SetTexture(Resources::Find<Texture>(L"FarmSheet"));
+		tmr->SetIndex(TilemapRenderer::SelectedIndex);
+		
+		tile->SetIndexPosition(idxX, idxY);
+		mTiles.push_back(tile);
 	}
 	if (GameInput::GetKeyDown(eKeyCode::S))
 	{
@@ -51,7 +64,27 @@ void Game::ToolScene::LateUpdate()
 void Game::ToolScene::Render(HDC hdc)
 {
 	Scene::Render(hdc);
-	RenderGreed(hdc);
+	for (size_t i = 0; i < 50; i++)
+	{
+		Vector2 pos = mainCamera->CalculatePosition
+		(
+			Vector2(TilemapRenderer::TileSize.x * i, 0.0f)
+		);
+
+		MoveToEx(hdc, pos.x, 0, NULL);
+		LineTo(hdc, pos.x, 1000);
+	}
+
+	for (size_t i = 0; i < 50; i++)
+	{
+		Vector2 pos = mainCamera->CalculatePosition
+		(
+			Vector2(0.0f, TilemapRenderer::TileSize.y * i)
+		);
+
+		MoveToEx(hdc, 0, pos.y, NULL);
+		LineTo(hdc, 1000, pos.y);
+	}
 }
 
 void Game::ToolScene::OnEnter()

@@ -100,9 +100,9 @@ void Game::PlayerScript::OnCollisionStay(Collider* other)
 {
 	collisionEnter = true;
 
-	//Vector2 myCenter = GetOwner()->GetComponent<Transform>()->GetPosition() + GetOwner()->GetComponent<Collider>()->GetOffset();
-	//Vector2 otherCenter = other->GetOwner()->GetComponent<Transform>()->GetPosition() + other->GetOffset();
-	//Vector2 delta = myCenter - otherCenter;
+	Vector2 myCenter = GetOwner()->GetComponent<Transform>()->GetPosition() + GetOwner()->GetComponent<Collider>()->GetOffset();
+	Vector2 otherCenter = other->GetOwner()->GetComponent<Transform>()->GetPosition() + other->GetOffset();
+	Vector2 delta = myCenter - otherCenter;
 
 	if (mState == eState::Move)
 	{
@@ -137,30 +137,18 @@ void Game::PlayerScript::Move()
 
 	if (GameInput::GetKey(eKeyCode::A))
 	{
-		//pos.x -= 200.0f * Time::DeltaTime();
-		//tr->SetPosition(pos);
-		//rb->AddForce(Vector2(-200.0f, 0.0f));
 		if(canMoveLeft) velocity.x = -200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::D))
 	{
-		/*pos.x += 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);*/
-		//rb->AddForce(Vector2(200.0f, 0.0f));
 		if (canMoveRight) velocity.x = 200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::S))
 	{
-		/*pos.y += 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);*/
-		//rb->AddForce(Vector2(0.0f, -200.0f));
 		if (canMoveDown) velocity.y = 200.0f;
 	}
 	if (GameInput::GetKey(eKeyCode::W))
 	{
-		/*pos.y -= 200.0f * Time::DeltaTime();
-		tr->SetPosition(pos);*/
-		//rb->AddForce(Vector2(0.0f, 200.0f));
 		if (canMoveUp) velocity.y = -200.0f;
 	}
 

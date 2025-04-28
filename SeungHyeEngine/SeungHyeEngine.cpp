@@ -122,7 +122,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
-   Game::LoadTitleScene();
+   ShowWindow(ToolhWnd, nCmdShow);
+   UpdateWindow(ToolhWnd);
+
+   Game::LoadToolScene();
    
    return TRUE;
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Scene.h"
+#include "Tile.h"
 
 namespace Game
 {
@@ -22,6 +23,9 @@ namespace Game
 		void CreateTileObject();
 
 		static LRESULT CALLBACK TileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+
+	private:
+		std::vector<Tile*> mTiles;
 	};
 }
 

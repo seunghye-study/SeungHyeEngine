@@ -18,7 +18,6 @@ namespace Game
 	{
 		Texture,
 		AudioClip,
-		Prefab,
 		Animation,
 		End,
 	};

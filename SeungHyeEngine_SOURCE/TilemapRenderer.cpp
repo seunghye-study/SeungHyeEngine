@@ -5,8 +5,8 @@
 #include "Renderer.h"
 
 // 정적 멤버 변수 정의
-Vector2 Game::TilemapRenderer::TileSize = Vector2::One;
-Vector2 Game::TilemapRenderer::OriginTileSize = Vector2::One;
+Vector2 Game::TilemapRenderer::TileSize = Vector2(16.0f, 16.0f);
+Vector2 Game::TilemapRenderer::OriginTileSize = Vector2(16.0f, 16.0f);
 Vector2 Game::TilemapRenderer::SelectedIndex = Vector2(-1.0f, -1.0f);
 
 Game::TilemapRenderer::TilemapRenderer() : Component(eComponentType::SpriteRenderer)
@@ -15,7 +15,8 @@ Game::TilemapRenderer::TilemapRenderer() : Component(eComponentType::SpriteRende
 	, mIndex(0, 0)
 	, mTileSize(16.0f, 16.0f)
 {
-
+	//TileSize = mTileSize * mSize;
+	//OriginTileSize = mTileSize;
 }
 
 Game::TilemapRenderer::~TilemapRenderer()
@@ -47,6 +48,7 @@ void Game::TilemapRenderer::Render(HDC hdc)
 	Vector2 pos = tr->GetPosition();
 	float rot = tr->GetRotation();
 	Vector2 scale = tr->GetScale();
+
 	pos = mainCamera->CalculatePosition(pos);
 	if (mTexture->GetTextureType() == Texture::eTextureType::bmp)
 	{

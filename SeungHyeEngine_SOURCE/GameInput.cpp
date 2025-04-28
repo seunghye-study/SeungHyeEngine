@@ -105,8 +105,17 @@ void Game::GameInput::GetMousePositionByWindow()
 	GetCursorPos(&mousePos);
 	ScreenToClient(application.GetHWND(), &mousePos);
 
-	mMousePosition.x = mousePos.x;
-	mMousePosition.y = mousePos.y;
+	UINT width = application.GetWidth();
+	UINT height = application.GetHeight();
+
+	mMousePosition.x = -1.0f;
+	mMousePosition.y = -1.0f;
+
+	if (mousePos.x > 0 && mousePos.x < width)
+		mMousePosition.x = mousePos.x;
+
+	if (mousePos.y > 0 && mousePos.y < height)
+		mMousePosition.y = mousePos.y;
 }
 
 void Game::GameInput::ClearKeys()

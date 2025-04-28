@@ -25,6 +25,7 @@
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayerScript.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\PlayScene.h" />
     <ClInclude Include="..\SeungHyeEngine_SOURCE\TitleScene.h" />
+    <ClInclude Include="CameraScript.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatScript.h" />
     <ClInclude Include="MineScene.h" />
@@ -39,6 +40,7 @@
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayerScript.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\PlayScene.cpp" />
     <ClCompile Include="..\SeungHyeEngine_SOURCE\TitleScene.cpp" />
+    <ClCompile Include="CameraScript.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatScript.cpp" />
     <ClCompile Include="MineScene.cpp" />

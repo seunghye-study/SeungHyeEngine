@@ -24,7 +24,7 @@ void Game::Tile::Render(HDC hdc)
 	GameObject::Render(hdc);
 }
 
-void Game::Tile::SetPosition(int x, int y)
+void Game::Tile::SetIndexPosition(int x, int y)
 {
 	Transform* tr = GetComponent<Transform>();
 	Vector2 pos;
