@@ -53,19 +53,20 @@ namespace Game
 		}
 
 		eState GetState() { return mState; }
-		void SetActive(bool power) {
+		void SetActive(bool power) 
+		{
 			if (power == true) mState = eState::Active;
 			if (power == false) mState = eState::Paused;
 		}
 
 		eLayerType GetLayerType() { return mLayerType; }
 		void SetLayerType(eLayerType layerType) { mLayerType = layerType; }
-
-		void death() { mState = eState::Dead; }
+		
 		bool IsActive() { return mState == eState::Active; }
 		bool IsDead() { return mState == eState::Dead; }
 		
 		void InitializeTransform();
+		void death() { mState = eState::Dead; }
 
 	private:
 		eState mState;

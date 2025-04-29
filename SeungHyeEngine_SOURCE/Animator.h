@@ -2,9 +2,6 @@
 #include "Component.h"
 #include "Animation.h"
 
-// animation management
-
-
 namespace Game
 {
 	class Animator : public Component

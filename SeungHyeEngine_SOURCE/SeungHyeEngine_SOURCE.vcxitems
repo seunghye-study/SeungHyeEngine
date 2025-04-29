@@ -24,7 +24,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Component.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)Destroy.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)DontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Entity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)GameInput.h" />
@@ -45,6 +44,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)Texture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)TilemapRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Transform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)UIManager.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)Animation.cpp" />
@@ -56,7 +57,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Collider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)CollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Component.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)Destroy.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)DontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Entity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)GameInput.cpp" />
@@ -76,5 +76,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)Texture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)TilemapRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Transform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)UIManager.cpp" />
   </ItemGroup>
 </Project>

@@ -28,6 +28,7 @@
     <ClInclude Include="CameraScript.h" />
     <ClInclude Include="Cat.h" />
     <ClInclude Include="CatScript.h" />
+    <ClInclude Include="FloorScript.h" />
     <ClInclude Include="MineScene.h" />
     <ClInclude Include="FarmScene.h" />
     <ClInclude Include="Tile.h" />
@@ -43,6 +44,7 @@
     <ClCompile Include="CameraScript.cpp" />
     <ClCompile Include="Cat.cpp" />
     <ClCompile Include="CatScript.cpp" />
+    <ClCompile Include="FloorScript.cpp" />
     <ClCompile Include="MineScene.cpp" />
     <ClCompile Include="FarmScene.cpp" />
     <ClCompile Include="Tile.cpp" />

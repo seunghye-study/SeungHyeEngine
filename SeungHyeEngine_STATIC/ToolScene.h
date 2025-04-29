@@ -19,15 +19,17 @@ namespace Game
 		void OnEnter() override;
 		void OnExit()  override;
 
+		void Save();
+		void Load();
+
 		void RenderGreed(HDC hdc);
 		void CreateTileObject();
-
+		
 		static LRESULT CALLBACK TileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
 	private:
 		std::vector<Tile*> mTiles;
 	};
 }
-
 
 

@@ -5,18 +5,17 @@
 #include "Renderer.h"
 
 // 정적 멤버 변수 정의
-Vector2 Game::TilemapRenderer::TileSize = Vector2(16.0f, 16.0f);
-Vector2 Game::TilemapRenderer::OriginTileSize = Vector2(16.0f, 16.0f);
+Vector2 Game::TilemapRenderer::TileSize = Vector2(32.0f, 32.0f);
+Vector2 Game::TilemapRenderer::OriginTileSize = Vector2(32.0f, 32.0f);
 Vector2 Game::TilemapRenderer::SelectedIndex = Vector2(-1.0f, -1.0f);
 
 Game::TilemapRenderer::TilemapRenderer() : Component(eComponentType::SpriteRenderer)
 	, mTexture(nullptr)
 	, mSize(3.0f, 3.0f)
 	, mIndex(0, 0)
-	, mTileSize(16.0f, 16.0f)
+	, mTileSize(32.0f, 32.0f)
 {
-	//TileSize = mTileSize * mSize;
-	//OriginTileSize = mTileSize;
+
 }
 
 Game::TilemapRenderer::~TilemapRenderer()
@@ -39,10 +38,7 @@ void Game::TilemapRenderer::LateUpdate()
 
 void Game::TilemapRenderer::Render(HDC hdc)
 {
-	if (mTexture == nullptr) // 텍스처 세팅
-	{
-		assert(false);
-	}
+	if (mTexture == nullptr) { assert(false); }
 
 	Transform* tr = GetOwner()->GetComponent<Transform>();
 	Vector2 pos = tr->GetPosition();
@@ -72,9 +68,5 @@ void Game::TilemapRenderer::Render(HDC hdc)
 				, mIndex.x * mTileSize.x, mIndex.y * mTileSize.y
 				, mTileSize.x, mTileSize.y, RGB(255, 0, 255));
 		}
-	}
-	else if(mTexture->GetTextureType() == Texture::eTextureType::png)
-	{
-
 	}
 }

@@ -12,7 +12,6 @@ namespace Game
 
 	void CollisionManager::Initialize()
 	{
-		// int a = 1;
 	}
 
 	void CollisionManager::Update()
@@ -93,35 +92,29 @@ namespace Game
 		id.left = left->GetID();
 		id.right = right->GetID();
 
-
-		// 이전 충돌 정보를 검색하고, 정보가 없다면 정보를 생성해준다.
 		auto iter = mCollisionMap.find(id.id);
-		if (iter == mCollisionMap.end()) // collision map에 없다면
+		if (iter == mCollisionMap.end())
 		{
 			mCollisionMap.insert(std::make_pair(id.id, false));
 			iter = mCollisionMap.find(id.id);
 		}
 
-		// 충돌체크를 해준다
 		if (Intersect(left, right))
 		{
 			if (iter->second == false)
 			{
-				// 최초 충돌
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
 				iter->second = true;
 			}
 			else
 			{
-				// 충돌중
 				left->OnCollisionStay(right);
 				right->OnCollisionStay(left);
 			}
 		}
 		else
 		{
-			//충돌끝 or 충돌하지 않음
 			if (iter->second == true)
 			{
 				left->OnCollisionExit(right);
@@ -135,23 +128,41 @@ namespace Game
 	{
 		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
 		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
-		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset() + (left->GetSize() * 50.0f);  // 100px 기준이면 /2 = 50
-		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset() + (right->GetSize() * 50.0f);
+
+		Vector2 leftPos = leftTr->GetPosition() + left->GetOffset();
+		Vector2 rightPos = rightTr->GetPosition() + right->GetOffset();
 
 		Vector2 leftSize = left->GetSize() * 100.0f;
 		Vector2 rightSize = right->GetSize() * 100.0f;
-
 		
 		eColliderType leftType = left->GetColliderType();
 		eColliderType rightType = right->GetColliderType();
 
-		// AABB 충돌
 		if (leftType == eColliderType::Rect2D && rightType == eColliderType::Rect2D)
 		{
 			if (fabs(leftPos.x - rightPos.x) < fabs(leftSize.x / 2.0f + rightSize.x / 2.0f) && fabs(leftPos.y - rightPos.y) < fabs(leftSize.y / 2.0f + rightSize.y / 2.0f))
 			{
 				return true;
 			}
+		}
+
+		if (leftType == eColliderType::Circle2D
+			&& rightType == eColliderType::Circle2D)
+		{
+			Vector2 leftCirclePos = leftPos + (leftSize / 2.0f);
+			Vector2 rightCirclePos = rightPos + (rightSize / 2.0f);
+			float distance = (leftCirclePos - rightCirclePos).length();
+			if (distance <= (leftSize.x / 2.0f + rightSize.x / 2.0f))
+			{
+				return true;
+			}
+		}
+
+		if ((leftType == eColliderType::Circle2D && rightType == eColliderType::Rect2D)
+			|| (leftType == eColliderType::Rect2D && rightType == eColliderType::Circle2D))
+		{
+			
+
 		}
 		return false;
 	}

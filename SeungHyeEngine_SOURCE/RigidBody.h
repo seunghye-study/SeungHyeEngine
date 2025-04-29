@@ -19,13 +19,17 @@ namespace Game
 		void SetMass(float mass) { mMass = mass; }
 		void AddForce(Vector2 force) { mForce = force; }
 		void SetVelocity(Vector2 velocity) { mVelocity = velocity; }
+		Vector2 GetVelocity() { return mVelocity; }
 	
 	private:
+		bool mbGround;
 		float mMass;
 		float mFriction;
+
 		Vector2 mForce;
 		Vector2 mAccelation;
 		Vector2 mVelocity;
+		Vector2 mLimitedVelocity;
 		Vector2 mGravity;
 	};
 }

@@ -27,13 +27,9 @@ namespace Game
 		static void CollisionLayerCheck(eLayerType left, eLayerType right, bool enable);
 		static void LayerCollision(class Scene* scene, eLayerType left, eLayerType right);
 		static void ColliderCollision(Collider* left, Collider* right);
-
 		static bool Intersect(Collider* left, Collider* right);
 
-		
-
 	private:
-		// todo
 		//static bool isBump(Vector2 leftPos, Vector2 rightPos, Vector2 leftSize, Vector2 rightSize);
 
 	private:

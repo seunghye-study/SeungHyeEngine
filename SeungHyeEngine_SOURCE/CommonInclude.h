@@ -9,6 +9,9 @@
 #include <functional>
 #include <filesystem>
 #include <bitset>
+#include <queue>
+#include <stack>
+#include <iostream>
 
 #include "SMath.h"
 #include "SEnums.h"

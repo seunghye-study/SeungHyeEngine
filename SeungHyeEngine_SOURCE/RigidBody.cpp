@@ -4,12 +4,14 @@
 #include "GameObject.h"
 
 Game::RigidBody::RigidBody() : Component(eComponentType::Rigidbody)
-	, mMass(1.0f)
-	, mFriction(10.0f)
-	, mForce(Vector2::Zero)
-	, mVelocity(Vector2::Zero)
-	, mGravity(Vector2::Zero)
-	, mAccelation(Vector2::Zero)
+, mMass(1.0f)
+, mFriction(10.0f)
+, mForce(Vector2::Zero)
+, mVelocity(Vector2::Zero)
+, mGravity(Vector2(0.0f, 800.0f))
+, mAccelation(Vector2::Zero)
+, mbGround(false)
+, mLimitedVelocity(Vector2(200.0f, 200.0f))
 {
 
 }
@@ -26,10 +28,18 @@ void Game::RigidBody::Initialize()
 
 void Game::RigidBody::Update()
 {
+	// todo : 중력, 속도제한 코드 존재
+
 	// F = MA
 	mAccelation = mForce / mMass;
 	mVelocity += mAccelation * Game::Time::DeltaTime();
 	
+	//최대 속도 제한
+	Vector2 gravity = mGravity;
+	gravity.normalize();
+	float dot = Vector2::Dot(mVelocity, gravity);
+	gravity = gravity * dot;
+
 	if (!(mVelocity == Vector2::Zero))
 	{
 		Vector2 friction = -mVelocity;

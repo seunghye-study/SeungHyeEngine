@@ -22,6 +22,7 @@ void Game::ToolScene::Initialize()
 	GameObject* camera = Instantiate<GameObject>(eLayerType::Player, Vector2(0.0f, 0.0f));
 	Camera* cameraComp = camera->AddComponent<Camera>();
 	camera->AddComponent<CameraScript>();
+
 	mainCamera = cameraComp;
 
 	Scene::Initialize();
@@ -38,18 +39,7 @@ void Game::ToolScene::LateUpdate()
 
 	if (GameInput::GetKeyDown(eKeyCode::LButton))
 	{
-		Vector2 pos = GameInput::GetMousePosition();
-		pos = mainCamera->CalculateTilePosition(pos);
-		int idxX = pos.x / TilemapRenderer::TileSize.x;
-		int idxY = pos.y / TilemapRenderer::TileSize.y;
-
-		Tile* tile = Instantiate<Tile>(eLayerType::Tile);
-		TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-		tmr->SetTexture(Resources::Find<Texture>(L"FarmSheet"));
-		tmr->SetIndex(TilemapRenderer::SelectedIndex);
-		
-		tile->SetIndexPosition(idxX, idxY);
-		mTiles.push_back(tile);
+		CreateTileObject();
 	}
 	if (GameInput::GetKeyDown(eKeyCode::S))
 	{
@@ -64,27 +54,7 @@ void Game::ToolScene::LateUpdate()
 void Game::ToolScene::Render(HDC hdc)
 {
 	Scene::Render(hdc);
-	for (size_t i = 0; i < 50; i++)
-	{
-		Vector2 pos = mainCamera->CalculatePosition
-		(
-			Vector2(TilemapRenderer::TileSize.x * i, 0.0f)
-		);
-
-		MoveToEx(hdc, pos.x, 0, NULL);
-		LineTo(hdc, pos.x, 1000);
-	}
-
-	for (size_t i = 0; i < 50; i++)
-	{
-		Vector2 pos = mainCamera->CalculatePosition
-		(
-			Vector2(0.0f, TilemapRenderer::TileSize.y * i)
-		);
-
-		MoveToEx(hdc, 0, pos.y, NULL);
-		LineTo(hdc, 1000, pos.y);
-	}
+	RenderGreed(hdc);
 }
 
 void Game::ToolScene::OnEnter()
@@ -99,12 +69,50 @@ void Game::ToolScene::OnExit()
 
 void Game::ToolScene::RenderGreed(HDC hdc)
 {
+	for (size_t i = 0; i < 50; i++)
+	{
+		Vector2 pos = mainCamera->CalculatePosition
+		(
+			Vector2(TilemapRenderer::TileSize.x * i, 0.0f)
+		);
 
+		MoveToEx(hdc, pos.x, 0, NULL);
+		LineTo(hdc, pos.x, 2000);
+	}
+	for (size_t i = 0; i < 50; i++)
+	{
+		Vector2 pos = mainCamera->CalculatePosition
+		(
+			Vector2(0.0f, TilemapRenderer::TileSize.y * i)
+		);
+
+		MoveToEx(hdc, 0, pos.y, NULL);
+		LineTo(hdc, 2000, pos.y);
+	}
 }
 
 void Game::ToolScene::CreateTileObject()
 {
+	Vector2 pos = GameInput::GetMousePosition();
+	pos = mainCamera->CalculateTilePosition(pos);
 
+	if (pos.x >= 0.0f && pos.y >= 0.0f)
+	{
+		int idxX = pos.x / TilemapRenderer::TileSize.x;
+		int idxY = pos.y / TilemapRenderer::TileSize.y;
+
+		Tile* tile = Instantiate<Tile>(eLayerType::Tile);
+		TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
+		tmr->SetTexture(Resources::Find<Texture>(L"FarmSheet"));
+		tmr->SetIndex(TilemapRenderer::SelectedIndex);
+
+		tile->SetIndexPosition(idxX, idxY);
+		mTiles.push_back(tile);
+	}
+	else
+	{
+
+	}
 }
 
 LRESULT Game::ToolScene::TileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)

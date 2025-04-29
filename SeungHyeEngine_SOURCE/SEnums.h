@@ -41,4 +41,8 @@ namespace Game
 		End,
 	};
 
+	enum class eUIType
+	{
+		End,
+	};
 }

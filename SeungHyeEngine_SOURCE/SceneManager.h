@@ -20,7 +20,8 @@ namespace Game
 		}
 		static Scene* LoadScene(const std::wstring& name);
 		static Scene* GetActiveScene() { return mActiveScene; }
-		
+		static Scene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
+		static std::vector<GameObject*> GetGameObjects(eLayerType layer);
 
 		static void Initialize();
 		static void Update();
@@ -28,9 +29,6 @@ namespace Game
 		static void Render(HDC hdc);
 		static void Destroy();
 		static void Release();
-
-		static Scene* GetDontDestroyOnLoad() { return mDontDestroyOnLoad; }
-		static std::vector<GameObject*> GetGameObjects(eLayerType layer);
 
 	private:
 		static std::map<std::wstring, Scene*> mScene;

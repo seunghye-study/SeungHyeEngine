@@ -1,7 +1,6 @@
 #pragma once
 #include "Entity.h"
 #include "Component.h"
-#include "SMath.h"
 
 namespace Game
 {
@@ -17,7 +16,7 @@ namespace Game
 		void LateUpdate() override;
 		void Render(HDC hdc) override;
 
-		void SetPosition(Vector2 pos) { mPosition=pos; }
+		void SetPosition(Vector2 pos) { mPosition.x = pos.x; mPosition.y = pos.y; }
 		Vector2 GetPosition() { return mPosition; }
 		void SetScale(Vector2 scale) { mScale=scale; }
 		Vector2 GetScale() { return mScale; }

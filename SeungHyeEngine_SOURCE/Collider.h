@@ -21,17 +21,15 @@ namespace Game
 
 		Vector2 GetOffset() { return mOffset; }
 		void SetOffset(Vector2 offset) { mOffset = offset; }
-
 		UINT GetID() { return mID; }
 		Vector2 GetSize() { return mSize; }
 		void SetSize(Vector2 size) { mSize = size; }
-
 		eColliderType GetColliderType() { return mType; }
 
 	private:
 		static UINT CollisionID;
-		UINT mID;
 
+		UINT mID;
 		Vector2 mOffset;
 		Vector2 mSize;
 		eColliderType mType;

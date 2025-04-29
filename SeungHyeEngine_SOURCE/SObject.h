@@ -10,7 +10,6 @@
 
 namespace Game
 {
-	// 레이어 타입만
 	template <typename T>
 	static T* Instantiate(Game::eLayerType type)
 	{
@@ -23,7 +22,6 @@ namespace Game
 		return gameObject;
 	}
 
-	// 레이어 타입+ 포지션
 	template <typename T>
 	static T* Instantiate(Game::eLayerType type, Game::Vector2 position)
 	{
@@ -44,7 +42,6 @@ namespace Game
 		Scene* activeScene = SceneManager::GetActiveScene();
 		activeScene->EraseGameObject(gameObject);
 
-		// 해당 오브젝트를 돈디스트로이 씬으로 이동
 		Scene* dontDestroyOnLoad = SceneManager::GetDontDestroyOnLoad();
 		dontDestroyOnLoad->AddGameObject(gameObject, gameObject->GetLayerType());
 	}

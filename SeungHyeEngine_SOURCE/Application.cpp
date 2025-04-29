@@ -4,15 +4,15 @@
 #include "SceneManager.h"
 #include "Resources.h"
 #include "CollisionManager.h"
+#include "UIManager.h"
 
-// 생성자, 초기화
 Game::Application::Application()
-	: mHwnd(nullptr),
-	mHdc(nullptr),
-	mWidth(0),
-	mHeight(0),
-	mBackBitmap(nullptr),
-	mBackHdc(nullptr)
+	: mHwnd(nullptr)
+	,mHdc(nullptr)
+	,mWidth(0)
+	,mHeight(0)
+	,mBackBitmap(NULL)
+	,mBackHdc(NULL)
 {
 
 }
@@ -26,7 +26,9 @@ void Game::Application::Initialize(HWND hwnd, UINT width, UINT height)
 	AdjustWindow(hwnd, width, height);
 	CreateBuffer(width, height);
 	InitComponent();
+
 	CollisionManager::Initialize();
+	//UIManager::Initalize();
 	SceneManager::Initialize();
 }
 
@@ -41,6 +43,7 @@ void Game::Application::Run()
 void Game::Application::Release()
 {
 	SceneManager::Release();
+	//UIManager::Release();
 	Resources::Release();
 }
 
@@ -49,12 +52,14 @@ void Game::Application::Update()
 	GameInput::Update();
 	Time::Update();
 	CollisionManager::Update();
+	//UIManager::Update();
 	SceneManager::Update();
 }
 
 void Game::Application::LateUpdate()
 {
 	CollisionManager::LateUpdate();
+	//UIManager::Update();
 	SceneManager::LateUpdate();
 }
 
@@ -64,6 +69,7 @@ void Game::Application::Render()
 
 	Time::Render(mBackHdc);
 	CollisionManager::Render(mBackHdc);
+	//UIManager::Render(mBackHdc);
 	SceneManager::Render(mBackHdc);
 
 	CopyRenderTarget(mBackHdc, mHdc);
@@ -76,7 +82,7 @@ void Game::Application::Destroy()
 
 void Game::Application::ClearRenderTarget()
 {
-	HBRUSH backgroundBrush = CreateSolidBrush(RGB(0, 0, 0)); // 배경색 (검정)
+	HBRUSH backgroundBrush = CreateSolidBrush(RGB(255, 255, 255));
 	RECT rect = { 0, 0, mWidth, mHeight };
 	FillRect(mBackHdc, &rect, backgroundBrush);
 	DeleteObject(backgroundBrush);
@@ -109,6 +115,7 @@ void Game::Application::CreateBuffer(UINT width, UINT height)
 	mBackHdc = CreateCompatibleDC(mHdc);
 
 	HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+	DeleteObject(oldBitmap);
 }
 
 void Game::Application::InitComponent()

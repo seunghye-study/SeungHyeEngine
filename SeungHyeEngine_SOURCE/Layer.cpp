@@ -73,7 +73,6 @@ void Game::Layer::Render(HDC hdc)
 void Game::Layer::Destroy()
 {
 	std::vector<GameObject*> deleteObjects = {};
-
 	findDeadGameObjects(deleteObjects);
 	eraseGameObject();
 	deleteGameObjects(deleteObjects);

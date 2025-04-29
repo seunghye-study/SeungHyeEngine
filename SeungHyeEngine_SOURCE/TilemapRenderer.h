@@ -19,6 +19,7 @@ namespace Game
 
 		void SetTexture(Texture* texture) { mTexture = texture; }
 		void SetSize(GameMath::Vector2 size) { mSize = size; }
+		Vector2 GetIndex() { return mIndex; }
 		void SetIndex(Vector2 index) { mIndex = index; }
 
 

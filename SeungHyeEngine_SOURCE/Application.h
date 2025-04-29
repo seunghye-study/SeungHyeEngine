@@ -1,7 +1,6 @@
 #pragma once
 
-#include "CommonInclude.h"
-#include "Scene.h"
+#include "GameObject.h"
 
 namespace Game {
 	class Application
@@ -12,31 +11,24 @@ namespace Game {
 
 		void Initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
-		
-		
+
 		void Update();
 		void LateUpdate();
 		void Render();
 		void Destroy();
 		void Release();
 
-		/*Getter*/
 		HWND GetHWND() { return mHwnd; }
 		HDC GetHDC() { return mHdc; }
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
 
-		/* Component */
-		void InitComponent();
-
 	private:
-		/* Dubble buffering */
 		void ClearRenderTarget();
 		void CopyRenderTarget(HDC source, HDC dest);
-
-		/*Adgustment*/
 		void AdjustWindow(HWND hwnd, UINT width, UINT height);
 		void CreateBuffer(UINT width, UINT height);
+		void InitComponent();
 
 	private:
 		HWND mHwnd;
@@ -47,8 +39,6 @@ namespace Game {
 
 		UINT mWidth;
 		UINT mHeight;
-
-		std::vector<Scene*> mScenes;
 	};
 }
 

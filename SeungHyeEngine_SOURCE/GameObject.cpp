@@ -1,4 +1,3 @@
-#include <iostream>
 #include "GameObject.h"
 #include "GameInput.h"
 #include "Transform.h"
